@@ -9,12 +9,11 @@ import { BlogMetadata } from '../../../../src/repository/token/dto/BlogMetadata'
 
 describe('FileManager', () => {
   const sut: FileManager = Container.get(FileManager);
+  const fileDir = path.join(__dirname, '../../../file');
 
   describe('findPathFromCurrent', () => {
     it('현재 위치에서 .md 파일 path를 찾는다', () => {
-      const testPath = path.join(__dirname, 'file');
-
-      const result = sut.findPathFromCurrent(testPath);
+      const result = sut.findPathFromCurrent(fileDir);
 
       expect(result).toContain('test.md');
     });
@@ -43,7 +42,7 @@ describe('FileManager', () => {
 
   describe('findMarkdown', () => {
     it('test.md의 이름, 내용, 위치가 반환된다', async () => {
-      const testPath = path.join(__dirname, 'file', 'test.md');
+      const testPath = path.join(fileDir, 'test.md');
 
       const result = await sut.findMarkdown(testPath);
 
@@ -55,7 +54,7 @@ describe('FileManager', () => {
 
   describe('findJson', () => {
     it('blog.json의 json 정보가 반환된다', async () => {
-      const testPath = path.join(__dirname, 'file', 'blog.json');
+      const testPath = path.join(fileDir, 'blog.json');
 
       const result: BlogMetadata = await sut.findJson(testPath);
 
