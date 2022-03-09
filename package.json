@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "test:report": "jest --ci --reporters=default --reporters=jest-junit"
+  },
   "dependencies": {
     "@js-joda/core": "^5.2.0",
     "class-transformer": "^0.5.1",
