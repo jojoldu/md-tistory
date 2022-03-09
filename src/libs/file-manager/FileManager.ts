@@ -2,7 +2,7 @@ import { Service } from 'typedi';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { NotFoundFileError } from './NotFoundFileError';
-import { FileMetadata } from './FileMetadata';
+import { FileMetadata } from './dto/FileMetadata';
 import { FileManagerMessages } from './FileManagerMessages';
 import { WinstonLogger } from '../logger/WinstonLogger';
 
@@ -16,7 +16,7 @@ export class FileManager {
         this.logger = logger;
     }
 
-    async find(filePath = this.findPathFromCurrent()): Promise<FileMetadata> {
+    async findMarkdown(filePath = this.findPathFromCurrent()): Promise<FileMetadata> {
         const content = await this.fileManager.readFile(filePath, 'utf8');
         return FileMetadata.markdown(filePath, content);
     }

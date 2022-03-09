@@ -44,7 +44,7 @@ describe('FileManager', () => {
         it('test.md의 이름, 내용, 위치가 반환된다', async () => {
             const testPath = path.join(__dirname, 'file', 'test.md');
 
-            const result = await sut.find(testPath);
+            const result = await sut.findMarkdown(testPath);
 
             expect(result.name).toBe('test');
             expect(result.path).toBe(testPath);
