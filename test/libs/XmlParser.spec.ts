@@ -1,4 +1,6 @@
-import { XmlParser } from '../src/libs/XmlParser';
+import 'reflect-metadata';
+
+import { XmlParser } from '../../src/libs/XmlParser';
 
 describe('XmlParser', () => {
 
