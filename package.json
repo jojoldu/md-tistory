@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "test": "jest '.*.spec.ts$'",
     "test:report": "jest --ci --reporters=default --reporters=jest-junit"
   },
   "dependencies": {
