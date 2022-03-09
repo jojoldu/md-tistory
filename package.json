@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest '.*.spec.ts$'",
-    "test:report": "jest --ci --reporters=default --reporters=jest-junit",
+    "test": "jest '.*.unit.spec.ts$'",
+    "test:report": "jest '.*.unit.spec.ts$' --ci --reporters=default --reporters=jest-junit",
     "lint": "eslint \"src/**/*.ts\" --fix"
   },
   "dependencies": {
