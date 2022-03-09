@@ -10,6 +10,7 @@ export class MarkdownParser {
     }
 
     parse(md: string): string {
-        return this.parser.parse(md);
+        return this.parser.parse(md)
+            .replace('<blockquote>', '<blockquote data-ke-style="style2">');
     }
 }
