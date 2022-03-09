@@ -5,8 +5,8 @@ import { XMLParser } from 'fast-xml-parser';
 export class XmlParser {
     private parser: XMLParser;
 
-    constructor(parser?: XMLParser) {
-        this.parser = parser? parser: new XMLParser();
+    constructor() {
+        this.parser = new XMLParser();
     }
 
     parse(xml: string) {
