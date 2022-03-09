@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class TistoryBody {
+export class TistoryApiResponseBody {
     status: string;
     item: any;
     @Expose({name: 'error_message'})

@@ -1,9 +1,9 @@
 import { Type } from 'class-transformer';
-import { TistoryBody } from './TistoryBody';
+import { TistoryApiResponseBody } from './TistoryApiResponseBody';
 
 export class TistoryApiResponse {
-    @Type(() => TistoryBody)
-    tistory: TistoryBody;
+    @Type(() => TistoryApiResponseBody)
+    tistory: TistoryApiResponseBody;
 
     isOk(): boolean {
         return this.tistory?.status === '200';
