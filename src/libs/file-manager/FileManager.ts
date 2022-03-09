@@ -23,15 +23,28 @@ export class FileManager {
     return FileMetadata.markdown(filePath, content);
   }
 
+  async findJson(filePath: string) {
+    try {
+      const jsonData = await fs.readFile(filePath, 'utf8');
+      return JSON.parse(jsonData);
+    } catch (err) {
+      this.logger.error(
+        `${FileManagerMessages.NOT_FOUND_FILE} = ${filePath} \n`,
+      );
+      this.logger.warn('Please run md-tistory init');
+      throw new NotFoundFileError(FileManagerMessages.NOT_FOUND_FILE);
+    }
+  }
+
   findPathFromCurrent(currentPath = process.cwd()): string {
     const files = this.readPath(currentPath);
     const markdownFileName = files.find((file) => path.extname(file) === '.md');
 
     if (!markdownFileName) {
       this.logger.error(
-        `${FileManagerMessages.NOT_FOUND_MARKDOWN} = ${currentPath}`,
+        `${FileManagerMessages.NOT_FOUND_FILE} = ${currentPath}`,
       );
-      throw new NotFoundFileError(FileManagerMessages.NOT_FOUND_MARKDOWN);
+      throw new NotFoundFileError(FileManagerMessages.NOT_FOUND_FILE);
     }
 
     return `${currentPath}/${markdownFileName}`;

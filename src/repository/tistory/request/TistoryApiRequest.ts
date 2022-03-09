@@ -4,4 +4,5 @@ export abstract class TistoryApiRequest {
   @Expose({ name: 'access_token' })
   accessToken: string;
   blogName: string;
+  output = 'json';
 }
