@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { ClassConstructor, plainToInstance, Type } from 'class-transformer';
 import { TistoryApiResponseBody } from './TistoryApiResponseBody';
 
 export class TistoryApiResponse {
@@ -11,6 +11,10 @@ export class TistoryApiResponse {
 
     get errorMessage(): string {
         return this.tistory?.errorMessage;
+    }
+
+    transform<T>(classType: ClassConstructor<T>): T {
+        return plainToInstance(classType, JSON.parse(this.tistory.item));
     }
 }
 

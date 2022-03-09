@@ -1,4 +1,4 @@
-import { FileMetadata } from '../../../../src/libs/file-manager/dto/FileMetadata';
+import { FileMetadata } from '../../../../../src/libs/file-manager/dto/FileMetadata';
 
 describe('FileMetadata', () => {
     it('.md파일의 이름을 가져온다', () => {

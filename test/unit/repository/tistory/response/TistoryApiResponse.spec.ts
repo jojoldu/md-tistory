@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 import { plainToClass } from 'class-transformer';
-import { TistoryApiResponse } from '../../../../src/repository/tistory/dto/TistoryApiResponse';
+import { TistoryApiResponse } from '../../../../../src/repository/tistory/response/TistoryApiResponse';
 
 describe('TistoryApiResponse', () => {
     it('400 error json결과가 인스턴스로 전환된다', () => {

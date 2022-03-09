@@ -2,9 +2,9 @@ import 'reflect-metadata';
 
 import * as path from 'path';
 import { Container } from 'typedi';
-import { FileManager } from '../../../src/libs/file-manager/FileManager';
-import { NotFoundFileError } from '../../../src/libs/file-manager/NotFoundFileError';
-import { FileManagerMessages } from '../../../src/libs/file-manager/FileManagerMessages';
+import { FileManager } from '../../../../src/libs/file-manager/FileManager';
+import { NotFoundFileError } from '../../../../src/libs/file-manager/NotFoundFileError';
+import { FileManagerMessages } from '../../../../src/libs/file-manager/FileManagerMessages';
 
 describe('FileManager', () => {
     const sut: FileManager = Container.get(FileManager);

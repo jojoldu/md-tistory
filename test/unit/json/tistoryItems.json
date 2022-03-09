@@ -1,0 +1,33 @@
+{
+  "tistory": {
+    "status": "200",
+    "item": {
+      "id": "blog_oauth_test@daum.net",
+      "userId": "12345",
+      "blogs": [
+        {
+          "name": "oauth-test",
+          "url": "http://oauth-test.tistory.com",
+          "secondaryUrl": "http://",
+          "nickname": "티스토리 테스트",
+          "title": "테스트 블로그 1",
+          "description": "안녕하세요! 티스토리입니다.",
+          "default": "Y",
+          "blogIconUrl": "https://blog_icon_url",
+          "faviconUrl": "https://favicon_url",
+          "profileThumbnailImageUrl": "https://profile_image",
+          "profileImageUrl": "https://profile_image",
+          "role": "소유자",
+          "blogId": "123",
+          "statistics": {
+            "post": "182",
+            "comment": "146",
+            "trackback": "0",
+            "guestbook": "39",
+            "invitation": "0"
+          }
+        }
+      ]
+    }
+  }
+}

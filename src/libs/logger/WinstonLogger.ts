@@ -50,8 +50,8 @@ export class WinstonLogger implements Logger {
             }),
             format.ms(),
             format.colorize({all:true}),
-            format.printf(({level, message, label, timestamp}) => {
-                return `${timestamp} [${label}] ${level}: ${message}`
+            format.printf(({level, message, timestamp}) => {
+                return `${timestamp} [${level}]: ${message}`
             }),
         )
     }
