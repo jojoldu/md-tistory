@@ -3,14 +3,15 @@ import { marked } from 'marked';
 
 @Service()
 export class MarkdownParser {
-    private parser;
+  private parser;
 
-    constructor() {
-        this.parser = marked;
-    }
+  constructor() {
+    this.parser = marked;
+  }
 
-    parse(md: string): string {
-        return this.parser.parse(md)
-            .replace('<blockquote>', '<blockquote data-ke-style="style2">');
-    }
+  parse(md: string): string {
+    return this.parser
+      .parse(md)
+      .replace('<blockquote>', '<blockquote data-ke-style="style2">');
+  }
 }

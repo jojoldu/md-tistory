@@ -7,20 +7,18 @@ import { TistoryRepository } from '../../../../src/repository/tistory/TistoryRep
 import { TistoryApiGetItemResponse } from '../../../../src/repository/tistory/response/get/TistoryApiGetItemResponse';
 
 describe('TistoryRepository', () => {
-    const sut: TistoryRepository = Container.get(TistoryRepository);
+  const sut: TistoryRepository = Container.get(TistoryRepository);
 
-    afterEach( () => nock.cleanAll())
+  afterEach(() => nock.cleanAll());
 
-    it('글 정보를 가져온다', async () => {
-        const mockBody = tistoryItem;
-        nock('https://www.tistory.com')
-            .get('/apis/post/read')
-            .reply(200, mockBody);
+  it('글 정보를 가져온다', async () => {
+    const mockBody = tistoryItem;
+    nock('https://www.tistory.com').get('/apis/post/read').reply(200, mockBody);
 
-        const result:TistoryApiGetItemResponse = await sut.getItem();
+    const result: TistoryApiGetItemResponse = await sut.getItem();
 
-        expect(result.title).toBe('티스토리 OAuth2.0 API 오픈!');
-        expect(result.categoryId).toBe('0');
-        expect(result.tagNames).toStrictEqual(['open', 'api']);
-    });
+    expect(result.title).toBe('티스토리 OAuth2.0 API 오픈!');
+    expect(result.categoryId).toBe('0');
+    expect(result.tagNames).toStrictEqual(['open', 'api']);
+  });
 });

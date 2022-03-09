@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "test": "jest '.*.spec.ts$'",
-    "test:report": "jest --ci --reporters=default --reporters=jest-junit"
+    "test:report": "jest --ci --reporters=default --reporters=jest-junit",
+    "lint": "eslint \"src/**/*.ts\" --fix"
   },
   "dependencies": {
     "@js-joda/core": "^5.2.0",
@@ -28,6 +29,8 @@
     "@types/jest": "^27.0.1",
     "@types/marked": "^4.0.2",
     "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
