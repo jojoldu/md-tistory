@@ -3,6 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { Logger } from '../logger/Logger';
 import { NotFoundFileError } from './NotFoundFileError';
+import { FileMetadata } from './FileMetadata';
 
 const NOT_FOUND_FILE = 'There are no .md files in the current folder.';
 
@@ -16,8 +17,9 @@ export class FileManager {
         this.logger = logger;
     }
 
-    find(path = this.findPathFromCurrent()) {
-
+    async find(filePath = this.findPathFromCurrent()): Promise<FileMetadata> {
+        const content = await this.fileManager.readFile(filePath, 'utf8');
+        return FileMetadata.markdown(filePath, content);
     }
 
     findPathFromCurrent(currentPath = process.cwd()): string {
