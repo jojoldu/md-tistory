@@ -10,7 +10,22 @@ describe('WinstonLogger', () => {
         expect(sut.level()).toBe('debug');
     });
 
-    it('debug는 파란색이 출력된다', () => {
-        sut.debug('디버그모드');
+    describe('color', () => {
+        it('debug는 파란색', () => {
+            sut.debug('debug');
+        });
+
+        it('error는 빨간색', () => {
+            sut.error('error');
+        });
+
+        it('info는 녹색', () => {
+            sut.info('info');
+        });
+
+        it('warn은 노란색', () => {
+            sut.warn('warn');
+        });
     });
+
 });

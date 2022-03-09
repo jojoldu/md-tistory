@@ -1,8 +1,7 @@
 import { Service } from 'typedi';
 import { Logger } from './Logger';
-import winston, { addColors, createLogger, format, transports } from 'winston';
+import winston, { createLogger, format, transports } from 'winston';
 import { Format } from 'logform';
-import { AbstractConfigSetColors } from 'winston/lib/winston/config';
 
 @Service()
 export class WinstonLogger implements Logger {
@@ -14,7 +13,6 @@ export class WinstonLogger implements Logger {
         this._level = nodeEnv === 'test' ? 'debug' : 'info';
 
         this._logger = createLogger({
-            silent: nodeEnv === 'test',
             transports: [
                 new transports.Console({
                     level: this._level,
@@ -22,7 +20,6 @@ export class WinstonLogger implements Logger {
                 }),
             ],
         });
-        addColors(this.getLevels());
     }
 
     level(): string {
@@ -45,23 +42,17 @@ export class WinstonLogger implements Logger {
         this._logger.warn(message, error);
     }
 
-    private getLevels(): AbstractConfigSetColors {
-        return {
-            debug: 'blue',
-            info: 'green',
-            warn: 'yellow',
-            error: 'red'
-        };
-    }
-
     private getFormat(): Format {
         return format.combine(
-            format.label({label: `[md-tistory]`}),
+            format.label({label: `md-tistory`}),
             format.timestamp({
                 format: 'YYYY-MM-DD HH:mm:ss',
             }),
             format.ms(),
-            format.prettyPrint(),
+            format.colorize({all:true}),
+            format.printf(({level, message, label, timestamp}) => {
+                return `${timestamp} [${label}] ${level}: ${message}`
+            }),
         )
     }
 
