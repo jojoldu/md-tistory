@@ -1,7 +1,7 @@
 import { Expose } from 'class-transformer';
 
-export class Tistory {
-    status: number;
+export class TistoryBody {
+    status: string;
     item: any;
     @Expose({name: 'error_message'})
     errorMessage: string;
