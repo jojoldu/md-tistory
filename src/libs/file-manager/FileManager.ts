@@ -1,18 +1,17 @@
 import { Service } from 'typedi';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { Logger } from '../logger/Logger';
 import { NotFoundFileError } from './NotFoundFileError';
 import { FileMetadata } from './FileMetadata';
-
-const NOT_FOUND_FILE = 'There are no .md files in the current folder.';
+import { FileManagerMessages } from './FileManagerMessages';
+import { WinstonLogger } from '../logger/WinstonLogger';
 
 @Service()
 export class FileManager {
     private fileManager;
-    private readonly logger: Logger;
+    private readonly logger: WinstonLogger;
 
-    constructor(logger: Logger) {
+    constructor(logger: WinstonLogger) {
         this.fileManager = fs;
         this.logger = logger;
     }
@@ -23,14 +22,24 @@ export class FileManager {
     }
 
     findPathFromCurrent(currentPath = process.cwd()): string {
-        const files = fs.readdirSync(currentPath);
+        const files = this.readPath(currentPath);
         const markdownFileName = files.find(file => path.extname(file) === '.md');
 
         if(!markdownFileName){
-            this.logger.error(NOT_FOUND_FILE);
-            throw new NotFoundFileError(NOT_FOUND_FILE);
+            this.logger.error(`${FileManagerMessages.NOT_FOUND_MARKDOWN} = ${currentPath}`);
+            throw new NotFoundFileError(FileManagerMessages.NOT_FOUND_MARKDOWN);
         }
 
         return `${currentPath}/${markdownFileName}`;
+    }
+
+    private readPath(currentPath: string) {
+        try {
+            return fs.readdirSync(currentPath);
+        } catch (e) {
+            this.logger.error(e.message, e);
+            throw new NotFoundFileError(e.message);
+        }
+
     }
 }
