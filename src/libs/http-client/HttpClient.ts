@@ -4,13 +4,11 @@ import { ResponseEntity } from './ResponseEntity';
 import { HttpError } from './HttpError';
 import got, { Got, HTTPError } from 'got';
 import { Method, Options } from 'got/dist/source/core';
+import { MediaType } from './MediaType';
 
 @Service()
 export class HttpClient {
   private static readonly DEFAULT_OPTION = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
     isStream: false,
     resolveBodyOnly: false,
     timeout: 5000,
@@ -34,9 +32,26 @@ export class HttpClient {
     );
   }
 
+  async post(
+    url: string,
+    contentType = MediaType.APPLICATION_JSON,
+    body: Record<string, any>,
+  ): Promise<ResponseEntity> {
+    const options = { form: {}, json: {} };
+
+    if (contentType === MediaType.MULTIPART_FORM_DATA) {
+      options.form = body;
+    } else {
+      options.json = body;
+    }
+
+    return await this.request(url, 'POST', contentType, options);
+  }
+
   private async request(
     url: string,
     method: Method,
+    contentType = MediaType.APPLICATION_JSON,
     options?: Options,
   ): Promise<ResponseEntity> {
     try {
@@ -44,6 +59,9 @@ export class HttpClient {
         responseType: 'text',
         method: method,
         url: url,
+        headers: {
+          'Content-Type': contentType,
+        },
         ...options,
         ...HttpClient.DEFAULT_OPTION,
       });

@@ -5,6 +5,7 @@ import { Container } from 'typedi';
 import nock from 'nock';
 import { TistoryRepository } from '../../../../src/repository/tistory/TistoryRepository';
 import { TistoryApiGetItemResponse } from '../../../../src/repository/tistory/response/get/TistoryApiGetItemResponse';
+import { TistoryApiGetItemRequest } from '../../../../src/repository/tistory/request/get/TistoryApiGetItemRequest';
 
 describe('TistoryRepository', () => {
   const sut: TistoryRepository = Container.get(TistoryRepository);
@@ -13,9 +14,13 @@ describe('TistoryRepository', () => {
 
   it('글 정보를 가져온다', async () => {
     const mockBody = tistoryItem;
-    nock('https://www.tistory.com').get('/apis/post/read').reply(200, mockBody);
+    nock('https://www.tistory.com')
+      .get('/apis/post/read?access_token=&blogName=&output=json&postId=')
+      .reply(200, mockBody);
 
-    const result: TistoryApiGetItemResponse = await sut.getItem();
+    const result: TistoryApiGetItemResponse = await sut.getItem(
+      new TistoryApiGetItemRequest('', '', ''),
+    );
 
     expect(result.title).toBe('티스토리 OAuth2.0 API 오픈!');
     expect(result.categoryId).toBe('0');
