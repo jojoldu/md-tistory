@@ -5,7 +5,6 @@ import { NotFoundFileError } from './NotFoundFileError';
 import { FileMetadata } from './dto/FileMetadata';
 import { FileManagerMessages } from './FileManagerMessages';
 import { WinstonLogger } from '../logger/WinstonLogger';
-import { ReadStream } from 'fs';
 
 @Service()
 export class FileManager {
@@ -37,9 +36,9 @@ export class FileManager {
     }
   }
 
-  async findImage(filePath: string): Promise<ReadStream> {
+  async findImage(filePath: string): Promise<Buffer> {
     try {
-      return await fs.createReadStream(filePath);
+      return await fs.readFile(filePath);
     } catch (err) {
       this.logger.error(
         `${FileManagerMessages.NOT_FOUND_FILE} = ${filePath} \n`,

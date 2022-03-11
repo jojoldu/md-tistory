@@ -26,10 +26,10 @@ export class TistoryRepository {
   }
 
   async uploadImage(dto: TistoryApiFileRequest): Promise<string> {
-    const json = dto.getRequestBody();
+    const form = dto.getFormBody();
     const response: ResponseEntity = await this.httpClient.postFormData(
       `${TistoryRepository.BASE_URL}/post/attach?${dto.queryParams()}`,
-      json,
+      form,
     );
 
     const body: TistoryApiResponse = response.transform(TistoryApiResponse);

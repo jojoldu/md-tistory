@@ -7,6 +7,7 @@ import { Method, Options } from 'got/dist/source/core';
 import { MediaType } from './MediaType';
 import { plainToInstance } from 'class-transformer';
 import { TistoryApiResponseBody } from '../../repository/tistory/response/TistoryApiResponseBody';
+import FormData from 'form-data';
 
 @Service()
 export class HttpClient {
@@ -44,18 +45,16 @@ export class HttpClient {
     return await this.request(url, 'POST', contentType, options);
   }
 
-  async postFormData(
-    url: string,
-    body: Record<string, any>,
-  ): Promise<ResponseEntity> {
+  async postFormData(url: string, form: FormData): Promise<ResponseEntity> {
     const options = {
-      form: body,
+      body: form,
+      headers: form.getHeaders(),
     };
 
     return await this.request(
       url,
       'POST',
-      MediaType.MULTIPART_FORM_DATA,
+      MediaType.APPLICATION_FORM_URLENCODED,
       options,
     );
   }
