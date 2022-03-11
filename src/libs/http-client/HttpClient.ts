@@ -5,6 +5,9 @@ import { HttpError } from './HttpError';
 import got, { Got, HTTPError } from 'got';
 import { Method, Options } from 'got/dist/source/core';
 import { MediaType } from './MediaType';
+import { XmlParser } from '../XmlParser';
+import { plainToInstance } from 'class-transformer';
+import { TistoryApiResponseBody } from '../../repository/tistory/response/TistoryApiResponseBody';
 
 @Service()
 export class HttpClient {
@@ -15,11 +18,12 @@ export class HttpClient {
   };
 
   private readonly client: Got;
-  private readonly logger: WinstonLogger;
 
-  constructor(logger: WinstonLogger) {
+  constructor(
+    private readonly logger: WinstonLogger,
+    private readonly xmlParser: XmlParser,
+  ) {
     this.client = got;
-    this.logger = logger;
   }
 
   async get(
@@ -37,15 +41,27 @@ export class HttpClient {
     contentType = MediaType.APPLICATION_JSON,
     body: Record<string, any>,
   ): Promise<ResponseEntity> {
-    const options = { form: {}, json: {} };
-
-    if (contentType === MediaType.MULTIPART_FORM_DATA) {
-      options.form = body;
-    } else {
-      options.json = body;
-    }
+    const options = {
+      json: body,
+    };
 
     return await this.request(url, 'POST', contentType, options);
+  }
+
+  async postFormData(
+    url: string,
+    body: Record<string, any>,
+  ): Promise<ResponseEntity> {
+    const options = {
+      form: body,
+    };
+
+    return await this.request(
+      url,
+      'POST',
+      MediaType.MULTIPART_FORM_DATA,
+      options,
+    );
   }
 
   private async request(
@@ -68,14 +84,18 @@ export class HttpClient {
 
       return new ResponseEntity(response.statusCode, response.body);
     } catch (e) {
-      this.logger.error(
-        `${e.message}, url=${url}, response=${e.response?.body}`,
-        e,
-      );
-
       if (e instanceof HTTPError && e.response) {
-        throw new HttpError(`${e.message}: ${e.response.body}`);
+        const xml = e.response?.body as string;
+        const { errorMessage }: TistoryApiResponseBody = plainToInstance(
+          TistoryApiResponseBody,
+          this.xmlParser.parse(xml).tistory,
+        );
+
+        this.logger.error(`message=${errorMessage}, url=${url}`, e);
+        throw new HttpError(errorMessage);
       }
+
+      this.logger.error(`message=${e.message}, url=${url}`, e);
       throw new HttpError(e.message);
     }
   }
