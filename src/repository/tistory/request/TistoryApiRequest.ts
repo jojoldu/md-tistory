@@ -1,4 +1,4 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, instanceToPlain } from 'class-transformer';
 
 export abstract class TistoryApiRequest {
   @Exclude() private readonly _accessToken: string;
@@ -8,6 +8,10 @@ export abstract class TistoryApiRequest {
   protected constructor(accessToken: string, blogName: string) {
     this._accessToken = accessToken;
     this._blogName = blogName;
+  }
+
+  queryParams(): string {
+    return new URLSearchParams(instanceToPlain(this)).toString();
   }
 
   @Expose({ name: 'access_token' })

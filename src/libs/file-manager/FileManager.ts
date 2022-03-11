@@ -5,6 +5,7 @@ import { NotFoundFileError } from './NotFoundFileError';
 import { FileMetadata } from './dto/FileMetadata';
 import { FileManagerMessages } from './FileManagerMessages';
 import { WinstonLogger } from '../logger/WinstonLogger';
+import { ReadStream } from 'fs';
 
 @Service()
 export class FileManager {
@@ -32,6 +33,17 @@ export class FileManager {
         `${FileManagerMessages.NOT_FOUND_FILE} = ${filePath} \n`,
       );
       this.logger.warn('Please run md-tistory init');
+      throw new NotFoundFileError(FileManagerMessages.NOT_FOUND_FILE);
+    }
+  }
+
+  async findImage(filePath: string): Promise<ReadStream> {
+    try {
+      return await fs.createReadStream(filePath);
+    } catch (err) {
+      this.logger.error(
+        `${FileManagerMessages.NOT_FOUND_FILE} = ${filePath} \n`,
+      );
       throw new NotFoundFileError(FileManagerMessages.NOT_FOUND_FILE);
     }
   }

@@ -6,7 +6,6 @@ import { TistoryApiGetItemResponse } from './response/get/TistoryApiGetItemRespo
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { TistoryApiGetItemRequest } from './request/get/TistoryApiGetItemRequest';
 import { TistoryApiFileRequest } from './request/post/TistoryApiFileRequest';
-import { MediaType } from '../../libs/http-client/MediaType';
 
 @Service()
 export class TistoryRepository {
@@ -27,10 +26,10 @@ export class TistoryRepository {
   }
 
   async uploadImage(dto: TistoryApiFileRequest): Promise<string> {
-    const response: ResponseEntity = await this.httpClient.post(
-      `${TistoryRepository.BASE_URL}/post/attach`,
-      MediaType.MULTIPART_FORM_DATA,
-      instanceToPlain(dto),
+    const json = dto.getRequestBody();
+    const response: ResponseEntity = await this.httpClient.postFormData(
+      `${TistoryRepository.BASE_URL}/post/attach?${dto.queryParams()}`,
+      json,
     );
 
     const body: TistoryApiResponse = response.transform(TistoryApiResponse);

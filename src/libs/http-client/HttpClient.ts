@@ -5,7 +5,6 @@ import { HttpError } from './HttpError';
 import got, { Got, HTTPError } from 'got';
 import { Method, Options } from 'got/dist/source/core';
 import { MediaType } from './MediaType';
-import { XmlParser } from '../XmlParser';
 import { plainToInstance } from 'class-transformer';
 import { TistoryApiResponseBody } from '../../repository/tistory/response/TistoryApiResponseBody';
 
@@ -19,10 +18,7 @@ export class HttpClient {
 
   private readonly client: Got;
 
-  constructor(
-    private readonly logger: WinstonLogger,
-    private readonly xmlParser: XmlParser,
-  ) {
+  constructor(private readonly logger: WinstonLogger) {
     this.client = got;
   }
 
@@ -85,10 +81,10 @@ export class HttpClient {
       return new ResponseEntity(response.statusCode, response.body);
     } catch (e) {
       if (e instanceof HTTPError && e.response) {
-        const xml = e.response?.body as string;
-        const { errorMessage }: TistoryApiResponseBody = plainToInstance(
+        const { tistory } = JSON.parse(e.response?.body as string);
+        const { errorMessage } = plainToInstance(
           TistoryApiResponseBody,
-          this.xmlParser.parse(xml).tistory,
+          tistory,
         );
 
         this.logger.error(`message=${errorMessage}, url=${url}`, e);

@@ -62,4 +62,14 @@ describe('FileManager', () => {
       expect(result.clientId).toBe('clientId-test');
     });
   });
+
+  describe('findImage', () => {
+    it('test.png 조회', async () => {
+      const testPath = path.join(fileDir, '/images/test.png');
+
+      const result = await sut.findImage(testPath);
+
+      expect(result.path).toBe(testPath);
+    });
+  });
 });
