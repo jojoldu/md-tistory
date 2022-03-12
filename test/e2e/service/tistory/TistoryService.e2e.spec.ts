@@ -9,6 +9,15 @@ describe('TistoryService(e2e)', () => {
   const logger: WinstonLogger = Container.get(WinstonLogger);
   const fileDir = path.join(__dirname, '../../../file');
 
+  describe('create', () => {
+    it('마크다운 내용이 포스팅된다', async () => {
+      const fileName = 'test.md';
+
+      const result = await sut.create(fileName, fileDir);
+
+      expect(result).toContain('https');
+    });
+  });
   describe('uploadImage', () => {
     it('Tistory에 이미지가 업로드된다', async () => {
       const filePath = path.join(fileDir, '/images/test.png');

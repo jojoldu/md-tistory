@@ -1,4 +1,4 @@
-export class TistoryApiGetItemResponse {
+export class TistoryApiGetOneResponse {
   title: string;
   tags: any;
   categoryId: string;

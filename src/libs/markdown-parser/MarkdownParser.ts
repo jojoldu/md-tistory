@@ -9,9 +9,15 @@ export class MarkdownParser {
     this.parser = marked;
   }
 
-  parse(md: string): string {
+  parse(mdContent: string): string {
+    return `<article class="markdown-body entry-content" itemprop="text"> ${this.convert(
+      mdContent,
+    )} </article>`;
+  }
+
+  private convert(mdContent: string): string {
     return this.parser
-      .parse(md)
+      .parse(mdContent)
       .replace('<blockquote>', '<blockquote data-ke-style="style2">');
   }
 }

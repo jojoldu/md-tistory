@@ -10,6 +10,7 @@ export abstract class TistoryApiRequest {
     this._blogName = blogName;
   }
 
+  @Exclude()
   queryParams(): string {
     return new URLSearchParams(instanceToPlain(this)).toString();
   }

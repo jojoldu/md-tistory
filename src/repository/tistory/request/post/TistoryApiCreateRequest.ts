@@ -1,5 +1,6 @@
 import { TistoryApiRequest } from '../TistoryApiRequest';
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude, Expose, instanceToPlain } from 'class-transformer';
+import FormData from 'form-data';
 
 export class TistoryApiCreateRequest extends TistoryApiRequest {
   @Exclude() private readonly _title: string;
@@ -15,6 +16,16 @@ export class TistoryApiCreateRequest extends TistoryApiRequest {
     super(accessToken, blogName);
     this._title = title;
     this._content = content;
+  }
+
+  @Exclude()
+  getFormBody(): FormData {
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(instanceToPlain(this))) {
+      formData.append(key, value);
+    }
+
+    return formData;
   }
 
   @Expose()

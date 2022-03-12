@@ -1,4 +1,5 @@
 import { MarkdownImage } from './MarkdownImage';
+import { FileMetadata } from '../../../libs/file-manager/dto/FileMetadata';
 
 export class MarkdownFile {
   private readonly _title: string;
@@ -11,6 +12,10 @@ export class MarkdownFile {
     this._path = path;
     this._content = content;
     this._uploadContent = content;
+  }
+
+  static of(file: FileMetadata): MarkdownFile {
+    return new MarkdownFile(file.name, file.path, file.content);
   }
 
   updateUploadContent(markdownImages: MarkdownImage[]): void {

@@ -7,6 +7,9 @@ import { TistoryApiFileRequest } from '../../repository/tistory/request/post/Tis
 import { getImagePaths } from './getImagePaths';
 import { MarkdownImage } from './dto/MarkdownImage';
 import { MarkdownFile } from './dto/MarkdownFile';
+import { TistoryApiCreateRequest } from '../../repository/tistory/request/post/TistoryApiCreateRequest';
+import * as path from 'path';
+import { MarkdownParser } from '../../libs/markdown-parser/MarkdownParser';
 
 @Service()
 export class TistoryService {
@@ -14,27 +17,42 @@ export class TistoryService {
     private readonly tistoryRepository: TistoryRepository,
     private readonly tokenRepository: TokenRepository,
     private readonly fileManager: FileManager,
+    private readonly markdownParser: MarkdownParser,
     private readonly logger: WinstonLogger,
   ) {}
 
-  async convertImages(mdFile: MarkdownFile): Promise<MarkdownFile> {
+  async create(mdName: string, currentPath = process.cwd()): Promise<string> {
+    const { accessToken } = await this.tokenRepository.findToken();
+    const { blogName } = await this.tokenRepository.findBlogMetadata();
+    const mdFile: MarkdownFile = MarkdownFile.of(
+      await this.fileManager.findMarkdown(path.join(currentPath, `/${mdName}`)),
+    );
+    mdFile.updateUploadContent(await this.convertImages(mdFile));
+
+    const content = this.markdownParser.parse(mdFile.uploadContent);
+
+    this.logger.debug(content);
+
+    return await this.tistoryRepository.create(
+      new TistoryApiCreateRequest(mdFile.title, content, accessToken, blogName),
+    );
+  }
+
+  async convertImages(mdFile: MarkdownFile): Promise<MarkdownImage[]> {
     const markdownImages = getImagePaths(mdFile.content)
       .map((imagePath) => new MarkdownImage(mdFile.path, imagePath))
       .filter((markdownImage) => markdownImage.isNotWebImage);
 
-    mdFile.updateUploadContent(
-      await Promise.all(
-        markdownImages.map(async (markdownImage) => {
-          const url = await this.uploadImage(markdownImage.mdImageFullPath);
-          if (url) {
-            markdownImage.updateUrlPath(url);
-          }
+    return await Promise.all(
+      markdownImages.map(async (markdownImage) => {
+        const url = await this.uploadImage(markdownImage.mdImageFullPath);
+        if (url) {
+          markdownImage.updateUrlPath(url);
+        }
 
-          return markdownImage;
-        }),
-      ),
+        return markdownImage;
+      }),
     );
-    return mdFile;
   }
 
   async uploadImage(filePath: string): Promise<string | undefined> {

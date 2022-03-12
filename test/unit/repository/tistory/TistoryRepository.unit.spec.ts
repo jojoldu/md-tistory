@@ -4,7 +4,7 @@ import tistoryItem from '../../json/tistoryItem.json';
 import { Container } from 'typedi';
 import nock from 'nock';
 import { TistoryRepository } from '../../../../src/repository/tistory/TistoryRepository';
-import { TistoryApiGetItemResponse } from '../../../../src/repository/tistory/response/get/TistoryApiGetItemResponse';
+import { TistoryApiGetOneResponse } from '../../../../src/repository/tistory/response/get/TistoryApiGetOneResponse';
 import { TistoryApiGetItemRequest } from '../../../../src/repository/tistory/request/get/TistoryApiGetItemRequest';
 
 describe('TistoryRepository', () => {
@@ -18,7 +18,7 @@ describe('TistoryRepository', () => {
       .get('/apis/post/read?access_token=&blogName=&output=json&postId=')
       .reply(200, mockBody);
 
-    const result: TistoryApiGetItemResponse = await sut.getItem(
+    const result: TistoryApiGetOneResponse = await sut.getOne(
       new TistoryApiGetItemRequest('', '', ''),
     );
 

@@ -14,7 +14,7 @@
 | zebra stripes | are neat      |    $1 |
 
 
-명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 ```markdown-tistory init``` 명령어를 입력하여, 안내대로 값을 입력합니다.
+명령 프롬프트(윈도우), 터미널(맥/리눅스)을 열어 `markdown-tistory init` 명령어를 입력하여, 안내대로 값을 입력합니다.
 * blog name : 본인의 블로그 주소 (ex: jojoldu.tistory.com의 jojoldu를 입력하시면 됩니다.)
   * 들여쓰기1
     * 들여쓰기1
@@ -46,10 +46,20 @@ export class TokenRepository {
 
 등록이 성공하면 해당 내용은 **비공개**로 포스팅 되니, 본인 블로그의 관리자 페이지로 이동하여 게시글을 공개로 전환한다.
 
+> style1이 아니라 style2가 되어야합니다.
+> 안그러면 노가다가 심해요... ㅠ
+
+`test`: 시작부터 코드 문법 써도 괜찮아요.
+
 ### 이미지 테스트
 
-![티스토리](../images/티스토리.png)
+바로 위에 글을 쓰면 어떻게 되나요?
 
-![](../images/티스토리클라이언트.png)
+![티스토리](./images/티스토리.png)
+
+바로 글을 쓰면 스타일이 어떻게 되나요?
+
+![](./images/티스토리클라이언트.png)
 
 ![URL](https://t1.daumcdn.net/cfile/tistory/9975AC495E9CEA2F26)
+

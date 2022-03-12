@@ -1,9 +1,20 @@
 import 'reflect-metadata';
 import { MarkdownParser } from '../../../../src/libs/markdown-parser/MarkdownParser';
 import { Container } from 'typedi';
+import { FileManager } from '../../../../src/libs/file-manager/FileManager';
+import { FileMetadata } from '../../../../src/libs/file-manager/dto/FileMetadata';
+import path from 'path';
 
 describe('MarkdownParser', () => {
   const sut: MarkdownParser = Container.get(MarkdownParser);
+  const fileManager: FileManager = Container.get(FileManager);
+  let markdownFile: FileMetadata;
+
+  beforeAll(async () => {
+    markdownFile = await fileManager.findMarkdown(
+      path.join(__dirname, '../../../file/code.md'),
+    );
+  });
 
   it('문단 첫 코드도 변환된다', () => {
     const md = '`test` 는 **어렵네요**';
@@ -21,5 +32,14 @@ describe('MarkdownParser', () => {
         '<p>Slack Webhook 생성이 처음</p>\n' +
         '</blockquote>\n',
     );
+  });
+
+  it('code 문법도 치환된다', () => {
+    const content = markdownFile.content;
+
+    const result = sut.parse(content);
+
+    expect(result).toContain('<h1 id="테스트">테스트</h1>');
+    expect(result).toContain('<pre><code class');
   });
 });
