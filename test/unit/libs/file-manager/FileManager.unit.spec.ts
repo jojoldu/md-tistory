@@ -15,7 +15,7 @@ describe('FileManager', () => {
     it('현재 위치에서 .md 파일 path를 찾는다', () => {
       const result = sut.findPathFromCurrent(fileDir);
 
-      expect(result).toContain('test.md');
+      expect(result).toContain('.md');
     });
 
     it('존재하지 않는 위치를 지정하면 NotFoundFileError가 발생한다', () => {

@@ -20,7 +20,7 @@ describe('MarkdownParser', () => {
     const md = '`test` 는 **어렵네요**';
     const result = sut.parse(md);
     expect(result).toBe(
-      '<p><code>test</code> 는 <strong>어렵네요</strong></p>\n',
+      '<article class="markdown-body entry-content" itemprop="text"> <p><code>test</code> 는 <strong>어렵네요</strong></p>\n </article>',
     );
   });
 
@@ -28,9 +28,9 @@ describe('MarkdownParser', () => {
     const md = '> Slack Webhook 생성이 처음';
     const result = sut.parse(md);
     expect(result).toBe(
-      '<blockquote data-ke-style="style2">\n' +
+      '<article class="markdown-body entry-content" itemprop="text"> <blockquote data-ke-style="style2">\n' +
         '<p>Slack Webhook 생성이 처음</p>\n' +
-        '</blockquote>\n',
+        '</blockquote>\n </article>',
     );
   });
 
