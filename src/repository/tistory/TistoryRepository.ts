@@ -11,7 +11,9 @@ import { TistoryApiFileRequest } from './request/post/TistoryApiFileRequest';
 export class TistoryRepository {
   private static BASE_URL = 'https://www.tistory.com/apis';
 
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+  ) {}
 
   async getItem(
     dto: TistoryApiGetItemRequest,

@@ -16,10 +16,13 @@ export class TistoryService {
 
   async uploadImage(filePath: string): Promise<string> {
     this.logger.debug(`filePath=${filePath}`);
-    const image = await this.fileManager.findImage(filePath);
     const { accessToken } = await this.tokenRepository.findToken();
     const { blogName } = await this.tokenRepository.findBlogMetadata();
-    const dto = new TistoryApiFileRequest(accessToken, blogName, image);
+    const dto = new TistoryApiFileRequest(
+      accessToken,
+      blogName,
+      await this.fileManager.findImage(filePath),
+    );
     return await this.tistoryRepository.uploadImage(dto);
   }
 }
