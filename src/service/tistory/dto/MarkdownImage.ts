@@ -12,6 +12,21 @@ export class MarkdownImage {
     this._mdImageFullPath = this.mergePath(mdPath, mdImagePath);
   }
 
+  static testOf(
+    mdPath: string,
+    mdImagePath: string,
+    urlPath: string,
+  ): MarkdownImage {
+    const markdownImage = new MarkdownImage(mdPath, mdImagePath);
+    markdownImage.updateUrlPath(urlPath);
+
+    return markdownImage;
+  }
+
+  updateUrlPath(value: string): void {
+    this._urlPath = value;
+  }
+
   private mergePath(mdPath: string, mdImagePath: string): string {
     if (this.isWebImage) {
       return mdImagePath;
@@ -39,6 +54,9 @@ export class MarkdownImage {
     return this._urlPath;
   }
 
+  get isNotWebImage(): boolean {
+    return !this.isWebImage;
+  }
   get isWebImage(): boolean {
     return MarkdownImage.WEB_IMAGE_REGEX.test(this._mdImagePath);
   }
