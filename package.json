@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest '.*.unit.spec.ts$'",
     "test:report": "jest '.*.unit.spec.ts$' --ci --reporters=default --reporters=jest-junit",
-    "lint": "eslint \"src/**/*.ts\" --fix"
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
   },
   "dependencies": {
     "@js-joda/core": "^5.2.0",
