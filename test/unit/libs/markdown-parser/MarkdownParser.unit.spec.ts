@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { MarkdownParser } from '../../../src/libs/MarkdownParser';
+import { MarkdownParser } from '../../../../src/libs/markdown-parser/MarkdownParser';
 import { Container } from 'typedi';
 
 describe('MarkdownParser', () => {
