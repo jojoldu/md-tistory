@@ -1,0 +1,16 @@
+{
+  "total": 12,
+  "tools inspection": {
+    "Code Inspection": 12
+  },
+  "attributes": {
+    "vcs": {
+      "sarifIdea": {
+        "repositoryUri": "https://github.com/jojoldu/md-tistory",
+        "revisionId": "12f3f182aa8ae10f870825e791fb43f748a3b566",
+        "branch": "master"
+      }
+    },
+    "deviceId": "200820300000000-2ab8-ad94-9a14-39f894855563"
+  }
+}

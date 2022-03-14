@@ -1,0 +1,337 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Method can be static",
+  "severity": "High",
+  "comment": "Method can be static",
+  "detailsInfo": "Reports a class method that can be safely made `static`. A method can be `static` if it does not reference any of its class' non-static methods and non-static fields and is not overridden in a subclass.\n\n\nUse the first checkbox below to inspect only `private` methods.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/libs/logger/WinstonLogger.ts",
+      "language": "JavaScript",
+      "line": 45,
+      "offset": 11,
+      "length": 9,
+      "code": {
+        "startLine": 43,
+        "length": 9,
+        "offset": 15,
+        "surroundingCode": "  }\n\n  private getFormat(): Format {\n    return format.combine(\n      format.label({ label: `md-tistory` }),"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSMethodCanBeStatic"
+  },
+  "hash": "f5d38e44c38ca318818928fa638dcdf90e2237478a7c077a2a51aba792edb1d2"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method require()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 2,
+      "offset": 21,
+      "length": 7,
+      "code": {
+        "startLine": 1,
+        "length": 7,
+        "offset": 83,
+        "surroundingCode": "// eslint-disable-next-line @typescript-eslint/no-var-requires\nconst { Command } = require('commander');\n\nconst program = new Command();"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "cf33c742e40bc3bdb7be6a6a21a3c4fec9186f740062f5392a6476971fa9f023"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method option()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 7,
+      "offset": 4,
+      "length": 6,
+      "code": {
+        "startLine": 5,
+        "length": 6,
+        "offset": 12,
+        "surroundingCode": "\nprogram\n  .option('-f, --file <name>', 'Markdown File name', 'README.md')\n  .option('-c, --create', 'create', false)\n  .option('-u, --update', 'update', false)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "13fdff3284d050f8f22b8d01dd4fe1f55abff88947bdbacb741dc6873cb451a9"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method option()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 8,
+      "offset": 4,
+      "length": 6,
+      "code": {
+        "startLine": 6,
+        "length": 6,
+        "offset": 77,
+        "surroundingCode": "program\n  .option('-f, --file <name>', 'Markdown File name', 'README.md')\n  .option('-c, --create', 'create', false)\n  .option('-u, --update', 'update', false)\n  .option('-i, --init', 'init', false)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "3ee964ecf5179cfbacfc1714d9f354b325d89900fb21b0ff90c8f89c4faf898b"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method option()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 9,
+      "offset": 4,
+      "length": 6,
+      "code": {
+        "startLine": 7,
+        "length": 6,
+        "offset": 112,
+        "surroundingCode": "  .option('-f, --file <name>', 'Markdown File name', 'README.md')\n  .option('-c, --create', 'create', false)\n  .option('-u, --update', 'update', false)\n  .option('-i, --init', 'init', false)\n  .option('-n, --name <name>', 'blog name', false)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "d6f20aaf5e3b38de3df267f6806f737a4575e4c7953fa566558d7c70ef6c1d12"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method option()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 10,
+      "offset": 4,
+      "length": 6,
+      "code": {
+        "startLine": 8,
+        "length": 6,
+        "offset": 89,
+        "surroundingCode": "  .option('-c, --create', 'create', false)\n  .option('-u, --update', 'update', false)\n  .option('-i, --init', 'init', false)\n  .option('-n, --name <name>', 'blog name', false)\n  .parse();"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "ed2054a5a6b94d84e3af31b1c11661ab5b5cc2baa5c658a5b44a7f3b32d22fde"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method option()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 11,
+      "offset": 4,
+      "length": 6,
+      "code": {
+        "startLine": 9,
+        "length": 6,
+        "offset": 85,
+        "surroundingCode": "  .option('-u, --update', 'update', false)\n  .option('-i, --init', 'init', false)\n  .option('-n, --name <name>', 'blog name', false)\n  .parse();\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "fd02d5946a5c68755b7dbb24bee05031b58ee054baafcaa20ee547600c526534"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "severity": "Moderate",
+  "comment": "Unresolved function or method opts()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "test/app-test.js",
+      "language": "JavaScript",
+      "line": 15,
+      "offset": 36,
+      "length": 4,
+      "code": {
+        "startLine": 13,
+        "length": 4,
+        "offset": 75,
+        "surroundingCode": "\n// eslint-disable-next-line no-console\nconsole.log(JSON.stringify(program.opts()));\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedFunction"
+  },
+  "hash": "0c14c86d5d3b5f8d69ada663233977d25cc6b72d3009793af387971cdece5933"
+},{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Unnecessary non-capturing group",
+  "severity": "High",
+  "comment": "Unnecessary non-capturing group `(?:!\\[(.*?)\\]\\((.*?)\\))`",
+  "detailsInfo": "Reports unnecessary non-capturing groups, which have no influence on the match result.\n\n**Example:**\n\n\n      Everybody be cool, (?:this) is a robbery!\n\nAfter the quick-fix is applied:\n\n\n      Everybody be cool, this is a robbery!\n\nNew in 2021.1",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/service/tistory/getImagePaths.ts",
+      "language": "RegExp",
+      "line": 2,
+      "offset": 28,
+      "length": 3,
+      "code": {
+        "startLine": 1,
+        "length": 3,
+        "offset": 88,
+        "surroundingCode": "export function getImagePaths(mdContent: string): string[] {\n  return (mdContent.match(/(?:!\\[(.*?)\\]\\((.*?)\\))/g) || []).map((content) =>\n    content.split('(')[1].replace(')', ''),\n  );"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpUnnecessaryNonCapturingGroup"
+  },
+  "hash": "d81eb87e50d62a64e890227466deec83817667eafe9eb0497a4e63aa2756677d"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript variable",
+  "severity": "Moderate",
+  "comment": "Unresolved variable or type module",
+  "detailsInfo": "Reports an unresolved referenced variable or field.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": ".eslintrc.js",
+      "language": "JavaScript",
+      "line": 1,
+      "offset": 1,
+      "length": 6,
+      "code": {
+        "startLine": 1,
+        "length": 6,
+        "offset": 0,
+        "surroundingCode": "module.exports = {\n  parser: '@typescript-eslint/parser',\n  parserOptions: {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedVariable"
+  },
+  "hash": "5f74f77e59b775021d1bb6ad02c01493d61c6fbdde182552a548c3c85f8ba018"
+},{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Redundant character escape",
+  "severity": "High",
+  "comment": "Redundant character escape `\\]` in RegExp",
+  "detailsInfo": "Reports character escapes that are replaceable with the unescaped character without a change in meaning. Note that inside the square brackets of a character class, many escapes are unnecessary that would be necessary outside of a character class.\n\n**Example:**\n\n\n      \\-\\;[\\.]\n\nAfter the quick-fix is applied:\n\n\n      -;[.]\n\nNew in 2017.3",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/service/tistory/getImagePaths.ts",
+      "language": "RegExp",
+      "line": 2,
+      "offset": 39,
+      "length": 2,
+      "code": {
+        "startLine": 1,
+        "length": 2,
+        "offset": 99,
+        "surroundingCode": "export function getImagePaths(mdContent: string): string[] {\n  return (mdContent.match(/(?:!\\[(.*?)\\]\\((.*?)\\))/g) || []).map((content) =>\n    content.split('(')[1].replace(')', ''),\n  );"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpRedundantEscape"
+  },
+  "hash": "3a73854596642e0339138f3c64c20ac4c9ae0a2be989980260b35fd7f40ba7a7"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Deprecated symbol used",
+  "severity": "Moderate",
+  "comment": "Deprecated symbol used, consult docs for better alternative",
+  "detailsInfo": "Reports a usage of a deprecated function variable.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/libs/file-manager/getConfigRootPath.ts",
+      "language": "JavaScript",
+      "line": 2,
+      "offset": 30,
+      "length": 8,
+      "code": {
+        "startLine": 1,
+        "length": 8,
+        "offset": 67,
+        "surroundingCode": "export function getConfigRootPath() {\n  return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];\n}\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSDeprecatedSymbols"
+  },
+  "hash": "e5b07212d1cab8e7889123fe5c5951d3c758f8f869161f9859646fb57599adf0"
+}]}

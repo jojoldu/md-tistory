@@ -1,0 +1,2650 @@
+{
+  "profile": "Default",
+  "groups": [
+    {
+      "name": "Control flow issues",
+      "inspections": [
+        {
+          "shortName": "ConstantConditionalExpressionJS",
+          "displayName": "Constant conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression in the format `true? result1: result2` or `false? result1: result2``.\nSuggests simplifying the expression.\n``\n`"
+        },
+        {
+          "shortName": "IfStatementWithTooManyBranchesJS",
+          "displayName": "'if' statement with too many branches",
+          "enabled": false,
+          "description": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
+        },
+        {
+          "shortName": "UnnecessaryContinueJS",
+          "displayName": "Unnecessary 'continue' statement",
+          "enabled": true,
+          "description": "Reports an unnecessary `continue` statement at the end of a loop. Suggests removing such statements."
+        },
+        {
+          "shortName": "JSObjectNullOrUndefined",
+          "displayName": "Object is 'null' or 'undefined'",
+          "enabled": true,
+          "description": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
+        },
+        {
+          "shortName": "UnnecessaryLabelOnBreakStatementJS",
+          "displayName": "Unnecessary label on 'break' statement",
+          "enabled": false,
+          "description": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
+        },
+        {
+          "shortName": "PointlessBooleanExpressionJS",
+          "displayName": "Pointless statement or boolean expression",
+          "enabled": false,
+          "description": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
+        },
+        {
+          "shortName": "UnnecessaryLabelOnContinueStatementJS",
+          "displayName": "Unnecessary label on 'continue' statement",
+          "enabled": false,
+          "description": "Reports a labeled `continue` statement whose labels may be removed without changing the flow of control."
+        },
+        {
+          "shortName": "SuspiciousTypeOfGuard",
+          "displayName": "Unsound type guard check",
+          "enabled": false,
+          "description": "Reports a `typeof` or `instanceof` unsound type guard check. The `typeof x` type guard can be unsound in one of the following two cases:\n\n* `typeof x` never corresponds to the specified value (for example, `typeof x === 'number'` when `x` is of the type 'string \\| boolean')\n* `typeof x` always corresponds to the specified value (for example, `typeof x === 'string'` when `x` is of the type 'string')\n\n<br />\n\nThe `x instanceof A` type guard can be unsound in one of the following two cases:\n\n* The type of `x` is not related to `A`\n* The type of `x` is `A` or a subtype of `A`"
+        },
+        {
+          "shortName": "LoopStatementThatDoesntLoopJS",
+          "displayName": "Loop statement that doesn't loop",
+          "enabled": true,
+          "description": "Reports a `for`, `while`, or `do` statement whose bodies are guaranteed to execute at most once. Normally, this indicates an error."
+        },
+        {
+          "shortName": "UnnecessaryReturnJS",
+          "displayName": "Unnecessary 'return' statement",
+          "enabled": true,
+          "description": "Reports an unnecessary `return` statement, that is, a `return` statement that returns no value and occurs just before the function would have \"fallen through\" the bottom. These statements may be safely removed."
+        },
+        {
+          "shortName": "ConditionalExpressionWithIdenticalBranchesJS",
+          "displayName": "Conditional expression with identical branches",
+          "enabled": false,
+          "description": "Reports a ternary conditional expression with identical `then` and `else` branches."
+        },
+        {
+          "shortName": "TailRecursionJS",
+          "displayName": "Tail recursion",
+          "enabled": false,
+          "description": "Reports a tail recursion, that is, when a function calls itself as its last action before returning. A tail recursion can always be replaced by looping, which will be considerably faster. Some JavaScript engines perform this optimization, while others do not. Thus, tail recursive solutions may have considerably different performance characteristics in different environments."
+        },
+        {
+          "shortName": "DuplicateConditionJS",
+          "displayName": "Duplicate condition in 'if' statement",
+          "enabled": false,
+          "description": "Reports duplicate conditions in different branches of an `if` statement. Duplicate conditions usually represent programmer oversight.\n\nExample:\n\n\n      if (a) {\n        ...\n      } else if (a) {\n        ...\n      }\n\n"
+        },
+        {
+          "shortName": "TrivialIfJS",
+          "displayName": "Redundant 'if' statement",
+          "enabled": false,
+          "description": "Reports an `if` statement that can be simplified to a single assignment or a `return` statement.\n\nExample:\n\n\n    if(foo())\n     {\n      return true;\n     }\n     else\n     {\n       return false;\n     }\n\nAfter applying the quick-fix the code looks as follows:\n\n     return foo();\n"
+        },
+        {
+          "shortName": "UnnecessaryLabelJS",
+          "displayName": "Unnecessary label",
+          "enabled": false,
+          "description": "Reports an unused label."
+        },
+        {
+          "shortName": "IfStatementWithIdenticalBranchesJS",
+          "displayName": "'if' statement with identical branches",
+          "enabled": false,
+          "description": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
+        },
+        {
+          "shortName": "TrivialConditionalJS",
+          "displayName": "Redundant conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
+        },
+        {
+          "shortName": "UnreachableCodeJS",
+          "displayName": "Unreachable code",
+          "enabled": false,
+          "description": "Reports code that can never be executed, which almost certainly indicates an error"
+        },
+        {
+          "shortName": "ForLoopReplaceableByWhileJS",
+          "displayName": "'for' loop may be replaced by 'while' loop",
+          "enabled": false,
+          "description": "Reports a `for` loop that contains neither initialization nor an update component. Suggests replacing the loop with a simpler `while` statement.\n\nExample:\n\n\n      for(; exitCondition(); ) {\n        process();\n      }\n\nAfter the quick-fix is applied the result looks like:\n\n\n      while(exitCondition()) {\n        process();\n      }\n\nUse the checkbox below if you wish this inspection to ignore **for** loops with trivial or non-existent conditions."
+        }
+      ]
+    },
+    {
+      "name": "EditorConfig",
+      "inspections": [
+        {
+          "shortName": "EditorConfigCharClassRedundancy",
+          "displayName": "Unnecessary character class",
+          "enabled": false,
+          "description": "Reports character classes that consist of a single character. Such classes can be simplified to a character, for example `[a]`→`a`."
+        },
+        {
+          "shortName": "EditorConfigRootDeclarationUniqueness",
+          "displayName": "Extra top-level declaration",
+          "enabled": false,
+          "description": "Reports multiple top-level declarations. There can be only one optional \"root=true\" top-level declaration in the EditorConfig file. Using multiple top-level declarations is not allowed."
+        },
+        {
+          "shortName": "EditorConfigNumerousWildcards",
+          "displayName": "Too many wildcards",
+          "enabled": false,
+          "description": "Reports sections that contain too many wildcards. Using a lot of wildcards may lead to performance issues."
+        },
+        {
+          "shortName": "EditorConfigPartialOverride",
+          "displayName": "Overlapping sections",
+          "enabled": false,
+          "description": "Reports subsets of files specified in the current section that overlap with other subsets in other sections. For example: `[{foo,bar}]` and `[{foo,bas}]` both contain \"foo\"."
+        },
+        {
+          "shortName": "EditorConfigEmptySection",
+          "displayName": "Empty section",
+          "enabled": false,
+          "description": "Reports sections that do not contain any EditorConfig properties."
+        },
+        {
+          "shortName": "EditorConfigShadowingOption",
+          "displayName": "Overriding property",
+          "enabled": false,
+          "description": "Reports properties that override the same properties defined earlier in the file.\n\nFor example:\n\n\n    [*.java]\n    indent_size=4\n    [{*.java,*.js}]\n    indent_size=2\n\nThe second section includes the same files as `[*.java]` but also sets indent_size to value 2. Thus the first declaration `indent_size=4`will be ignored."
+        },
+        {
+          "shortName": "EditorConfigListAcceptability",
+          "displayName": "Unexpected value list",
+          "enabled": false,
+          "description": "Reports lists of values that are used in properties in which lists are not supported. In this case, only a single value can be specified."
+        },
+        {
+          "shortName": "EditorConfigKeyCorrectness",
+          "displayName": "Unknown property",
+          "enabled": false,
+          "description": "Reports properties that are not supported by the IDE. Note: some \"ij\" domain properties may require specific language plugins."
+        },
+        {
+          "shortName": "EditorConfigPatternEnumerationRedundancy",
+          "displayName": "Unnecessary braces",
+          "enabled": false,
+          "description": "Reports pattern lists that are either empty `{}` or contain just one pattern, for example `{foo}`. The braces are needed only if there are two and more, for example: `{foo,bar}`"
+        },
+        {
+          "shortName": "EditorConfigRootDeclarationCorrectness",
+          "displayName": "Unexpected top-level declaration",
+          "enabled": false,
+          "description": "Reports unexpected top-level declarations. Top-level declarations other than \"root=true\" are not allowed in the EditorConfig file."
+        },
+        {
+          "shortName": "EditorConfigReferenceCorrectness",
+          "displayName": "Invalid reference",
+          "enabled": false,
+          "description": "Reports identifiers that are either unknown or have a wrong type."
+        },
+        {
+          "shortName": "EditorConfigPairAcceptability",
+          "displayName": "Unexpected key-value pair",
+          "enabled": false,
+          "description": "Reports key-value pairs that are not allowed in the current context."
+        },
+        {
+          "shortName": "EditorConfigPatternRedundancy",
+          "displayName": "Duplicate or redundant pattern",
+          "enabled": false,
+          "description": "Reports file patterns that are redundant as there already are other patterns that define the same scope of files or even a broader one. For example, in `[{*.java,*}]` the first `*.java` pattern defines a narrower scope compared to `*`. That is why it is redundant and can be removed."
+        },
+        {
+          "shortName": "EditorConfigNoMatchingFiles",
+          "displayName": "No matching files",
+          "enabled": false,
+          "description": "Reports sections with wildcard patterns that do not match any files under the directory in which the `.editorconfig` file is located."
+        },
+        {
+          "shortName": "EditorConfigDeprecatedDescriptor",
+          "displayName": "Deprecated property",
+          "enabled": false,
+          "description": "Reports EditorConfig properties that are no longer supported."
+        },
+        {
+          "shortName": "EditorConfigWildcardRedundancy",
+          "displayName": "Redundant wildcard",
+          "enabled": false,
+          "description": "Reports wildcards that become redundant when the \"\\*\\*\" wildcard is used in the same section.\n\n\nThe \"\\*\\*\" wildcard defines a broader set of files than any other wildcard.\nThat is why, any other wildcard used in the same section has no affect and can be removed."
+        },
+        {
+          "shortName": "EditorConfigHeaderUniqueness",
+          "displayName": "EditorConfig section is not unique",
+          "enabled": false,
+          "description": "Reports sections that define the same file pattern as other sections."
+        },
+        {
+          "shortName": "EditorConfigShadowedOption",
+          "displayName": "Overridden property",
+          "enabled": false,
+          "description": "Reports properties that are already defined in other sections.\n\nFor example:\n\n\n    [*.java]\n    indent_size=4\n    [{*.java,*.js}]\n    indent_size=2\n\nThe second section includes all `*.java` files too but it also redefines indent_size. As a result the value 2 will be used for files matching `*.java`."
+        },
+        {
+          "shortName": "EditorConfigEmptyHeader",
+          "displayName": "Empty header",
+          "enabled": false,
+          "description": "Reports sections with an empty header. Section header must contain file path globs in the format similar to one supported by `gitignore`."
+        },
+        {
+          "shortName": "EditorConfigValueCorrectness",
+          "displayName": "Invalid property value",
+          "enabled": false,
+          "description": "Reports property values that do not meet value restrictions. For example, some properties may be only \"true\" or \"false\", others contain only integer numbers etc. If a value has a limited set of variants, use code completion to see all of them."
+        },
+        {
+          "shortName": "EditorConfigValueUniqueness",
+          "displayName": "Non-unique list value",
+          "enabled": false,
+          "description": "Reports duplicates in lists of values."
+        },
+        {
+          "shortName": "EditorConfigMissingRequiredDeclaration",
+          "displayName": "Required declarations are missing",
+          "enabled": false,
+          "description": "Reports properties that miss the required declarations. Refer to the documentation for more information."
+        },
+        {
+          "shortName": "EditorConfigCharClassLetterRedundancy",
+          "displayName": "Duplicate character class letter",
+          "enabled": false,
+          "description": "Reports wildcard patterns in the EditorConfig section that contain a duplicate character in the character class, for example `[aa]`."
+        },
+        {
+          "shortName": "EditorConfigSpaceInHeader",
+          "displayName": "Space in file pattern",
+          "enabled": false,
+          "description": "Reports space characters in wildcard patterns that affect pattern matching. If these characters are not intentional, they should be removed."
+        },
+        {
+          "shortName": "EditorConfigOptionRedundancy",
+          "displayName": "Redundant property",
+          "enabled": false,
+          "description": "Reports properties that are redundant when another applicable section already contains the same property and value.\n\n\nFor example:\n\n\n    [*]\n    indent_size=4\n    [*.java]\n    indent_size=4\n\nare both applicable to `*.java` files and define the same `indent_size` value."
+        },
+        {
+          "shortName": "EditorConfigUnusedDeclaration",
+          "displayName": "Unused declaration",
+          "enabled": false,
+          "description": "Reports unused declarations. Such declarations can be removed."
+        },
+        {
+          "shortName": "EditorConfigUnexpectedComma",
+          "displayName": "Unexpected comma",
+          "enabled": false,
+          "description": "Reports commas that cannot be used in the current context. Commas are allowed only as separators for values in lists."
+        }
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "inspections": [
+        {
+          "shortName": "TypeScriptUnresolvedVariable",
+          "displayName": "Unresolved TypeScript variable",
+          "enabled": true,
+          "description": "Reports an unresolved reference to a variable or field."
+        },
+        {
+          "shortName": "TypeScriptValidateTypes",
+          "displayName": "Type mismatch",
+          "enabled": false,
+          "description": "Reports a parameter, return value, or assigned expression of incorrect type."
+        },
+        {
+          "shortName": "TypeScriptMissingConfigOption",
+          "displayName": "Missing tsconfig.json option ",
+          "enabled": true,
+          "description": "Reports a usage that requires an explicit option in `tsconfig.json`. For example, to use JSX in `.tsx` files, `tsconfig.json` must contain `\"jsx\": \"react\"`."
+        },
+        {
+          "shortName": "TypeScriptSmartCast",
+          "displayName": "Narrowed type",
+          "enabled": true,
+          "description": "Reports a usage of a variable where the variable type is narrowed by a type guard. Note that severity level doesn't affect this inspection."
+        },
+        {
+          "shortName": "TypeScriptCheckImport",
+          "displayName": "Unresolved imported name",
+          "enabled": true,
+          "description": "Reports an unresolved name or binding in an `import` declaration in TypeScript code."
+        },
+        {
+          "shortName": "TypeScriptLibrary",
+          "displayName": "Missing global library",
+          "enabled": true,
+          "description": "Reports a TypeScript library file that is required for a symbol but is not listed under the `lib` compiler option in `tsconfig.json`."
+        },
+        {
+          "shortName": "TypeScriptMissingAugmentationImport",
+          "displayName": "Missing augmentation import",
+          "enabled": true,
+          "description": "Reports a usage from [augmentation module](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) without an explicit import."
+        },
+        {
+          "shortName": "JSEqualityComparisonWithCoercion.TS",
+          "displayName": "Equality operator may cause type coercion",
+          "enabled": false,
+          "description": "Reports a usage of equality operators may cause unexpected type coercions. Suggests replacing `==` or `!=` equality operators with type-safe `===` or `!==` operators.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`."
+        },
+        {
+          "shortName": "TypeScriptValidateGenericTypes",
+          "displayName": "Incorrect generic type argument",
+          "enabled": false,
+          "description": "Reports an invalid type argument in a function, interface, or class declaration."
+        },
+        {
+          "shortName": "TypeScriptValidateJSTypes",
+          "displayName": "Type mismatch in 'any' type",
+          "enabled": false,
+          "description": "Reports a function call with a parameter, return value, or assigned expression or incorrect type, if the context symbol can be implicitly resolved to the `any` type.\n\n```\ndeclare var test: any;\ntest.hasOwnProperty(true); //reports 'true'\n```"
+        },
+        {
+          "shortName": "TypeScriptFieldCanBeMadeReadonly",
+          "displayName": "Field can be readonly",
+          "enabled": true,
+          "description": "Reports a private field that can be made readonly (for example, if the field is assigned only in the constructor)."
+        },
+        {
+          "shortName": "TypeScriptRedundantGenericType",
+          "displayName": "Redundant type arguments",
+          "enabled": true,
+          "description": "Reports a type argument that is equal to the default one and can be removed.\n\n\nExample:\n\n```\ntype Foo<T=number> = T;\nlet z: Foo<number>;\n```"
+        },
+        {
+          "shortName": "TypeScriptUMDGlobal",
+          "displayName": "Referenced UMD global variable",
+          "enabled": true,
+          "description": "Reports a usages of a UMD global variable if the current file is a module (EcmaScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly."
+        },
+        {
+          "shortName": "TypeScriptConfig",
+          "displayName": "Inconsistent tsconfig.json properties",
+          "enabled": true,
+          "description": "Reports inconsistency of a `paths`, `checkJs`, or `extends` property in a tsconfig.json file.   \nThe `checkJs` property requires `allowJs`.   \nThe `extends` property should be a valid file reference."
+        },
+        {
+          "shortName": "TypeScriptAbstractClassConstructorCanBeMadeProtected",
+          "displayName": "Abstract class constructor can be made protected",
+          "enabled": true,
+          "description": "Reports a public constructor of an abstract class and suggests making it protected (because it is useless to have it public)."
+        },
+        {
+          "shortName": "TypeScriptSuspiciousConstructorParameterAssignment",
+          "displayName": "Assigned constructor field parameter",
+          "enabled": true,
+          "description": "Reports a common mistake in TypeScript code, when a class field is declared as a constructor parameter, and then this parameter is assigned.  \nIn this case, the corresponding field *won't* be assigned, only the local parameter value is modified.\n\n```\nclass Foo {\n  constructor(private p: number) {\n    p = 1; //must be this.p = 1;\n  }\n}\n```"
+        },
+        {
+          "shortName": "TypeScriptUnresolvedFunction",
+          "displayName": "Unresolved TypeScript function",
+          "enabled": true,
+          "description": "Reports a call of a function that is not resolved."
+        },
+        {
+          "shortName": "TypeScriptUnresolvedReactComponent",
+          "displayName": "Unresolved React component",
+          "enabled": true,
+          "description": "Reports an unresolved reference to a JSX (React) component. Suggests adding an import statement if the referenced component is defined in the project or its dependencies or creating a new component with the specified name.\n\nThe template for a new component can be modified in Editor \\| File and Code Templates."
+        },
+        {
+          "shortName": "TypeScriptExplicitMemberType",
+          "displayName": "Explicit types",
+          "enabled": true,
+          "description": "Reports a type annotation that doesn't match the current code style for explicit types.\n\n\nType declarations are not necessary when the type that is inferred from the context exactly matches the type annotation, for example:\n\n\n`\nvar pi: number = 3.14\n`\n\nIn some cases it is preferable to always have explicit types - this prevents accidental type changes and makes code more explicit."
+        },
+        {
+          "shortName": "TypeScriptDuplicateUnionOrIntersectionType",
+          "displayName": "Duplicate union or intersection type component",
+          "enabled": true,
+          "description": "Reports a duplicate type inside a union or intersection."
+        }
+      ]
+    },
+    {
+      "name": "General",
+      "inspections": [
+        {
+          "shortName": "CoffeeScriptUnusedLocalSymbols",
+          "displayName": "Unused local symbols",
+          "enabled": false,
+          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+        },
+        {
+          "shortName": "CoffeeScriptFunctionSignatures",
+          "displayName": "Function signature mismatch",
+          "enabled": false,
+          "description": "Checks an argument in a CoffeeScript call expression that doesn't match the signature of the referenced function, including types, the number, and the order of arguments. Also, reports an overloading function that does not match the overloaded one in terms of parameters and return types."
+        },
+        {
+          "shortName": "JSValidateJSDoc",
+          "displayName": "Syntax errors and unresolved references in JSDoc",
+          "enabled": true,
+          "description": "Reports a syntax discrepancy in a documentation comment."
+        },
+        {
+          "shortName": "JSClosureCompilerSyntax",
+          "displayName": "Incorrect usage of JSDoc tags",
+          "enabled": true,
+          "description": "Reports warnings implied by *Google Closure Compiler* annotations including correct use of `@abstract`, `@interface`, and `@implements` tags."
+        },
+        {
+          "shortName": "JSMethodCanBeStatic",
+          "displayName": "Method can be static",
+          "enabled": true,
+          "description": "Reports a class method that can be safely made `static`. A method can be `static` if it does not reference any of its class' non-static methods and non-static fields and is not overridden in a subclass.\n\n\nUse the first checkbox below to inspect only `private` methods."
+        },
+        {
+          "shortName": "ES6ShorthandObjectProperty",
+          "displayName": "Property can be replaced with shorthand",
+          "enabled": false,
+          "description": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\n\n`\nvar obj = {foo:foo}\n`\n\nAfter applying the quick-fix the code looks as follows:\n\n\n`\nvar obj = {foo}\n`"
+        },
+        {
+          "shortName": "JSUndeclaredVariable",
+          "displayName": "Implicitly declared global JavaScript variable",
+          "enabled": true,
+          "description": "Reports an implicit declaration of a global variable.\n\nExample:\n\n\n      var aaa = 1; // good\n      bbb = 2; // bad, if bbb is not declared with 'var' somewhere\n"
+        },
+        {
+          "shortName": "JSPrimitiveTypeWrapperUsage",
+          "displayName": "Primitive type object wrapper used",
+          "enabled": true,
+          "description": "Reports an improper usage of a wrapper for primitive types or a property of a primitive type being modified, as in the latter case the assigned value will be lost."
+        },
+        {
+          "shortName": "JSLastCommaInArrayLiteral",
+          "displayName": "Unneeded last comma in array literal",
+          "enabled": true,
+          "description": "Reports a usage of a trailing comma in an array literal.\n\nThe warning is reported only when the JavaScript language version is set to ECMAScript 5.1.\n\nAlthough trailing commas in arrays are allowed by the specification, some browsers may throw an error when a trailing comma is used.\n\nYou can configure formatting options for trailing commas in **Code Style** \\| **JavaScript** or **TypeScript** \\| **Punctuation**."
+        },
+        {
+          "shortName": "JSReferencingMutableVariableFromClosure",
+          "displayName": "Referencing mutable variable from closure",
+          "enabled": true,
+          "description": "Reports access to outer mutable variables from functions.\n\nExample:\n\n\n      for (var i = 1; i <= 3; i++) {\n        setTimeout(function() {\n            console.log(i); // bad\n        }, 0);\n      }\n"
+        },
+        {
+          "shortName": "JSAccessibilityCheck",
+          "displayName": "Inaccessible @private and @protected members referenced",
+          "enabled": true,
+          "description": "Reports a reference to a JavaScript member that is marked with s `@private` or `@protected` tag but does not comply with visibility rules that these tags imply."
+        },
+        {
+          "shortName": "JSXSyntaxUsed",
+          "displayName": "React JSX syntax used",
+          "enabled": false,
+          "description": "Reports a usage of a React JSX tag in JavaScript code."
+        },
+        {
+          "shortName": "JSJoinVariableDeclarationAndAssignment",
+          "displayName": "Variable declaration can be merged with the first assignment to the variable",
+          "enabled": true,
+          "description": "Reports a variable that is declared without an initializer and is used much further in the code or in a single nested scope. Suggests moving the variable closer to its usages and joining it with the initializer expression."
+        },
+        {
+          "shortName": "JSUnresolvedVariable",
+          "displayName": "Unresolved JavaScript variable",
+          "enabled": true,
+          "description": "Reports an unresolved referenced variable or field.\n\nTypeScript code is ignored."
+        },
+        {
+          "shortName": "JSDuplicatedDeclaration",
+          "displayName": "Duplicate declaration",
+          "enabled": true,
+          "description": "Reports multiple declarations in a scope."
+        },
+        {
+          "shortName": "JSMismatchedCollectionQueryUpdate",
+          "displayName": "Mismatched query and update of collection",
+          "enabled": true,
+          "description": "Reports a collection of fields or variables whose contents are either queried and not updated or updated and not queried. Such mismatched queries and updates are pointless and may indicate either dead code or a typographical error.\n\n\nQuery methods are automatically detected, based on whether they return something, or a callback is passed to them.\nUse the table below to specify which methods are update methods."
+        },
+        {
+          "shortName": "JSUnresolvedLibraryURL",
+          "displayName": "Missed locally stored library for HTTP link",
+          "enabled": true,
+          "description": "Reports a URL of an external JavaScript library that is not associated with any locally stored file. Suggests downloading the library. Such association enables the IDE to provide proper code completion and navigation."
+        },
+        {
+          "shortName": "ES6PreferShortImport",
+          "displayName": "Import can be shortened",
+          "enabled": false,
+          "description": "Reports an ES6 import whose `from` part can be shortened. Suggests importing the parent directory."
+        },
+        {
+          "shortName": "JSFileReferences",
+          "displayName": "Unresolved file reference",
+          "enabled": true,
+          "description": "Reports an unresolved file reference in a JavaScript file, including CommonJS and AMD modules references."
+        },
+        {
+          "shortName": "ES6ClassMemberInitializationOrder",
+          "displayName": "Use of possibly unassigned property in a static initializer",
+          "enabled": false,
+          "description": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
+        },
+        {
+          "shortName": "WebpackConfigHighlighting",
+          "displayName": "Webpack config compliance with JSON Schema",
+          "enabled": false,
+          "description": "Validates options in webpack config files (which name should start with \\`webpack\\`, e.g. \\`webpack.config.js\\`) against [webpack options schema](https://github.com/webpack/webpack/blob/master/schemas/WebpackOptions.json).   \n\nDisable this inspection to turn off validation and code completion inside the configuration object."
+        },
+        {
+          "shortName": "ES6DestructuringVariablesMerge",
+          "displayName": "Destructuring properties with the same key",
+          "enabled": false,
+          "description": "Reports multiple destructuring properties with identical keys. Suggests merging the properties."
+        },
+        {
+          "shortName": "JSUnfilteredForInLoop",
+          "displayName": "Unfiltered for..in loop",
+          "enabled": false,
+          "description": "Reports unfiltered `for-in` loops.   \n\nThe use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when `Object`'s prototype may be incorrectly modified. For example, the following code will print **42** and **myMethod** :   \n\n\n    Object.prototype.myMethod = function myMethod() {};\n    let a = { foo: 42 };\n    for (let i in a) {\n      console.log(a[i]);\n    }\n\nSuggests replacing the whole loop with a `Object.keys()` method or adding a `hasOwnProperty()` check. After applying the quick-fix the code looks as follows:\n\n\n    for (let i in a) {\n      if (a.hasOwnProperty(i)) {\n        console.log(a[i]);\n      }\n    }\n"
+        },
+        {
+          "shortName": "JSAnnotator",
+          "displayName": "ECMAScript specification is not followed",
+          "enabled": false,
+          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
+        },
+        {
+          "shortName": "JSLastCommaInObjectLiteral",
+          "displayName": "Unneeded last comma in object literal",
+          "enabled": true,
+          "description": "Reports usages of a trailing comma in object literals.\n\nThe warning is reported only when the JavaScript language version is set to ECMAScript 5.1.\n\nTrailing commas in object literals are allowed by the specification, however, some browsers might throw an error when a trailing comma is used.\n\nYou can configure formatting options for trailing commas in **Code Style** \\| **JavaScript** or **TypeScript** \\| **Punctuation**."
+        },
+        {
+          "shortName": "JSDeprecatedSymbols",
+          "displayName": "Deprecated symbol used",
+          "enabled": true,
+          "description": "Reports a usage of a deprecated function variable."
+        },
+        {
+          "shortName": "JSCommentMatchesSignature",
+          "displayName": "Mismatched JSDoc and function signature",
+          "enabled": true,
+          "description": "Reports mismatch between the names and the number of parameters within a JSDoc comment and the actual parameters of a function."
+        },
+        {
+          "shortName": "JSUnresolvedExtXType",
+          "displayName": "Unresolved Ext JS xtype",
+          "enabled": true,
+          "description": "Reports an Ext JS `xtype` reference that doesn't have a corresponding class."
+        },
+        {
+          "shortName": "JSUnresolvedFunction",
+          "displayName": "Unresolved JavaScript function",
+          "enabled": true,
+          "description": "Reports an unresolved function in a call.\n\nTypeScript code is ignored."
+        },
+        {
+          "shortName": "ES6RedundantNestingInTemplateLiteral",
+          "displayName": "Redundant nesting in template literal",
+          "enabled": false,
+          "description": "Reports nested instances of a string or a template literal. Suggests inlining the nested instances into the containing template string.\n\nExample:\n```Hello, ${`Brave ${\"New\"}`} ${\"World\"}!```\n\nAfter applying the quick-fix the code looks as follows:\n```Hello, Brave New World!```"
+        },
+        {
+          "shortName": "JSUnresolvedReactComponent",
+          "displayName": "Unresolved React component",
+          "enabled": false,
+          "description": "Reports an unresolved reference to a React component. Suggests adding a missing import statement if the referenced component is defined in the project or its dependencies or creating a new component with this name.\n\nThe template for a new component can be modified in Editor \\| File and Code Templates."
+        },
+        {
+          "shortName": "JSCheckFunctionSignatures",
+          "displayName": "Signature mismatch",
+          "enabled": true,
+          "description": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
+        },
+        {
+          "shortName": "JSUnnecessarySemicolon",
+          "displayName": "Unnecessary semicolon",
+          "enabled": true,
+          "description": "Reports an unneeded semicolon."
+        },
+        {
+          "shortName": "JSNonStrictModeUsed",
+          "displayName": "Non-strict mode used",
+          "enabled": false,
+          "description": "Reports a JavaScript file that is not in the `strict` mode."
+        },
+        {
+          "shortName": "JSJQueryEfficiency",
+          "displayName": "JQuery selector can be optimized",
+          "enabled": true,
+          "description": "Reports a duplicated jQuery selector that can be cached or a usage of an attribute or a pseudo-selector (optional)."
+        },
+        {
+          "shortName": "JSValidateTypes",
+          "displayName": "Type mismatch",
+          "enabled": false,
+          "description": "Reports incorrect type of:\n\n* a parameter in a function call\n* a return value\n* an assigned expression\n\nTypeScript code is ignored."
+        },
+        {
+          "shortName": "DuplicatedCode",
+          "displayName": "Duplicated code fragment",
+          "enabled": false,
+          "description": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
+        },
+        {
+          "shortName": "InconsistentLineSeparators",
+          "displayName": "Inconsistent line separators",
+          "enabled": false,
+          "description": "Reports files with line separators different from the ones that are specified in the project's settings.\n\nFor example, the inspection will be triggered if you set the line separator to `\\n` in **Settings \\| Editor \\| Code Style \\| Line separator** ,\nwhile the file you are editing uses `\\r\\n` as a line separator.\n\nThe inspection also warns you about mixed line separators within a file."
+        },
+        {
+          "shortName": "RedundantSuppression",
+          "displayName": "Redundant suppression",
+          "enabled": false,
+          "description": "Reports usages of the following elements that can be safely removed because the inspection they affect is no longer applicable in this context:\n\n* `@SuppressWarning` annotation, or\n* `// noinspection` line comment, or\n* `/** noinspection */` JavaDoc comment\n\nExample:\n\n\n    public class C {\n     // symbol is already private,\n     // but annotation is still around\n      @SuppressWarnings({\"WeakerAccess\"})\n     private boolean CONST = true;\n     void f() {\n        CONST = false;\n      }\n    }\n"
+        },
+        {
+          "shortName": "ProblematicWhitespace",
+          "displayName": "Problematic whitespace",
+          "enabled": false,
+          "description": "Reports the following problems:\n\n* Tabs used for indentation when the code style is configured to use only spaces.\n* Spaces used for indentation when the code style is configured to use only tabs.\n* Spaces used for indentation and tabs used for alignment when the code style is configured to use smart tabs."
+        },
+        {
+          "shortName": "LongLine",
+          "displayName": "The line is longer than allowed by code style",
+          "enabled": false,
+          "description": "Reports lines that are longer than the **right margin** parameter specified in the **Code Style** settings."
+        },
+        {
+          "shortName": "Annotator",
+          "displayName": "Annotator",
+          "enabled": false,
+          "description": "Reports problems that are found by language annotators in the result of a batch code inspection run."
+        },
+        {
+          "shortName": "TodoComment",
+          "displayName": "TODO comment",
+          "enabled": false,
+          "description": "Reports **TODO** comments in your code.\n\nYou can configure the format for **TODO** comments in [Settings \\| Editor \\| TODO](settings://preferences.toDoOptions). Since\nsyntax highlighting for **TODO** comments is already provided, this inspection is efficient if you run it in the batch mode."
+        },
+        {
+          "shortName": "SyntaxError",
+          "displayName": "Syntax error",
+          "enabled": false,
+          "description": "Reports syntax errors that have been found in the result of a batch code inspection run."
+        },
+        {
+          "shortName": "InjectedReferences",
+          "displayName": "Injected references",
+          "enabled": false,
+          "description": "Reports unresolved references injected by [Language Injections](https://www.jetbrains.com/help/idea/using-language-injections.html).\n\nExample:\n\n```\n    @Language(\"file-reference\")\n    String fileName = \"/home/user/nonexistent.file\"; // highlighted if file doesn't exist\n```"
+        },
+        {
+          "shortName": "QodanaServiceMessage",
+          "displayName": "Qodana service message",
+          "enabled": false,
+          "description": "Reports the Qodana service messages such as suspending a particular inspection due to a large number of reported problems."
+        }
+      ]
+    },
+    {
+      "name": "Sass/SCSS",
+      "inspections": [
+        {
+          "shortName": "SassScssUnresolvedMixin",
+          "displayName": "Unresolved mixin",
+          "enabled": false,
+          "description": "Reports an unresolved [Sass/SCSS mixin](https://sass-lang.com/documentation/at-rules/mixin) reference.\n\n**Example:**\n\n\n    * {\n      @include unknown-mixin;\n    }\n"
+        },
+        {
+          "shortName": "SassScssResolvedByNameOnly",
+          "displayName": "Missing import",
+          "enabled": false,
+          "description": "Reports a reference to a variable, mixin, or function that is declared in another file but this file isn't explicitly [imported](https://sass-lang.com/documentation/at-rules/import) in the current file.\n\n**Example:**\n\n\n    * {\n      margin: $var-in-other-file;\n    }\n"
+        },
+        {
+          "shortName": "SassScssUnresolvedPlaceholderSelector",
+          "displayName": "Unresolved placeholder selector",
+          "enabled": false,
+          "description": "Reports an unresolved [Sass/SCSS placeholder selector](https://sass-lang.com/documentation/variables) reference.\n\n**Example:**\n\n\n    * {\n      @extend %unknown-placeholder-selector;\n    }\n"
+        },
+        {
+          "shortName": "SassScssUnresolvedVariable",
+          "displayName": "Unresolved variable",
+          "enabled": false,
+          "description": "Reports an unresolved [Sass/SCSS variable](https://sass-lang.com/documentation/variables) reference.\n\n**Example:**\n\n\n    * {\n      margin: $unknown-var;\n    }\n"
+        }
+      ]
+    },
+    {
+      "name": "Unit testing",
+      "inspections": [
+        {
+          "shortName": "JSTestFailedLine",
+          "displayName": "Highlight failure line in test code",
+          "enabled": true,
+          "description": "Reports a failed method call or an assertion in a test."
+        },
+        {
+          "shortName": "KarmaConfigFile",
+          "displayName": "Invalid Karma configuration file",
+          "enabled": false,
+          "description": "Reports a potential error in a file path ('basePath', 'files') for a Karma configuration file, for example, `karma.conf.js`."
+        }
+      ]
+    },
+    {
+      "name": "JSON and JSON5",
+      "inspections": [
+        {
+          "shortName": "JsonSchemaDeprecation",
+          "displayName": "Deprecated JSON property",
+          "enabled": false,
+          "description": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
+        },
+        {
+          "shortName": "JsonSchemaRefReference",
+          "displayName": "Unresolved '$ref' and '$schema' references",
+          "enabled": false,
+          "description": "Reports an unresolved `$ref` or `$schema` path in a JSON schema.  "
+        },
+        {
+          "shortName": "JsonPathEvaluateUnknownKey",
+          "displayName": "Unknown property key used for JSONPath evaluate expression",
+          "enabled": false,
+          "description": "Reports a key in a JSONPath expression that is missing in the source JSON document to evaluate."
+        },
+        {
+          "shortName": "Json5StandardCompliance",
+          "displayName": "Compliance with JSON5 standard",
+          "enabled": false,
+          "description": "Reports inconsistency with [the language specification](http://json5.org) in a JSON5 file."
+        },
+        {
+          "shortName": "JsonDuplicatePropertyKeys",
+          "displayName": "Duplicate keys in object literals",
+          "enabled": false,
+          "description": "Reports a duplicate key in an object literal."
+        },
+        {
+          "shortName": "JsonPathUnknownFunction",
+          "displayName": "Unknown JSONPath function",
+          "enabled": false,
+          "description": "Reports an unknown name in a JSONPath function call instead of known standard function names: `concat`, `keys`, `length`, `min`, `max`, `avg`, `stddev`, `sum`."
+        },
+        {
+          "shortName": "JsonSchemaCompliance",
+          "displayName": "Compliance with JSON schema",
+          "enabled": false,
+          "description": "Reports inconsistence between a JSON file and the [JSON schema](https://json-schema.org) that is assigned to it.  "
+        },
+        {
+          "shortName": "JsonStandardCompliance",
+          "displayName": "Compliance with JSON standard",
+          "enabled": false,
+          "description": "Reports the following discrepancies of a JSON file with [the language specification](https://tools.ietf.org/html/rfc7159):\n\n* A line or block comment (configurable).\n* Multiple top-level values (expect for JSON Lines files, configurable for others).\n* A trailing comma in an object or array (configurable).\n* A single quoted string.\n* A property key is a not a double quoted strings.\n* A NaN or Infinity/-Infinity numeric value as a floating point literal (configurable)."
+        },
+        {
+          "shortName": "JsonPathUnknownOperator",
+          "displayName": "Unknown JSONPath operator",
+          "enabled": false,
+          "description": "Reports an unknown operator on a JSONPath expression instead of one of the standard ones: `in`, `nin`, `subsetof`, `anyof`, `noneof`, `size`, `empty`, `contains`."
+        }
+      ]
+    },
+    {
+      "name": "Code style issues",
+      "inspections": [
+        {
+          "shortName": "NonBlockStatementBodyJS",
+          "displayName": "Statement body without braces",
+          "enabled": false,
+          "description": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
+        },
+        {
+          "shortName": "JSDeclarationsAtScopeStart",
+          "displayName": "'var' declared not at the beginning of a function",
+          "enabled": false,
+          "description": "Checks that declarations of local variables declared with **var** are at the top of a function scope.   \n\nBy default, variable declarations are always moved (\"hoisted\") invisibly to the top of their containing scope when the code is executed. Therefore, declaring them at the top of the scope helps represent this behavior in the code."
+        },
+        {
+          "shortName": "ChainedEqualityJS",
+          "displayName": "Chained equality",
+          "enabled": false,
+          "description": "Reports a chained equality comparison (i.e. `a==b==c`). Such comparisons are confusing."
+        },
+        {
+          "shortName": "JSArrowFunctionBracesCanBeRemoved",
+          "displayName": "Redundant braces around arrow function body",
+          "enabled": true,
+          "description": "Reports an arrow function whose body only consists of braces and exactly one statement. Suggests converting to concise syntax without braces.\n\n\n`\nlet incrementer = (x) => {return x + 1};\n`\n\nAfter the quick-fix is applied, the code fragment looks as follows:\n\n\n`\nlet incrementer = (x) => x + 1;\n`"
+        },
+        {
+          "shortName": "JSUndefinedPropertyAssignment",
+          "displayName": "Undefined property assignment",
+          "enabled": true,
+          "description": "Reports an assignment to a property that is not defined in the type of a variable.\n\nExample:\n\n\n    /**\n     * @type {{ property1: string, property2: number }}\n     */\n    let myVariable = create();\n\n    myVariable.newProperty = 3; // bad\n"
+        },
+        {
+          "shortName": "JSRemoveUnnecessaryParentheses",
+          "displayName": "Unnecessary parentheses",
+          "enabled": true,
+          "description": "Reports redundant parentheses.\n\nIn expressions:\n`var x = ((1) + 2) + 3`\n\nIn arrow function argument lists:\n`var incrementer = (x) => x + 1`\n\nIn TypeScript and Flow type declarations:\n`type Card = (Suit & Rank) | (Suit & Number)`"
+        },
+        {
+          "shortName": "ChainedFunctionCallJS",
+          "displayName": "Chained function call",
+          "enabled": false,
+          "description": "Reports a function call whose target is another function call, for example, `foo().bar()`"
+        },
+        {
+          "shortName": "NestedFunctionCallJS",
+          "displayName": "Nested function call",
+          "enabled": false,
+          "description": "Reports a function call that is used as an argument in another function call, for example, `foo(bar())`"
+        },
+        {
+          "shortName": "ConstantOnLHSOfComparisonJS",
+          "displayName": "Constant on left side of comparison",
+          "enabled": false,
+          "description": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
+        },
+        {
+          "shortName": "ConstantOnRHSOfComparisonJS",
+          "displayName": "Constant on right side of comparison",
+          "enabled": false,
+          "description": "Reports a comparison operation with a constant in the right-hand side. According to coding conventions, constants should only be in the left-hand side of comparisons."
+        },
+        {
+          "shortName": "UnterminatedStatementJS",
+          "displayName": "Unterminated statement",
+          "enabled": false,
+          "description": "Reports a statement without a semicolon or a newline at the end.\n\nSelect the 'Terminate statements with semicolons' option in *Editor \\| Code Style \\| JavaScript or TypeScript - Punctuation* to report any statement that doesn't end with a semicolon, even if a newline is used.\nAccording to some coding styles, semicolons are preferred to line-breaks for consistency with the other languages."
+        },
+        {
+          "shortName": "CssMissingSemicolon",
+          "displayName": "Missing semicolon",
+          "enabled": false,
+          "description": "Reports a missing semicolon at the end of a declaration."
+        },
+        {
+          "shortName": "CssRedundantUnit",
+          "displayName": "Redundant measure unit",
+          "enabled": false,
+          "description": "Reports a measure unit of a zero value where units are not required by the specification.\n\n**Example:**\n\n    width: 0px\n"
+        }
+      ]
+    },
+    {
+      "name": "Potentially undesirable code constructs",
+      "inspections": [
+        {
+          "shortName": "BreakStatementJS",
+          "displayName": "'break' statement",
+          "enabled": false,
+          "description": "Reports a `break` statements. Ignores `break` statements that end case blocks."
+        },
+        {
+          "shortName": "DebuggerStatementJS",
+          "displayName": "'debugger' statement",
+          "enabled": false,
+          "description": "Reports a `debugger` statement used for interaction with the Javascript debuggers. Such statements should not appear in production code."
+        },
+        {
+          "shortName": "BreakStatementWithLabelJS",
+          "displayName": "'break' statement with label",
+          "enabled": false,
+          "description": "Reports a labeled `break` statement."
+        },
+        {
+          "shortName": "ContinueStatementWithLabelJS",
+          "displayName": "'continue' statement with label",
+          "enabled": false,
+          "description": "Reports a labeled `continue` statement."
+        },
+        {
+          "shortName": "ContinueStatementJS",
+          "displayName": "'continue' statement",
+          "enabled": false,
+          "description": "Reports a `continue` statement."
+        },
+        {
+          "shortName": "ConditionalExpressionJS",
+          "displayName": "Conditional expression",
+          "enabled": false,
+          "description": "Reports a ternary conditional expression. Some coding standards prohibit such expressions in favor of explicit `if` statements."
+        },
+        {
+          "shortName": "LabeledStatementJS",
+          "displayName": "Labeled statement",
+          "enabled": false,
+          "description": "Reports a labeled statement."
+        },
+        {
+          "shortName": "WithStatementJS",
+          "displayName": "'with' statement",
+          "enabled": false,
+          "description": "Reports a `with` statements. Such statements result in potentially confusing implicit bindings, and may behave strangely in setting new variables."
+        },
+        {
+          "shortName": "AnonymousFunctionJS",
+          "displayName": "Anonymous function",
+          "enabled": false,
+          "description": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a `name` property specified in the ECMAScript 6 standard. For example, `var bar = function() {};` is not reported."
+        },
+        {
+          "shortName": "CommaExpressionJS",
+          "displayName": "Comma expression",
+          "enabled": false,
+          "description": "Reports a comma expression. Such expressions are often a sign of overly clever code, and may lead to subtle bugs. Comma expressions in the initializer or in the update section of `for` loops are ignored."
+        },
+        {
+          "shortName": "VoidExpressionJS",
+          "displayName": "'void' expression",
+          "enabled": false,
+          "description": "Reports a `void` expression."
+        }
+      ]
+    },
+    {
+      "name": "Probable bugs",
+      "inspections": [
+        {
+          "shortName": "CoffeeScriptSwitchStatementWithNoDefaultBranch",
+          "displayName": "'switch' statement with no 'default' branch",
+          "enabled": false,
+          "description": "Reports a `switch` statement without `default` branches in CoffeeScript content. Such statements make tracking bugs difficult, if unexpected cases are ignored silently."
+        },
+        {
+          "shortName": "CoffeeScriptLiteralNotFunction",
+          "displayName": "Object literal call",
+          "enabled": false,
+          "description": "Reports an object literal expression that is invoked as if it were a function."
+        },
+        {
+          "shortName": "CoffeeScriptSillyAssignment",
+          "displayName": "Variable assigned to itself",
+          "enabled": false,
+          "description": "Reports any assignment of the form `x = x` in CoffeeScript content. Such assignments usually indicate a coding error."
+        },
+        {
+          "shortName": "CoffeeScriptInfiniteLoop",
+          "displayName": "Infinite loop statement",
+          "enabled": false,
+          "description": "Reports a `for`, `while`, or `do` statement that can only exit by throwing an exception. Although such statements may be correct, they often indicate a coding error."
+        },
+        {
+          "shortName": "CoffeeScriptModulesDependencies",
+          "displayName": "Missing import statement",
+          "enabled": false,
+          "description": "Reports a module that is not referenced through an `import` statement.\n\nSuggests inserting an import statement."
+        },
+        {
+          "shortName": "JSPotentiallyInvalidUsageOfClassThis",
+          "displayName": "Potentially invalid reference to 'this' of a class from closure",
+          "enabled": true,
+          "description": "Reports an attempt to reference a member of an ECMAScript class via the `this.` qualifier in a nested function that is not a lambda.  \n`this` in a nested function that is not a lambda is the function's own `this` and doesn't relate to the outer class."
+        },
+        {
+          "shortName": "JSPotentiallyInvalidConstructorUsage",
+          "displayName": "Potentially invalid constructor usage",
+          "enabled": true,
+          "description": "Reports a usage of a potentially invalid constructor function, for example: a function that is not a constructor after `new`, using a constructor's prototype or calling a constructor without `new`. A constructor function is assumed to have an upper case name (optional) or have an explicit JSDoc `@constructor` tag."
+        },
+        {
+          "shortName": "DivideByZeroJS",
+          "displayName": "Division by zero",
+          "enabled": false,
+          "description": "Reports division by zero or a remainder by zero."
+        },
+        {
+          "shortName": "JSPotentiallyInvalidTargetOfIndexedPropertyAccess",
+          "displayName": "Possibly incorrect target of indexed property access",
+          "enabled": true,
+          "description": "Reports a potentially invalid indexed property access, for example, `Array[1]`."
+        },
+        {
+          "shortName": "ObjectAllocationIgnoredJS",
+          "displayName": "Result of object allocation ignored",
+          "enabled": false,
+          "description": "Reports object allocation where the result of the allocated object is ignored, for example, `new Error();` as a statement, without any assignment. Such allocation expressions may indicate an odd object initialization strategy."
+        },
+        {
+          "shortName": "InfiniteRecursionJS",
+          "displayName": "Infinite recursion",
+          "enabled": false,
+          "description": "Reports a function which must either recurse infinitely or throw an exception. Such functions may not return normally."
+        },
+        {
+          "shortName": "JSTypeOfValues",
+          "displayName": "'typeof' comparison with non-standard value",
+          "enabled": true,
+          "description": "Reports a comparison of a `typeof` expression with a literal string which is not one of the standard types: `undefined`, `object`, `boolean`, `number`, `string`, `function`, or `symbol`. Such comparisons always return `false`."
+        },
+        {
+          "shortName": "JSPotentiallyInvalidUsageOfThis",
+          "displayName": "Potentially invalid reference to 'this' from closure",
+          "enabled": true,
+          "description": "Reports a `this` in closure that is used for referencing properties of outer context.\n\nExample:\n\n\n    function Outer() {\n      this.outerProp = 1;\n      function inner() {\n        // bad, because 'outerProp' of Outer\n        // won't be updated here\n        // on calling 'new Outer()' as may be expected\n        this.outerProp = 2;\n      }\n      inner();\n    }\n"
+        },
+        {
+          "shortName": "InfiniteLoopJS",
+          "displayName": "Infinite loop statement",
+          "enabled": false,
+          "description": "Reports a `for`, `while`, or `do` statement which can only exit by throwing an exception. Such statements often indicate coding errors."
+        },
+        {
+          "shortName": "JSIncompatibleTypesComparison",
+          "displayName": "Comparison of expressions having incompatible types",
+          "enabled": true,
+          "description": "Reports a comparison with operands of incompatible types or an operand with a type without possible common values."
+        },
+        {
+          "shortName": "JSSuspiciousNameCombination",
+          "displayName": "Suspicious variable/parameter name combination",
+          "enabled": true,
+          "description": "Reports an assignment or a function call where the name of the target variable or the function parameter does not match the name of the value assigned to it.\n\nExample:\n\n\n      var x = 0;\n      var y = x;\n\nor\n\n\n      var x = 0, y = 0;\n      var rc = new Rectangle(y, x, 20, 20);\n\nSpecify the names that should not be used together. An error is reported\nif a parameter name or an assignment target name contains words from one group while the name of the assigned or passed\nvariable contains words from another group."
+        },
+        {
+          "shortName": "ForLoopThatDoesntUseLoopVariableJS",
+          "displayName": "'for' loop where update or condition does not use loop variable",
+          "enabled": false,
+          "description": "Reports a `for` loop where the condition or update does not use the `for` loop variable."
+        },
+        {
+          "shortName": "JSEqualityComparisonWithCoercion",
+          "displayName": "Equality operator may cause type coercion",
+          "enabled": true,
+          "description": "Reports a usage of an equality operator that may cause unexpected type coercions. Suggests replacing `==` and `!=` with type-safe equality operators `===` and `!==`.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`."
+        },
+        {
+          "shortName": "ES6BindWithArrowFunction",
+          "displayName": "Suspicious usage of 'bind' with arrow function",
+          "enabled": false,
+          "description": "Reports `bind` used together with an arrow function.  \nBecause arrow functions use lexical `this`, a `bind` call will have no effect on them.  \nSee [here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this) for details."
+        },
+        {
+          "shortName": "JSComparisonWithNaN",
+          "displayName": "Comparison with NaN",
+          "enabled": true,
+          "description": "Reports a comparison with NaN. Comparisons like `expr == NaN` or `expr === NaN` are always evaluated to `false`."
+        },
+        {
+          "shortName": "JSConstructorReturnsPrimitive",
+          "displayName": "Constructor returns primitive value",
+          "enabled": false,
+          "description": "Reports a constructor function that returns a primitive value. When called with `new`, this value will be lost and an object will be returned instead. To avoid warnings, use the `@return` tag to specify the return of the function."
+        },
+        {
+          "shortName": "JSConsecutiveCommasInArrayLiteral",
+          "displayName": "Consecutive commas in array literal",
+          "enabled": true,
+          "description": "Reports a consecutive comma in an array literal. The skipped element accepts the `undefined` value, but it could be done unintentionally, for example, when commas are at the end of one line and at the beginning of the next one."
+        },
+        {
+          "shortName": "JSSuspiciousEqPlus",
+          "displayName": "Suspicious '=+' assignment",
+          "enabled": true,
+          "description": "Reports an assignment in the form `a =+ b`. Suggests replacing with `a += b`."
+        },
+        {
+          "shortName": "JSVoidFunctionReturnValueUsed",
+          "displayName": "Void function return value used",
+          "enabled": true,
+          "description": "Reports a return value of a function that doesn't return anything. Calling of such functions always produces an `undefined` value and such assignment may indicate an error.\n\nExample:\n\n\n    let a = console.log('foo');\n\n<br />\n\nThe following usages are ignored:\n\n* Inside a return statement\n* In some binary operations\n* For overridden non-void functions"
+        },
+        {
+          "shortName": "CssMissingComma",
+          "displayName": "Missing comma in selector list",
+          "enabled": false,
+          "description": "Reports a multi-line selector. Most likely this means that several single-line selectors are actually intended but a comma is missing at the end of one or several lines.\n\n**Example:**\n\n\n    input /* comma has probably been forgotten */\n    .button {\n      margin: 1px;\n    }\n"
+        },
+        {
+          "shortName": "CssNonIntegerLengthInPixels",
+          "displayName": "Non-integer length in pixels",
+          "enabled": false,
+          "description": "Reports a non-integer length in pixels.\n\n**Example:**\n\n     width: 3.14px\n"
+        },
+        {
+          "shortName": "CssNoGenericFontName",
+          "displayName": "Missing generic font family name",
+          "enabled": false,
+          "description": "Verifies that the [font-family](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family) property contains a generic font family name as a fallback alternative.\n\n\nGeneric font family names are: `serif`, `sans-serif`, `cursive`, `fantasy`,\nand `monospace`."
+        }
+      ]
+    },
+    {
+      "name": "Flow type checker",
+      "inspections": [
+        {
+          "shortName": "FlowJSConfig",
+          "displayName": "Missing .flowconfig",
+          "enabled": false,
+          "description": "Reports a JavaScript file with a `@flow` flag that doesn't have an associated `.flowconfig` file in the project."
+        },
+        {
+          "shortName": "FlowJSError",
+          "displayName": "Flow type checker",
+          "enabled": false,
+          "description": "Reports errors from [Flow](https://flowtype.org/)."
+        },
+        {
+          "shortName": "FlowJSFlagCommentPlacement",
+          "displayName": "Misplaced @flow flag",
+          "enabled": false,
+          "description": "Reports a `@flow` flag comment that is not located at the top of a file."
+        },
+        {
+          "shortName": "FlowJSCoverage",
+          "displayName": "Code is not covered by Flow",
+          "enabled": false,
+          "description": "Reports a JavaScript code fragment that is not covered by the Flow type checker. To use this inspection, configure the Flow executable in [Settings \\| Languages \\& Frameworks \\| JavaScript](settings://Settings.JavaScript)."
+        }
+      ]
+    },
+    {
+      "name": "HTML",
+      "inspections": [
+        {
+          "shortName": "HtmlUnknownBooleanAttribute",
+          "displayName": "Incorrect boolean attribute",
+          "enabled": false,
+          "description": "Reports an HTML non-boolean attribute without a value. Suggests configuring attributes that should not be reported."
+        },
+        {
+          "shortName": "HtmlUnknownTarget",
+          "displayName": "Unresolved file in a link",
+          "enabled": false,
+          "description": "Reports an unresolved file in a link."
+        },
+        {
+          "shortName": "CheckValidXmlInScriptTagBody",
+          "displayName": "Malformed content of 'script' tag",
+          "enabled": false,
+          "description": "Reports invalid XML contents of a `script` tag.  "
+        },
+        {
+          "shortName": "HtmlUnknownAttribute",
+          "displayName": "Unknown attribute",
+          "enabled": false,
+          "description": "Reports an unknown HTML attribute. Suggests configuring attributes that should not be reported."
+        },
+        {
+          "shortName": "HtmlMissingClosingTag",
+          "displayName": "Missing closing tag",
+          "enabled": false,
+          "description": "Reports an HTML element without a closing tag. Some coding styles require that HTML elements have closing tags even where this is optional.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <p>Behold!\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <p>Behold!</p>\n        </body>\n      </html>\n"
+        },
+        {
+          "shortName": "HtmlExtraClosingTag",
+          "displayName": "Redundant closing tag",
+          "enabled": false,
+          "description": "Reports a redundant closing tag for an empty element, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
+        },
+        {
+          "shortName": "HtmlUnknownAnchorTarget",
+          "displayName": "Unresolved fragment in a link",
+          "enabled": false,
+          "description": "Reports an unresolved last part of an URL after the `#` sign."
+        },
+        {
+          "shortName": "HtmlUnknownTag",
+          "displayName": "Unknown tag",
+          "enabled": false,
+          "description": "Reports an unknown HTML tag. Suggests configuring tags that should not be reported."
+        },
+        {
+          "shortName": "RequiredAttributes",
+          "displayName": "Missing required attribute",
+          "enabled": false,
+          "description": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
+        },
+        {
+          "shortName": "CheckEmptyScriptTag",
+          "displayName": "Empty tag",
+          "enabled": false,
+          "description": "Reports an empty tag (such as `script`) that does not work in some browsers."
+        },
+        {
+          "shortName": "HtmlDeprecatedTag",
+          "displayName": "Obsolete tag",
+          "enabled": false,
+          "description": "Reports an obsolete HTML5 tag. Suggests replacing the obsolete tag with a CSS or another tag."
+        },
+        {
+          "shortName": "CheckImageSize",
+          "displayName": "Mismatched image size",
+          "enabled": false,
+          "description": "Reports a `width` and `height` attribute value of a `img` tag that is different from the actual width and height of the referenced image."
+        },
+        {
+          "shortName": "HtmlNonExistentInternetResource",
+          "displayName": "Unresolved web link",
+          "enabled": false,
+          "description": "Reports an unresolved web link. Works by making network requests in the background."
+        },
+        {
+          "shortName": "HtmlDeprecatedAttribute",
+          "displayName": "Obsolete attribute",
+          "enabled": false,
+          "description": "Reports an obsolete HTML5 attribute."
+        },
+        {
+          "shortName": "HtmlPresentationalElement",
+          "displayName": "Presentational tag",
+          "enabled": false,
+          "description": "Reports a presentational HTML tag. Suggests replacing the presentational tag with a CSS or another tag."
+        }
+      ]
+    },
+    {
+      "name": "Cucumber",
+      "inspections": [
+        {
+          "shortName": "GherkinScenarioToScenarioOutline",
+          "displayName": "Scenario with Examples section",
+          "enabled": false,
+          "description": "Reports Gherkin scenarios that contain an `Examples` section.\n\nUse the quick-fix to convert `Scenario` to `Scenario Outline`."
+        },
+        {
+          "shortName": "GherkinMisplacedBackground",
+          "displayName": "Misplaced background section",
+          "enabled": false,
+          "description": "Reports `Background` sections that are located incorrectly. The `Background` section must be located before the `Scenario` section."
+        },
+        {
+          "shortName": "CucumberMissedExamples",
+          "displayName": "Missing examples section",
+          "enabled": false,
+          "description": "Reports scenario outlines in Cucumber .feature files that do not have the `Examples` section.\n\nUse the quick-fix to automatically create the `Examples` section with a pre-filled table header."
+        },
+        {
+          "shortName": "CucumberTableInspection",
+          "displayName": "Unused or missing columns in Cucumber tables",
+          "enabled": false,
+          "description": "Reports tables in `Examples` sections in Cucumber .feature files with unused or missing columns."
+        },
+        {
+          "shortName": "CucumberUndefinedStep",
+          "displayName": "Undefined step",
+          "enabled": false,
+          "description": "Reports steps in Cucumber (or some other Gherkin) .feature files that do not have matching step definitions.\n\nUse the quick-fix to automatically create a new step definition."
+        },
+        {
+          "shortName": "GherkinBrokenTableInspection",
+          "displayName": "Gherkin table is broken",
+          "enabled": false,
+          "description": "Reports a table if there is at least one row with the number of cells different from the number of cells in the table header."
+        },
+        {
+          "shortName": "CucumberExamplesColon",
+          "displayName": "Missing ':' after examples keyword",
+          "enabled": false,
+          "description": "Reports `Examples` sections in Cucumber .feature files if they do not have ':' after the `Examples` keyword."
+        }
+      ]
+    },
+    {
+      "name": "Unused symbols",
+      "inspections": [
+        {
+          "shortName": "JSUnusedAssignment",
+          "displayName": "Unused assignment",
+          "enabled": true,
+          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above mentioned reasons)."
+        },
+        {
+          "shortName": "JSUnusedGlobalSymbols",
+          "displayName": "Unused global symbol",
+          "enabled": false,
+          "description": "Reports an unused globally accessible public function, variable, class, or property."
+        },
+        {
+          "shortName": "JSUnusedLocalSymbols",
+          "displayName": "Unused local symbol",
+          "enabled": true,
+          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+        }
+      ]
+    },
+    {
+      "name": "Data flow",
+      "inspections": [
+        {
+          "shortName": "ReuseOfLocalVariableJS",
+          "displayName": "Reuse of local variable",
+          "enabled": false,
+          "description": "Reports reusing a local variable and overwriting its value with a new value that is not related to the original variable usage. Reusing a local variable in this way may be confusing because the intended semantics of the local variable may vary with each usage. It may also cause bugs, if code changes result in values that were expected to be overwritten while they are actually live. It is good practices to keep variable lifetimes as short as possible, and not reuse local variables for the sake of brevity."
+        },
+        {
+          "shortName": "UnnecessaryLocalVariableJS",
+          "displayName": "Redundant local variable",
+          "enabled": false,
+          "description": "Reports an unnecessary local variable that does not make a function more comprehensible:\n\n* a local variable that is immediately returned\n* a local variable that is immediately assigned to another variable and is not used anymore\n* a local variable that always has the same value as another local variable or parameter.\n\n\nUse the checkbox below to have this inspection ignore variables that are immediately\nreturned or thrown. Some coding styles suggest using such variables for clarity and\nease of debugging."
+        }
+      ]
+    },
+    {
+      "name": "Bitwise operation issues",
+      "inspections": [
+        {
+          "shortName": "ShiftOutOfRangeJS",
+          "displayName": "Shift operation by possibly wrong constant",
+          "enabled": false,
+          "description": "Reports a shift operation where the second operand is a constant outside the reasonable range, for example, an integer shift operation outside the range `0..31`, shifting by negative or overly large values."
+        },
+        {
+          "shortName": "IncompatibleMaskJS",
+          "displayName": "Incompatible bitwise mask operation",
+          "enabled": false,
+          "description": "Reports a bitwise mask expression which for sure evaluates to `true` or `false`. Expressions are of the form `(var & constant1) == constant2` or `(var | constant1) == constant2`, where `constant1` and `constant2` are incompatible bitmask constants.\n\nExample:\n\n```\n// Incompatible mask: as the last byte in mask is zero,\n// something like 0x1200 would be possible, but not 0x1234\nif ((mask & 0xFF00) == 0x1234) {...}\n```"
+        },
+        {
+          "shortName": "PointlessBitwiseExpressionJS",
+          "displayName": "Bitwise expression can be simplified",
+          "enabled": false,
+          "description": "Reports an expression that includes `and` with zero, `or` by zero, or shifting by zero. Such expressions may result from not fully completed automated refactorings."
+        },
+        {
+          "shortName": "JSBitwiseOperatorUsage",
+          "displayName": "Bitwise operator usage",
+          "enabled": true,
+          "description": "Reports a suspicious usage of a bitwise AND (\"`&`\") or OR (\"`|`\") operator. Usually it is a typo and the result of applying boolean operations AND (\"`&&`\") and OR (\"`||`\") is expected."
+        }
+      ]
+    },
+    {
+      "name": "ES2015 migration aids",
+      "inspections": [
+        {
+          "shortName": "ES6ConvertLetToConst",
+          "displayName": "'let' is used instead of 'const'",
+          "enabled": false,
+          "description": "Reports a `let` declaration that can be made `const`.  "
+        },
+        {
+          "shortName": "ES6ConvertIndexedForToForOf",
+          "displayName": "Indexed 'for' is used instead of 'for..of'",
+          "enabled": false,
+          "description": "Reports an indexed [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) loop used on an array. Suggests replacing it with a [for..of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop.   \n`for..of` loops are introduced in ECMAScript 6 and iterate over `iterable` objects."
+        },
+        {
+          "shortName": "ES6ConvertVarToLetConst",
+          "displayName": "'var' is used instead of 'let' or 'const'",
+          "enabled": false,
+          "description": "Reports a `var` declaration that is used instead of `let` or `const`.  \nBoth `let` and `const` are block-scoped and behave more strictly.   \n\nSuggests replacing all `var` declarations with `let` or `const` declarations, depending on the semantics of a particular value. The declarations may be moved to the top of the function or placed before the first usage of the variable to avoid Reference errors.   \nSelect the 'Conservatively convert var with Fix all action' option to prevent any changes in these complex cases when using the 'Fix all' action."
+        },
+        {
+          "shortName": "ES6ConvertRequireIntoImport",
+          "displayName": "'require()' is used instead of 'import'",
+          "enabled": false,
+          "description": "Reports a `require()` statement. Suggests converting it to a `require()` call with an `import` statement.   \n\nEnable 'Convert require() inside inner scopes with Fix all action' to convert all `require()` calls inside the nested functions and statements when using the 'Fix all' action.   \n\nPlease note that converting `require()` statements inside inner scopes to `import` statements may cause changes in the semantics of the code. Import statements are static module dependencies and are hoisted, which means that they are moved to the top of the current module. `require()` calls load modules dynamically. They can be executed conditionally, and their scope is defined by the expression in which they are used.   \nClear the 'Convert require() inside inner scopes with Fix all action' checkbox to prevent any changes in these complex cases when using the 'Fix all' action."
+        },
+        {
+          "shortName": "ES6ConvertModuleExportToExport",
+          "displayName": "'module.exports' is used instead of 'export'",
+          "enabled": false,
+          "description": "Reports a `module.export` statement. Suggests replacing it with an `export` or `export default` statement.   \n\nPlease note that the quick-fix for converting `module.export` into `export` is not available for `module.export` inside functions or statements because `export` statements can only be at the top level of a module."
+        },
+        {
+          "shortName": "JSStringConcatenationToES6Template",
+          "displayName": "String concatenation is used instead of template literal",
+          "enabled": true,
+          "description": "Reports a string concatenation. Suggests replacing it with a [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)\n\nExample\n\n     \"result: \" + a + \".\" \n\nAfter applying the quick-fix the code looks as follows:\n\n     `result: ${a}.` \n"
+        },
+        {
+          "shortName": "JSFunctionExpressionToArrowFunction",
+          "displayName": "Function expression is used instead of arrow function",
+          "enabled": true,
+          "description": "Reports a [function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function) expression. Suggests converting it to an [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).\n\nExample:\n\n    arr.map(function(el) {return el + 1})\n\nAfter applying the quick-fix the code looks as follows:\n\n    arr.map(el => el + 1)\n"
+        },
+        {
+          "shortName": "ES6ConvertToForOf",
+          "displayName": "'for..in' is used instead of 'for..of'",
+          "enabled": false,
+          "description": "Reports a usage of a [for..in](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in) loop on an array. Suggests replacing it with a [for..of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop.   \n`for..of` loops, which are introduced in ECMAScript 6, iterate over `iterable` objects. For arrays, this structure is preferable to `for..in`, because it works only with array values but not with array object's properties."
+        }
+      ]
+    },
+    {
+      "name": "Accessibility",
+      "inspections": [
+        {
+          "shortName": "HtmlRequiredAltAttribute",
+          "displayName": "Missing required 'alt' attribute",
+          "enabled": false,
+          "description": "Reports a missing `alt` attribute in a `img` or `applet` tag or in a `area` element of an image map. Suggests adding a required attribute with a text alternative for the contents of the tag. Based on WCAG 2.0: [H24](https://www.w3.org/TR/WCAG20-TECHS/H24.html), [H35](https://www.w3.org/TR/WCAG20-TECHS/H35.html), [H36](https://www.w3.org/TR/WCAG20-TECHS/H36.html), [H37](https://www.w3.org/TR/WCAG20-TECHS/H37.html)."
+        },
+        {
+          "shortName": "HtmlFormInputWithoutLabel",
+          "displayName": "Missing associated label",
+          "enabled": false,
+          "description": "Reports a form element (`input`, `textarea`, or `select`) without an associated label. Suggests creating a new label. Based on WCAG 2.0: [H44](https://www.w3.org/TR/WCAG20-TECHS/H44.html).  "
+        },
+        {
+          "shortName": "HtmlRequiredTitleAttribute",
+          "displayName": "Missing required 'title' attribute",
+          "enabled": false,
+          "description": "Reports a missing title attribute `frame`, `iframe`, `dl`, and `a` tags. Suggests adding a title attribute. Based on WCAG 2.0: [H33](https://www.w3.org/TR/WCAG20-TECHS/H33.html), [H40](https://www.w3.org/TR/WCAG20-TECHS/H40.html), and [H64](https://www.w3.org/TR/WCAG20-TECHS/H64.html)."
+        },
+        {
+          "shortName": "HtmlRequiredSummaryAttribute",
+          "displayName": "Missing required 'summary' attribute",
+          "enabled": false,
+          "description": "Reports a missing `summary` attribute in a `table` tag. Suggests adding a`summary` attribute. Based on WCAG 2.0: [H73](https://www.w3.org/TR/WCAG20-TECHS/H73.html)."
+        },
+        {
+          "shortName": "HtmlRequiredLangAttribute",
+          "displayName": "Missing required 'lang' attribute",
+          "enabled": false,
+          "description": "Reports a missing `lang` (or `xml:lang`) attribute in a `html` tag. Suggests adding a required attribute to state the default language of the document. Based on WCAG 2.0: [H57](https://www.w3.org/TR/WCAG20-TECHS/H57.html)."
+        },
+        {
+          "shortName": "HtmlRequiredTitleElement",
+          "displayName": "Missing required 'title' element",
+          "enabled": false,
+          "description": "Reports a missing `title` element inside a `head` section. Suggests adding a `title` element. The title should describe the document. Based on WCAG 2.0: [H25](https://www.w3.org/TR/WCAG20-TECHS/H25.html)."
+        }
+      ]
+    },
+    {
+      "name": "Validity issues",
+      "inspections": [
+        {
+          "shortName": "BadExpressionStatementJS",
+          "displayName": "Expression statement which is not assignment or call",
+          "enabled": true,
+          "description": "Reports an expression statement that is neither an assignment nor a call. Such statements usually indicate an error."
+        },
+        {
+          "shortName": "JSConstantReassignment",
+          "displayName": "Attempt to assign to const or readonly variable",
+          "enabled": true,
+          "description": "Reports reassigning a value to a constant or a readonly variable."
+        },
+        {
+          "shortName": "JSOctalInteger",
+          "displayName": "Octal integer",
+          "enabled": true,
+          "description": "Reports a deprecated octal integer literal prefixed with `0` instead of `0o`.  \nSuch literals are not allowed in modern ECMAScript code, and using them in the strict mode is an error.  \nTo force this inspection for ES5 and ES3 language levels, select the 'Warn about obsolete octal literals in ES5- code' checkbox below."
+        },
+        {
+          "shortName": "FunctionWithInconsistentReturnsJS",
+          "displayName": "Function with inconsistent returns",
+          "enabled": false,
+          "description": "Reports a function that returns a value in some cases while in other cases no value is returned. This usually indicates an error.\n\nExample:\n\n\n    function foo() {\n      if (true)\n        return 3;\n      return;\n    }\n\n"
+        },
+        {
+          "shortName": "ReservedWordUsedAsNameJS",
+          "displayName": "Reserved word used as name",
+          "enabled": false,
+          "description": "Reports a JavaScript reserved word used as a name. The JavaScript specification reserves a number of words which are currently not used as keywords. Using those words as identifiers may result in broken code if later versions of JavaScript start using them as keywords."
+        },
+        {
+          "shortName": "ThisExpressionReferencesGlobalObjectJS",
+          "displayName": "'this' expression which references the global object",
+          "enabled": false,
+          "description": "Reports a `this` expression outside an object literal or a constructor body. Such `this` expressions reference the top-level \"global\" JavaScript object, but are mostly useless."
+        },
+        {
+          "shortName": "StringLiteralBreaksHTMLJS",
+          "displayName": "String literal which breaks HTML parsing",
+          "enabled": false,
+          "description": "Reports a string literal that contains a `</` sequence. Such strings may result in incorrect parsing of any HTML in which the JavaScript code is embedded."
+        }
+      ]
+    },
+    {
+      "name": "Potentially confusing code constructs",
+      "inspections": [
+        {
+          "shortName": "ConfusingFloatingPointLiteralJS",
+          "displayName": "Confusing floating point literal",
+          "enabled": false,
+          "description": "Reports any floating point number that does not have a decimal point, or any numbers before the decimal point, or and numbers after the decimal point. Such literals may be confusing, and violate several coding standards."
+        },
+        {
+          "shortName": "PointlessArithmeticExpressionJS",
+          "displayName": "Pointless arithmetic expression",
+          "enabled": false,
+          "description": "Reports an arithmetic expression that include adding or subtracting zero, multiplying by zero or one, division by one, and shift by zero. Such expressions may result from not fully completed automated refactoring."
+        },
+        {
+          "shortName": "DynamicallyGeneratedCodeJS",
+          "displayName": "Execution of dynamically generated code",
+          "enabled": false,
+          "description": "Reports a call of the `eval()`, `setTimeout()`, or `setInterval()` function or an allocation of a `Function` object. These functions are used to execute arbitrary strings of JavaScript text, which often dynamically generated. This can be very confusing, and may be a security risk.   \n\nIgnores the cases when a callback function is provided to these methods statically, without code generation."
+        },
+        {
+          "shortName": "NegatedConditionalExpressionJS",
+          "displayName": "Negated conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression whose condition is negated. Suggests flipping the order of branches in the conditional expression to increase the clarity of the statement. Example: `!condition ? 2 : 1`"
+        },
+        {
+          "shortName": "MagicNumberJS",
+          "displayName": "Magic number",
+          "enabled": false,
+          "description": "Reports a \"magic number\" that is a numeric literal used without being named by a constant declaration. Magic numbers can result in code whose intention is unclear, and may result in errors if a magic number is changed in one code location but remains unchanged in another. The numbers 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 1000, 0.0 and 1.0 are ignored."
+        },
+        {
+          "shortName": "BlockStatementJS",
+          "displayName": "Unnecessary block statement",
+          "enabled": false,
+          "description": "Reports a block statement that is not used as the body of `if`, `for`, `while`, `do`, `with`, or `try` statements, or as the body of a function declaration. Starting from ECMAScript 6, JavaScript blocks introduce new scopes for `let` and `const` variables, but still free-standing block statements may be confusing and result in subtle bugs when used with `var` variables."
+        },
+        {
+          "shortName": "NestedConditionalExpressionJS",
+          "displayName": "Nested conditional expression",
+          "enabled": false,
+          "description": "Reports a ternary conditional expression within another ternary condition. Such nested conditionals may be extremely confusing, and best replaced by more explicit conditional logic."
+        },
+        {
+          "shortName": "NestedFunctionJS",
+          "displayName": "Nested function",
+          "enabled": false,
+          "description": "Reports a function nested inside another function. Although JavaScript allows functions to be nested, such constructs may be confusing.\n\n\nUse the checkbox below to ignore anonymous nested functions."
+        },
+        {
+          "shortName": "IncrementDecrementResultUsedJS",
+          "displayName": "Result of increment or decrement used",
+          "enabled": false,
+          "description": "Reports an increment (`++`) or decrement (`--`) expression where the result of the assignment is used in a containing expression. Such assignments can result in confusion due to the order of operations, as evaluation of the assignment may affect the outer expression in unexpected ways. Example: `var a = b++`"
+        },
+        {
+          "shortName": "NegatedIfStatementJS",
+          "displayName": "Negated 'if' statement",
+          "enabled": false,
+          "description": "Reports **if** statements which have an **else** branch and a negated condition. Flipping the order of the **if** and **else** branches will usually increase the clarity of such statements."
+        },
+        {
+          "shortName": "ConfusingPlusesOrMinusesJS",
+          "displayName": "Confusing sequence of '+' or '-'",
+          "enabled": false,
+          "description": "Reports a suspicious combination of `+` or `-` characters in JavaScript code (for example, `a+++b`. Such sequences are confusing, and their semantics may change through changes in the whitespace."
+        },
+        {
+          "shortName": "OverlyComplexBooleanExpressionJS",
+          "displayName": "Overly complex boolean expression",
+          "enabled": false,
+          "description": "Reports a boolean expression with too many terms. Such expressions may be confusing and bug-prone.\n\n\nUse the field below to specify the maximum number of terms allowed in an arithmetic expression."
+        },
+        {
+          "shortName": "OverlyComplexArithmeticExpressionJS",
+          "displayName": "Overly complex arithmetic expression",
+          "enabled": false,
+          "description": "Reports an arithmetic expression with too many terms. Such expressions may be confusing and bug-prone.\n\n\nUse the field below to specify the maximum number of terms allowed in an arithmetic expression."
+        },
+        {
+          "shortName": "CallerJS",
+          "displayName": "Use of 'caller' property",
+          "enabled": true,
+          "description": "Reports a usage of the `caller` property in a JavaScript function. Using this property to access the stack frame of the calling method can be extremely confusing and result in subtle bugs."
+        },
+        {
+          "shortName": "EmptyStatementBodyJS",
+          "displayName": "Statement with empty body",
+          "enabled": true,
+          "description": "Reports an `if`, `while`, `for`, or `with` statement with an empty body. Such statements often result from typos, and may cause confusion.\n\n\nUse the checkbox below to specify whether the statements with empty block statements as bodies\nshould be reported."
+        }
+      ]
+    },
+    {
+      "name": "CSS",
+      "inspections": [
+        {
+          "shortName": "CssBrowserCompatibilityForProperties",
+          "displayName": "Property is incompatible with selected browsers",
+          "enabled": false,
+          "description": "Reports a CSS property that is not supported by the specified browsers. Based on the [MDN Compatibility Data](https://github.com/mdn/browser-compat-data)."
+        },
+        {
+          "shortName": "CssConvertColorToHexInspection",
+          "displayName": "Color could be replaced with #-hex",
+          "enabled": false,
+          "description": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+        },
+        {
+          "shortName": "CssReplaceWithShorthandUnsafely",
+          "displayName": "Properties may probably be replaced with a shorthand",
+          "enabled": false,
+          "description": "Reports a set of longhand CSS properties and suggests replacing an incomplete set of longhand CSS properties with a shorthand form, which is however not 100% equivalent in this case.\n\n\nFor example, 2 properties: `outline-color` and `outline-style` may be replaced with a single `outline`.\nSuch replacement is not 100% equivalent because shorthands reset all omitted sub-values to their initial states.\nIn this example, switching to the `outline` shorthand means that `outline-width` is also set to its initial value,\nwhich is `medium`.\n\n\nThis inspection doesn't handle full sets of longhand properties (when switching to shorthand is 100% safe).\nFor such cases see the 'Properties may be safely replaced with a shorthand' inspection instead."
+        },
+        {
+          "shortName": "CssConvertColorToRgbInspection",
+          "displayName": "Color could be replaced with rgb()",
+          "enabled": false,
+          "description": "Reports an `hsl()` or `hwb()` color function or a hexadecimal color notation.\n\nSuggests replacing such color value with an equivalent `rgb()` or `rgba()` color function.\n\n**Example:**\n\n    #0c0fff\n\nAfter the quick-fix is applied:\n\n    rgb(12, 15, 255).\n"
+        },
+        {
+          "shortName": "CssUnusedSymbol",
+          "displayName": "Unused selector",
+          "enabled": false,
+          "description": "Reports a CSS class or an element IDs that appears in selectors but is not used in HTML.\n\n\nNote that complete inspection results are available only when running it via **Code \\| Inspect Code** or\n**Code \\| Analyze Code \\| Run Inspection by Name**.\nDue to performance reasons, style sheet files are not inspected on the fly."
+        },
+        {
+          "shortName": "CssOverwrittenProperties",
+          "displayName": "Overwritten property",
+          "enabled": false,
+          "description": "Reports a duplicated CSS property within a ruleset. Respects shorthand properties.\n\n**Example:**\n\n\n    .foo {\n      margin-bottom: 1px;\n      margin-bottom: 1px; /* duplicates margin-bottom */\n      margin: 0; /* overrides margin-bottom */\n    }\n"
+        },
+        {
+          "shortName": "CssReplaceWithShorthandSafely",
+          "displayName": "Properties may be safely replaced with a shorthand",
+          "enabled": false,
+          "description": "Reports a set of longhand properties. Suggests replacing a complete set of longhand CSS properties with an equivalent shorthand form.\n\n\nFor example, 4 properties: `padding-top`, `padding-right`, `padding-bottom`, and\n`padding-left`\ncan be safely replaced with a single `padding` property.\n\n\nNote that this inspection doesn't show up if the set of longhand properties is incomplete\n(e.g. only 3 `padding-xxx` properties in a ruleset)\nbecause switching to a shorthand may change the result.\nFor such cases consider the 'Properties may probably be replaced with a shorthand'\ninspection."
+        }
+      ]
+    },
+    {
+      "name": "Invalid elements",
+      "inspections": [
+        {
+          "shortName": "CssInvalidHtmlTagReference",
+          "displayName": "Invalid type selector",
+          "enabled": false,
+          "description": "Reports a CSS [type selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors) that matches an unknown HTML element."
+        },
+        {
+          "shortName": "CssInvalidFunction",
+          "displayName": "Invalid function",
+          "enabled": false,
+          "description": "Reports an unknown [CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions) or an incorrect function parameter."
+        },
+        {
+          "shortName": "CssInvalidPropertyValue",
+          "displayName": "Invalid property value",
+          "enabled": false,
+          "description": "Reports an incorrect CSS property value."
+        },
+        {
+          "shortName": "CssInvalidMediaFeature",
+          "displayName": "Invalid media feature",
+          "enabled": false,
+          "description": "Reports an unknown [CSS media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) or an incorrect media feature value."
+        },
+        {
+          "shortName": "CssInvalidImport",
+          "displayName": "Misplaced @import",
+          "enabled": false,
+          "description": "Reports a misplaced `@import` statement.\n\n\nAccording to the [specification](https://developer.mozilla.org/en-US/docs/Web/CSS/@import),\n`@import` rules must precede all other types of rules, except `@charset` rules."
+        },
+        {
+          "shortName": "CssInvalidAtRule",
+          "displayName": "Unknown at-rule",
+          "enabled": false,
+          "description": "Reports an unknown [CSS at-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule)."
+        },
+        {
+          "shortName": "CssUnresolvedCustomProperty",
+          "displayName": "Unresolved custom property",
+          "enabled": false,
+          "description": "Reports an unresolved reference to a [custom property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) among the arguments of the `var()` function."
+        },
+        {
+          "shortName": "CssUnknownTarget",
+          "displayName": "Unresolved file reference",
+          "enabled": false,
+          "description": "Reports an unresolved file reference, for example, an incorrect path in an `@import` statement."
+        },
+        {
+          "shortName": "CssNegativeValue",
+          "displayName": "Negative property value",
+          "enabled": false,
+          "description": "Reports a negative value of a CSS property that is not expected to be less than zero, for example, object width or height."
+        },
+        {
+          "shortName": "CssUnresolvedClassInComposesRule",
+          "displayName": "Unresolved class in 'composes' rule",
+          "enabled": false,
+          "description": "Reports a CSS class reference in the ['composes'](https://github.com/css-modules/css-modules#composition) rule that cannot be resolved to any valid target.\n\n**Example:**\n\n\n      .className {/* ... */}\n\n      .otherClassName {\n        composes: className;\n      }\n"
+        },
+        {
+          "shortName": "CssInvalidCharsetRule",
+          "displayName": "Misplaced or incorrect @charset",
+          "enabled": false,
+          "description": "Reports a misplaced `@charset` at-rule or an incorrect charset value."
+        },
+        {
+          "shortName": "CssUnknownProperty",
+          "displayName": "Unknown property",
+          "enabled": false,
+          "description": "Reports an unknown CSS property or a property used in a wrong context.\n\nAdd the unknown property to the 'Custom CSS properties' list to skip validation."
+        },
+        {
+          "shortName": "CssInvalidPseudoSelector",
+          "displayName": "Invalid pseudo-selector",
+          "enabled": false,
+          "description": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
+        }
+      ]
+    },
+    {
+      "name": "Handlebars/Mustache",
+      "inspections": [
+        {
+          "shortName": "HbEmptyBlock",
+          "displayName": "Missing block helper argument",
+          "enabled": false,
+          "description": "Reports an `if`, `each`, or `with` block helper without an argument."
+        }
+      ]
+    },
+    {
+      "name": "Try statement issues",
+      "inspections": [
+        {
+          "shortName": "ContinueOrBreakFromFinallyBlockJS",
+          "displayName": "'continue' or 'break' inside 'finally' block",
+          "enabled": false,
+          "description": "Reports a `break` or `continue` statement inside a `finally` block. Such statements are very confusing, may hide exceptions, and complicate debugging."
+        },
+        {
+          "shortName": "UnusedCatchParameterJS",
+          "displayName": "Unused 'catch' parameter",
+          "enabled": false,
+          "description": "Reports a `catch` parameter that is not used in the corresponding block. The `catch` parameters named `ignore` or `ignored` are ignored.\n\n\nUse the checkbox below to disable this inspection for `catch`\nblocks with comments."
+        },
+        {
+          "shortName": "EmptyCatchBlockJS",
+          "displayName": "Empty 'catch' block",
+          "enabled": false,
+          "description": "Reports an empty `catch` block. This indicates that errors are simply ignored instead of handling them.   \n\nAny comment in a `catch` block mutes the inspection."
+        },
+        {
+          "shortName": "ExceptionCaughtLocallyJS",
+          "displayName": "Exception used for local control-flow",
+          "enabled": false,
+          "description": "Reports a `throw` statement whose exceptions are always caught by the containing `try` statement. Using `throw` statements as a `goto` to change the local flow of control is confusing."
+        },
+        {
+          "shortName": "ThrowFromFinallyBlockJS",
+          "displayName": "'throw' inside 'finally' block",
+          "enabled": false,
+          "description": "Reports s `throw` statement inside a `finally` block. Such `throw` statements may mask exceptions thrown, and complicate debugging."
+        },
+        {
+          "shortName": "EmptyTryBlockJS",
+          "displayName": "Empty 'try' block",
+          "enabled": false,
+          "description": "Reports an empty `try` block, which usually indicates an error."
+        },
+        {
+          "shortName": "EmptyFinallyBlockJS",
+          "displayName": "Empty 'finally' block",
+          "enabled": false,
+          "description": "Reports an empty `finally` block, which usually indicates an error."
+        },
+        {
+          "shortName": "ReturnFromFinallyBlockJS",
+          "displayName": "'return' inside 'finally' block",
+          "enabled": false,
+          "description": "Reports a `return` statement inside a `finally` block. Such `return` statements may mask exceptions thrown, and complicate debugging."
+        }
+      ]
+    },
+    {
+      "name": "Function metrics",
+      "inspections": [
+        {
+          "shortName": "StatementsPerFunctionJS",
+          "displayName": "Overly long function",
+          "enabled": false,
+          "description": "Reports an overly long function. Function length is calculated by counting up the number of non-empty statements in the function. Functions that are too long are error-prone and difficult to test.\n\n\nUse the field below to specify the maximum acceptable number of statements in a function."
+        },
+        {
+          "shortName": "FunctionWithMultipleLoopsJS",
+          "displayName": "Function with multiple loops",
+          "enabled": false,
+          "description": "Reports a function with multiple loop statements."
+        },
+        {
+          "shortName": "CyclomaticComplexityJS",
+          "displayName": "Overly complex function",
+          "enabled": false,
+          "description": "Reports a function with too many branching points in a function (too high cyclomatic complexity). Such functions may be confusing and hard to test.\n\n\nUse the field provided below to specify the maximum acceptable cyclomatic complexity for a function."
+        },
+        {
+          "shortName": "ParametersPerFunctionJS",
+          "displayName": "Function with too many parameters",
+          "enabled": false,
+          "description": "Reports a function with too many parameters. Such functions often indicate problems with design.\n\n\nUse the field below to specify the maximum acceptable number of parameters for a function."
+        },
+        {
+          "shortName": "FunctionWithMultipleReturnPointsJS",
+          "displayName": "Function with multiple return points",
+          "enabled": false,
+          "description": "Reports a function with multiple return points. Such functions are hard to understand and maintain."
+        },
+        {
+          "shortName": "ThreeNegationsPerFunctionJS",
+          "displayName": "Function with more than three negations",
+          "enabled": false,
+          "description": "Reports a function with three or more negation operations (`!` or `!=`). Such functions may be unnecessarily confusing."
+        },
+        {
+          "shortName": "NestingDepthJS",
+          "displayName": "Overly nested function",
+          "enabled": false,
+          "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
+        }
+      ]
+    },
+    {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": true,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
+        }
+      ]
+    },
+    {
+      "name": "Angular",
+      "inspections": [
+        {
+          "shortName": "AngularInvalidTemplateReferenceVariable",
+          "displayName": "Unbound or ambiguous template reference variable",
+          "enabled": false,
+          "description": "Reports a template reference variable that is not assigned to a directive when using `exportAs` or is assigned to multiple directives."
+        },
+        {
+          "shortName": "AngularMultipleStructuralDirectives",
+          "displayName": "Multiple structural directives on one element",
+          "enabled": false,
+          "description": "Reports multiple structural directives (`*ngIf`, `*ngFor`, etc.) on one element."
+        },
+        {
+          "shortName": "AngularCliAddDependency",
+          "displayName": "Angular CLI add dependency",
+          "enabled": false,
+          "description": "Suggests using the `ng add` command to install the dependency.\n\n`ng add` will use the package manager to download it and invoke a schematic\nwhich can update your project with configuration changes, add additional dependencies (e.g. polyfills),\nor scaffold package-specific initialization code."
+        },
+        {
+          "shortName": "AngularMissingEventHandler",
+          "displayName": "Missing event handler",
+          "enabled": false,
+          "description": "Reports a missing event handler statement for an event binding."
+        },
+        {
+          "shortName": "AngularUndefinedTag",
+          "displayName": "Undefined tag",
+          "enabled": false,
+          "description": "Reports a tag defined by a component or directive out of the current scope."
+        },
+        {
+          "shortName": "AngularUndefinedBinding",
+          "displayName": "Undefined binding",
+          "enabled": false,
+          "description": "Reports an undefined property, event, or structural directive bindings on elements."
+        },
+        {
+          "shortName": "AngularInvalidImportedOrDeclaredSymbol",
+          "displayName": "Invalid imported or declared symbol",
+          "enabled": false,
+          "description": "Reports any symbol that is declared, imported or exported by an Angular module that is not a module, component, directive, or pipe or can't be used in the context of the property."
+        },
+        {
+          "shortName": "AngularInaccessibleComponentMemberInAotMode",
+          "displayName": "Inaccessible component member in AOT mode",
+          "enabled": false,
+          "description": "Reports accessing a private or protected member of a component from the component's template. Such usages result in AOT compilation failure."
+        },
+        {
+          "shortName": "AngularAmbiguousComponentTag",
+          "displayName": "Ambiguous component tag",
+          "enabled": false,
+          "description": "Reports a component that is matched on an embedded template element `<ng-template>` or multiple components matched on any other element."
+        },
+        {
+          "shortName": "AngularUndefinedModuleExport",
+          "displayName": "Undefined export from Angular module",
+          "enabled": false,
+          "description": "Reports an export of an undeclared or unimported component, directive, or pipes from an Angular module."
+        },
+        {
+          "shortName": "AngularInvalidI18nAttribute",
+          "displayName": "Invalid i18n attribute",
+          "enabled": false,
+          "description": "Reports a problem with a `i18n-*` attribute."
+        },
+        {
+          "shortName": "AngularIncorrectTemplateDefinition",
+          "displayName": "Incorrect component template definition",
+          "enabled": false,
+          "description": "Reports a component that doesn't have an associated template or uses both `template` and `templateUrl` properties."
+        },
+        {
+          "shortName": "AngularMissingOrInvalidDeclarationInModule",
+          "displayName": "Missing or invalid component, directive or pipe declaration in a module",
+          "enabled": false,
+          "description": "Reports an Angular component, directive, or pipe that is not declared in any module or is declared in multiple modules."
+        },
+        {
+          "shortName": "AngularInvalidAnimationTriggerAssignment",
+          "displayName": "Invalid animation trigger assignment",
+          "enabled": false,
+          "description": "Reports an invalid assignment of an animation trigger. To attach an animation to an element, use `[@triggerName]=\"expression\"` or an attribute without a value `@triggerName`."
+        },
+        {
+          "shortName": "AngularInvalidEntryComponent",
+          "displayName": "Invalid entry component",
+          "enabled": false,
+          "description": "Reports an invalid Angular component specified in the module's `bootstrap` or `entryComponents` property."
+        },
+        {
+          "shortName": "AngularRecursiveModuleImportExport",
+          "displayName": "Recursive import or export of Angular module",
+          "enabled": false,
+          "description": "Reports a cyclic dependency between Angular modules."
+        },
+        {
+          "shortName": "AngularInvalidSelector",
+          "displayName": "Missing or invalid selector",
+          "enabled": false,
+          "description": "Reports an invalid `selector` property of a component or directive."
+        },
+        {
+          "shortName": "AngularNonEmptyNgContent",
+          "displayName": "Content inside <ng-content> tag",
+          "enabled": false,
+          "description": "Reports a text or tag occurrence inside a `<ng-content>` tag used for content projection."
+        },
+        {
+          "shortName": "AngularInsecureBindingToEvent",
+          "displayName": "Insecure binding to event",
+          "enabled": false,
+          "description": "Reports a binding to an event property or attribute, for example, `[onclick]` or `[attr.onclick]` instead of `(click)`."
+        }
+      ]
+    },
+    {
+      "name": "YAML",
+      "inspections": [
+        {
+          "shortName": "YAMLSchemaValidation",
+          "displayName": "Validation by JSON Schema",
+          "enabled": false,
+          "description": "Reports inconsistencies between a YAML file and a JSON Schema if the schema is specified.\n\n**Scheme example:**\n\n\n      {\n        \"properties\": {\n          \"SomeNumberProperty\": {\n            \"type\": \"number\"\n          }\n        }\n      }\n\n**The following is an example with the corresponding warning:**\n\n\n      SomeNumberProperty: hello world\n"
+        },
+        {
+          "shortName": "YAMLUnresolvedAlias",
+          "displayName": "Unresolved alias",
+          "enabled": false,
+          "description": "Reports unresolved aliases in YAML files.\n\n**Example:**\n\n\n      some_key: *unknown_alias\n"
+        },
+        {
+          "shortName": "YAMLSchemaDeprecation",
+          "displayName": "Deprecated YAML key",
+          "enabled": false,
+          "description": "Reports deprecated keys in YAML files.\n\nDeprecation is checked only if there exists a JSON schema associated with the corresponding YAML file.\n\nNote that the deprecation mechanism is not defined in the JSON Schema specification yet,\nand this inspection uses a non-standard `deprecationMessage` extension.\n\n**Scheme deprecation example:**\n\n\n      {\n        \"properties\": {\n          \"SomeDeprecatedProperty\": {\n            \"deprecationMessage\": \"Baz\",\n            \"description\": \"Foo bar\"\n          }\n        }\n      }\n\n**The following is an example with the corresponding warning:**\n\n\n      SomeDeprecatedProperty: some value\n"
+        },
+        {
+          "shortName": "YAMLRecursiveAlias",
+          "displayName": "Recursive alias",
+          "enabled": false,
+          "description": "Reports recursion in YAML aliases.\n\nAlias can't be recursive and be used inside the data referenced by a corresponding anchor.\n\n**Example:**\n\n\n      some_key: &some_anchor\n        sub_key1: value1\n        sub_key2: *some_anchor\n"
+        },
+        {
+          "shortName": "YAMLDuplicatedKeys",
+          "displayName": "Duplicated YAML keys",
+          "enabled": false,
+          "description": "Reports duplicated keys in YAML files.\n\n**Example:**\n\n\n      same_key: some value\n      same_key: another value\n"
+        },
+        {
+          "shortName": "YAMLUnusedAnchor",
+          "displayName": "Unused anchor",
+          "enabled": false,
+          "description": "Reports unused anchors.\n\n**Example:**\n\n\n      some_key: &some_anchor\n        key1: value1\n"
+        }
+      ]
+    },
+    {
+      "name": "XML",
+      "inspections": [
+        {
+          "shortName": "XmlWrongRootElement",
+          "displayName": "Wrong root element",
+          "enabled": false,
+          "description": "Reports a root tag name different from the name specified in the `<doctype>` tag."
+        },
+        {
+          "shortName": "CheckTagEmptyBody",
+          "displayName": "Empty element content",
+          "enabled": false,
+          "description": "Reports an element with empty contents."
+        },
+        {
+          "shortName": "CheckXmlFileWithXercesValidator",
+          "displayName": "Failed external validation",
+          "enabled": false,
+          "description": "Reports a discrepancy in an XML file with the specified DTD or schema detected by the Xerces validator."
+        },
+        {
+          "shortName": "XmlHighlighting",
+          "displayName": "XML highlighting",
+          "enabled": false,
+          "description": "Reports XML validation problems in the results of a batch code inspection."
+        },
+        {
+          "shortName": "XmlDuplicatedId",
+          "displayName": "Duplicate 'id' attribute",
+          "enabled": false,
+          "description": "Reports a duplicate `id` attribute in XML."
+        },
+        {
+          "shortName": "XmlInvalidId",
+          "displayName": "Unresolved 'id' reference",
+          "enabled": false,
+          "description": "Reports an unresolved `id` reference in XML."
+        },
+        {
+          "shortName": "XmlUnboundNsPrefix",
+          "displayName": "Unbound namespace prefix",
+          "enabled": false,
+          "description": "Reports an unbound namespace prefix in XML."
+        },
+        {
+          "shortName": "XmlUnusedNamespaceDeclaration",
+          "displayName": "Unused schema declaration",
+          "enabled": false,
+          "description": "Reports an unused namespace declaration or location hint in XML."
+        },
+        {
+          "shortName": "XmlPathReference",
+          "displayName": "Unresolved file reference",
+          "enabled": false,
+          "description": "Reports an unresolved file reference in XML."
+        },
+        {
+          "shortName": "XmlDeprecatedElement",
+          "displayName": "Deprecated symbol",
+          "enabled": false,
+          "description": "Reports a deprecated XML element or attribute.\n\nSymbols can be marked by XML comment or documentation tag with text 'deprecated'."
+        },
+        {
+          "shortName": "XmlDefaultAttributeValue",
+          "displayName": "Redundant attribute with default value",
+          "enabled": false,
+          "description": "Reports a redundant assignment of the default value to an XML attribute."
+        },
+        {
+          "shortName": "CheckDtdRefs",
+          "displayName": "Unresolved DTD reference",
+          "enabled": false,
+          "description": "Reports inconsistency in a DTD-specific reference, for example, in a reference to an XML entity or to a DTD element declaration. Works in DTD an XML files."
+        }
+      ]
+    },
+    {
+      "name": "Assignment issues",
+      "inspections": [
+        {
+          "shortName": "AssignmentToForLoopParameterJS",
+          "displayName": "Assignment to 'for' loop parameter",
+          "enabled": false,
+          "description": "Reports an assignment to a variable declared as a `for` loop parameter. Although occasionally intended, this construct can be extremely confusing, and is often a result of an error."
+        },
+        {
+          "shortName": "SillyAssignmentJS",
+          "displayName": "Variable is assigned to itself",
+          "enabled": false,
+          "description": "Reports an assignment in the form `x = x`."
+        },
+        {
+          "shortName": "ReplaceAssignmentWithOperatorAssignmentJS",
+          "displayName": "Assignment could be replaced with operator assignment",
+          "enabled": false,
+          "description": "Reports an assignment operation that can be replaced by an operator assignment to make your code shorter and probably clearer.\n\n\nExample:\n\n      x = x + 3;\n      x = x / 3;\n\nAfter the quick fix is applied the result looks like:\n\n      x += 3;\n      x /= 3;\n"
+        },
+        {
+          "shortName": "NestedAssignmentJS",
+          "displayName": "Nested assignment",
+          "enabled": false,
+          "description": "Reports an assignment expression nested inside another expression, for example, `a = b = 1`. Such expressions may be confusing and violate the general design principle that a given construct should do precisely one thing."
+        },
+        {
+          "shortName": "AssignmentResultUsedJS",
+          "displayName": "Result of assignment used",
+          "enabled": false,
+          "description": "Reports an assignment expression where the result of the assignment is used in the containing expression. Such assignments often indicate coding errors, for example, `=` instead of `==`. Moreover, they can result in confusion due to the order of operations, as evaluation of the assignment may affect the outer expression in unexpected ways.\n\nExpressions in parentheses are ignored."
+        },
+        {
+          "shortName": "AssignmentToFunctionParameterJS",
+          "displayName": "Assignment to function parameter",
+          "enabled": false,
+          "description": "Reports an assignment to a function parameter, including increment and decrement operations. Although occasionally intended, this construct can be extremely confusing, and is often a result of an error."
+        },
+        {
+          "shortName": "JSAssignmentUsedAsCondition",
+          "displayName": "Assignment used as condition",
+          "enabled": true,
+          "description": "Reports an assignment that is used as the condition of an `if`, `while`, `for`, or `do` statement. Although occasionally intended, this usage is confusing, and often indicates a typo (for example, `=` instead of `==`)."
+        }
+      ]
+    },
+    {
+      "name": "Haml",
+      "inspections": [
+        {
+          "shortName": "HamlNestedTagContent",
+          "displayName": "Illegal nesting",
+          "enabled": false,
+          "description": "Reports a Haml tag whose contents are neither on the same line nor nested."
+        }
+      ]
+    },
+    {
+      "name": "Less",
+      "inspections": [
+        {
+          "shortName": "LessUnresolvedMixin",
+          "displayName": "Unresolved mixin",
+          "enabled": false,
+          "description": "Reports a reference to a [Less mixin](http://lesscss.org/features/#mixins-feature) that is not resolved.\n\n**Example:**\n\n\n    * {\n      .unknown-mixin();\n    }\n"
+        },
+        {
+          "shortName": "LessUnresolvedVariable",
+          "displayName": "Unresolved variable",
+          "enabled": false,
+          "description": "Reports a reference to a [Less variable](http://lesscss.org/features/#variables-feature) that is not resolved.\n\n**Example:**\n\n\n    * {\n      margin: @unknown-var;\n    }\n"
+        },
+        {
+          "shortName": "LessResolvedByNameOnly",
+          "displayName": "Missing import",
+          "enabled": false,
+          "description": "Reports a reference to a variable or mixin that is declared in another file, which is not explicitly [imported](http://lesscss.org/features/#import-atrules-feature) in the current file.\n\n**Example:**\n\n\n    * {\n      margin: @var-in-other-file;\n    }\n"
+        }
+      ]
+    },
+    {
+      "name": "Vue",
+      "inspections": [
+        {
+          "shortName": "VueDataFunction",
+          "displayName": "Data function",
+          "enabled": false,
+          "description": "Reports a Vue component [data](https://vuejs.org/v2/api/#data) property that is not a function. Suggests wrapping an object literal with a function.\n\nWhen defining a component, `data` must be declared as a function that returns the initial data object, because the same definition will be used for creating numerous instances. If a plain object is still used for `data`, that very object will be shared by reference across all instances created! With a `data` function, every time a new instance is created we can simply call it to return a fresh copy of the initial data."
+        },
+        {
+          "shortName": "VueDuplicateTag",
+          "displayName": "Duplicate template/script tag",
+          "enabled": false,
+          "description": "Reports multiple usages of the `template` or `script` tag in a Vue file.\n\n[Vue Component specification](https://vue-loader.vuejs.org/spec.html) indicates that each `*.vue` file can contain at most one `template` or `script` block at a time."
+        }
+      ]
+    },
+    {
+      "name": "Node.js",
+      "inspections": [
+        {
+          "shortName": "NodeCoreCodingAssistance",
+          "displayName": "Unresolved Node.js APIs",
+          "enabled": false,
+          "description": "Suggests configuring coding assistance for Node.js, for example, `require` and/or core modules ('path', 'http', 'fs', etc.).\n\n\nSee <https://nodejs.org/api/> for the complete list."
+        }
+      ]
+    },
+    {
+      "name": "Imports and dependencies",
+      "inspections": [
+        {
+          "shortName": "ES6CheckImport",
+          "displayName": "Unresolved imported name",
+          "enabled": false,
+          "description": "Reports an unresolved name or binding in an `import` declaration.\n\nTypeScript code is ignored."
+        },
+        {
+          "shortName": "JSUrlImportUsage",
+          "displayName": "URL import is used",
+          "enabled": false,
+          "description": "Checks used URL imports in the JavaScript language. Suggests downloading the module for the specified remote URL. Such association enables the IDE to provide proper code completion and navigation.   \n\nURLs in import specifiers are supported only for ECMAScript modules in the JavaScript language."
+        },
+        {
+          "shortName": "NpmUsedModulesInstalled",
+          "displayName": "Missing module dependency",
+          "enabled": false,
+          "description": "Reports a module from a `require()` call or an `import` statement that is not installed or is not listed in package.json dependencies.\n\nSuggests installing the module and/or including it into package.json.\n\nFor `require()` calls, works only in the files from the scope of *Node.js Core* JavaScript library."
+        },
+        {
+          "shortName": "PackageJsonMismatchedDependency",
+          "displayName": "Mismatched dependencies in package.json",
+          "enabled": false,
+          "description": "Reports a dependency from package.json that is not installed or doesn't match the specified [version range](https://docs.npmjs.com/about-semantic-versioning)."
+        },
+        {
+          "shortName": "JSXNamespaceValidation",
+          "displayName": "Missing 'React' namespace import in JSX code",
+          "enabled": true,
+          "description": "Reports a usage of a JSX construction without importing React namespace. Having React namespace in the file scope ensures proper code compilation.   \n\nThe inspection is disabled in projects with React 17+ because these versions no longer require React namespace."
+        },
+        {
+          "shortName": "UpdateDependencyToLatestVersion",
+          "displayName": "Update package.json dependencies to latest versions",
+          "enabled": false,
+          "description": "Suggests to upgrade your package.json dependencies to the latest versions, ignoring specified versions."
+        },
+        {
+          "shortName": "ES6UnusedImports",
+          "displayName": "Unused import",
+          "enabled": false,
+          "description": "Reports a redundant `import` statement. This is usually the case if the imported symbols are not used in the source file. To avoid side-effects, consider using bare import `import 'packageName'` instead of the regular one."
+        }
+      ]
+    },
+    {
+      "name": "RegExp",
+      "inspections": [
+        {
+          "shortName": "RegExpSingleCharAlternation",
+          "displayName": "Single character alternation",
+          "enabled": true,
+          "description": "Reports single char alternation in a RegExp. It is simpler to use a character class instead. This may also provide better matching performance.\n\n**Example:**\n\n\n      a|b|c|d\n\nAfter the quick-fix is applied:\n\n\n      [abcd]\n\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpRedundantEscape",
+          "displayName": "Redundant character escape",
+          "enabled": true,
+          "description": "Reports character escapes that are replaceable with the unescaped character without a change in meaning. Note that inside the square brackets of a character class, many escapes are unnecessary that would be necessary outside of a character class.\n\n**Example:**\n\n\n      \\-\\;[\\.]\n\nAfter the quick-fix is applied:\n\n\n      -;[.]\n\nNew in 2017.3"
+        },
+        {
+          "shortName": "RegExpUnexpectedAnchor",
+          "displayName": "Begin or end anchor in unexpected position",
+          "enabled": true,
+          "description": "Reports `^` or `\\A` anchors not at the beginning of the pattern and `$`, `\\Z` or `\\z` anchors not at the end of the pattern. In the wrong position these RegExp anchors prevent the pattern from matching anything. In case of the `^` and `$` anchors, most likely the literal character was meant and the escape forgotten.\n\n**Example:**\n\n\n      (Price $10)\n\n\nNew in 2018.1"
+        },
+        {
+          "shortName": "RegExpEscapedMetaCharacter",
+          "displayName": "Escaped meta character",
+          "enabled": true,
+          "description": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpDuplicateCharacterInClass",
+          "displayName": "Duplicate character in character class",
+          "enabled": true,
+          "description": "Reports duplicate characters inside a RegExp character class. Duplicate characters are unnecessary and can be removed without changing the semantics of the regex.\n\n**Example:**\n\n\n      [aabc]\n\nAfter the quick-fix is applied:\n\n\n      [abc]\n"
+        },
+        {
+          "shortName": "RegExpEmptyAlternationBranch",
+          "displayName": "Empty branch in alternation",
+          "enabled": true,
+          "description": "Reports empty branches in a RegExp alternation. An empty branch will only match the empty string, and in most cases that is not what is desired. This inspection will not report a single empty branch at the start or the end of an alternation.\n\n**Example:**\n\n\n      (alpha||bravo)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo)\n\nNew in 2017.2"
+        },
+        {
+          "shortName": "RegExpUnnecessaryNonCapturingGroup",
+          "displayName": "Unnecessary non-capturing group",
+          "enabled": true,
+          "description": "Reports unnecessary non-capturing groups, which have no influence on the match result.\n\n**Example:**\n\n\n      Everybody be cool, (?:this) is a robbery!\n\nAfter the quick-fix is applied:\n\n\n      Everybody be cool, this is a robbery!\n\nNew in 2021.1"
+        },
+        {
+          "shortName": "RegExpRedundantNestedCharacterClass",
+          "displayName": "Redundant nested character class",
+          "enabled": true,
+          "description": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
+        },
+        {
+          "shortName": "RegExpOctalEscape",
+          "displayName": "Octal escape",
+          "enabled": true,
+          "description": "Reports octal escapes, which are easily confused with back references. Use hexadecimal escapes to avoid confusion.\n\n**Example:**\n\n\n      \\07\n\nAfter the quick-fix is applied:\n\n\n      \\x07\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpAnonymousGroup",
+          "displayName": "Anonymous capturing group or numeric back reference",
+          "enabled": false,
+          "description": "Reports anonymous capturing groups and numeric back references in a RegExp. These are only reported when the RegExp dialect supports named group and named group references. Named groups and named back references improve code readability and are recommended to use instead. When a capture is not needed, matching can be more performant and use less memory by using a non-capturing group, i.e. `(?:xxx)` instead of `(xxx)`.\n\n**Example:**\n\n\n      (\\d\\d\\d\\d)\\1\n\nA better regex pattern could look like this:\n\n\n      (?<quad>\\d\\d\\d\\d)\\k<quad>\n\nNew in 2017.2"
+        },
+        {
+          "shortName": "RegExpRepeatedSpace",
+          "displayName": "Consecutive spaces",
+          "enabled": true,
+          "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpDuplicateAlternationBranch",
+          "displayName": "Duplicate branch in alternation",
+          "enabled": true,
+          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+        }
+      ]
+    },
+    {
+      "name": "RELAX NG",
+      "inspections": [
+        {
+          "shortName": "UnresolvedReference",
+          "displayName": "Unresolved reference",
+          "enabled": false,
+          "description": "Reports an unresolved reference to a named pattern (`define`) in RELAX-NG files that use XML syntax. Suggests creating the referenced `define` element."
+        },
+        {
+          "shortName": "UnusedDefine",
+          "displayName": "Unused define",
+          "enabled": false,
+          "description": "Reports an unused named pattern (`define`) in a RELAX-NG file (XML or Compact Syntax). `define` elements that are used through an include in another file are ignored."
+        }
+      ]
+    },
+    {
+      "name": "Naming conventions",
+      "inspections": [
+        {
+          "shortName": "FunctionNamingConventionJS",
+          "displayName": "Function naming convention",
+          "enabled": false,
+          "description": "Reports a function whose name is too short, too long, or does not follow the specified regular expression pattern.\n\n\nUse the fields provided below to specify minimum length, maximum length, and a regular expression\nfor function names. Use the standard `java.util.regex` format for regular expressions."
+        },
+        {
+          "shortName": "JSClassNamingConvention",
+          "displayName": "Class naming convention",
+          "enabled": false,
+          "description": "Reports a class or a function that is annotated with a JSDoc `@constructor` or `@class` tag whose names are too short, too long, or do not follow the specified regular expression pattern.\n\n\nUse the fields provided below to specify minimum length, maximum length, and a regular expression\nexpected for classes names. Use the standard `java.util.regex` format for regular expressions."
+        },
+        {
+          "shortName": "JSNonASCIINames",
+          "displayName": "Identifiers with non-ASCII symbols",
+          "enabled": true,
+          "description": "Reports a non-ASCII symbol in a name.  \n\nIf the 'Allow only ASCII names' option is selected, reports all names that contain non-ASCII symbols.  \nOtherwise reports all names that contain both ASCII and non-ASCII symbols."
+        },
+        {
+          "shortName": "ParameterNamingConventionJS",
+          "displayName": "Function parameter naming convention",
+          "enabled": false,
+          "description": "Reports a function parameter whose name is too short, too long, or doesn't follow the specified regular expression pattern.\n\n\nUse the fields provided below to specify minimum length, maximum length and regular expression\nexpected for local variables names. Use the standard `java.util.regex` format regular expressions."
+        },
+        {
+          "shortName": "LocalVariableNamingConventionJS",
+          "displayName": "Local variable naming convention",
+          "enabled": false,
+          "description": "Reports a local variable whose name is too short, too long, or doesn't follow the specified regular expression pattern.\n\n\nUse the fields provided below to specify minimum length, maximum length, and a regular expression\nexpected for local variables names. Use the standard `java.util.regex` format regular expressions."
+        }
+      ]
+    },
+    {
+      "name": "Code quality tools",
+      "inspections": [
+        {
+          "shortName": "Stylelint",
+          "displayName": "Stylelint",
+          "enabled": false,
+          "description": "Reports a discrepancy detected by the [Stylelint](http://stylelint.io) linter.   \n\nThe highlighting is based on the rule severity specified in the [Stylelint configuration file](https://stylelint.io/user-guide/configure) for each individual rule."
+        },
+        {
+          "shortName": "W3CssValidation",
+          "displayName": "W3C CSS validator",
+          "enabled": false,
+          "description": "Reports a discrepancy detected by the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)."
+        },
+        {
+          "shortName": "JSHint",
+          "displayName": "JSHint",
+          "enabled": false,
+          "description": "Reports a problem detected by the [JSHint](https://jshint.com/) linter."
+        },
+        {
+          "shortName": "Eslint",
+          "displayName": "ESLint",
+          "enabled": false,
+          "description": "Reports a discrepancy detected by the [ESLint](https://eslint.org) linter.   \n\nThe highlighting is based on the rule severity specified in the [ESLint configuration file](https://eslint.org/docs/user-guide/configuring) for each individual rule.   \n\nClear the 'Use rule severity from the configuration file' checkbox to use the severity configured in this inspection for all ESLint rules."
+        },
+        {
+          "shortName": "StandardJS",
+          "displayName": "Standard code style",
+          "enabled": false,
+          "description": "Reports a discrepancy detected by the [JavaScript Standard Style](https://standardjs.com/) linter.   \n\nThe highlighting severity in the editor is based on the severity level the linter reports."
+        },
+        {
+          "shortName": "TsLint",
+          "displayName": "TSLint",
+          "enabled": false,
+          "description": "Reports a discrepancy detected by the [TSLint](https://github.com/palantir/tslint) linter.   \n\nThe highlighting is based on the rule severity specified in the [TSLint configuration file](https://palantir.github.io/tslint/usage/configuration/) for each individual rule.   \n\nClear the 'Use rule severity from the configuration file' checkbox to use the severity configured in this inspection for all TSLint rules."
+        }
+      ]
+    },
+    {
+      "name": "Switch statement issues",
+      "inspections": [
+        {
+          "shortName": "JSRedundantSwitchStatement",
+          "displayName": "'switch' statement is redundant and can be replaced",
+          "enabled": true,
+          "description": "Reports a `switch` statement with an empty body, or with only one `case` branch, or with a `default` branch only."
+        },
+        {
+          "shortName": "TextLabelInSwitchStatementJS",
+          "displayName": "Text label in 'switch' statement",
+          "enabled": false,
+          "description": "Reports a labeled statement inside a `switch` statement, which often results from a typo.\n\nExample:\n\n\n        switch(x)\n        {\n            case 1:\n            case2:   //typo!\n            case 3:\n                break;\n        }\n"
+        },
+        {
+          "shortName": "JSMissingSwitchDefault",
+          "displayName": "'switch' statement has no 'default' branch",
+          "enabled": true,
+          "description": "Reports a `switch` statement without a `default` clause when some possible values are not enumerated."
+        },
+        {
+          "shortName": "DefaultNotLastCaseInSwitchJS",
+          "displayName": "'default' not last case in 'switch'",
+          "enabled": false,
+          "description": "Reports a `switch` statement where the `default` case comes before another case instead of being the very last case, which may cause confusion."
+        },
+        {
+          "shortName": "NestedSwitchStatementJS",
+          "displayName": "Nested 'switch' statement",
+          "enabled": false,
+          "description": "Reports a `switch` statement that is nested in another `switch` statement. Nested `switch` statements may be very confusing, particularly if indenting is inconsistent."
+        },
+        {
+          "shortName": "FallThroughInSwitchStatementJS",
+          "displayName": "Fallthrough in 'switch' statement",
+          "enabled": true,
+          "description": "Reports a `switch` statement where control can proceed from a branch to the next one. Such \"fall-through\" often indicates an error, for example, a missing `break` or `return`."
+        },
+        {
+          "shortName": "JSDuplicateCaseLabel",
+          "displayName": "Duplicate 'case' label",
+          "enabled": true,
+          "description": "Reports a duplicated `case` label on a `switch` statement, which normally indicates an error."
+        },
+        {
+          "shortName": "JSUnreachableSwitchBranches",
+          "displayName": "Unreachable 'case' branch of a 'switch' statement",
+          "enabled": true,
+          "description": "Reports an unreachable `case` branch of a `switch` statement.\n\nExample:\n\n\n    /**\n     * @param {('foo' | 'bar')} p\n     */\n    function foo(p) {\n        switch (p) {\n            case 'foo': break;\n            case 'bar': break;\n            case 'baz': break; // unreachable\n        }\n    }\n"
+        },
+        {
+          "shortName": "JSMissingSwitchBranches",
+          "displayName": "'switch' statement has missing branches",
+          "enabled": true,
+          "description": "Reports a `switch` statement on a variable of the type `enum` or `union` when the statement doesn't cover some value options from the type."
+        },
+        {
+          "shortName": "JSSwitchVariableDeclarationIssue",
+          "displayName": "Variable is declared and being used in different 'case' clauses",
+          "enabled": true,
+          "description": "Reports a variable that is declared in one `case` clause of a `switch` statement but is used in another `case` clause of the same statement. For block-scoped variables, this results in throwing a `ReferenceError`. For `var` variables, it indicates a potential error.\n\nDisable the inspection for `var` variables if this pattern is used intentionally."
+        }
+      ]
+    },
+    {
+      "name": "DOM issues",
+      "inspections": [
+        {
+          "shortName": "DocumentWriteJS",
+          "displayName": "Call to 'document.write()'",
+          "enabled": false,
+          "description": "Reports a method call to `document.write()` or `document.writeln()`. Most usages of such calls are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, the `write()` and `writeln()` calls will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can result in difficulty to point out bugs."
+        },
+        {
+          "shortName": "XHTMLIncompatabilitiesJS",
+          "displayName": "Incompatible XHTML usages",
+          "enabled": false,
+          "description": "Reports common JavaScript DOM patterns which may present problems with XHTML documents. In particular, the patterns detected will behave completely differently depending on whether the document is loaded as XML or HTML. This can result in subtle bugs where script behaviour is dependent on the MIME-type of the document, rather than its content. Patterns detected include **document.body** , **document.images** , **document.applets** , **document.links** , **document.forms** , and **document.anchors**."
+        },
+        {
+          "shortName": "PlatformDetectionJS",
+          "displayName": "Inaccurate platform detection",
+          "enabled": false,
+          "description": "Reports a common JavaScript pattern for detecting the browser or operating system in which the script is run. In addition to pointing out non-portable constructs, these platform detection patterns are often incomplete and easily fooled. For most cases, detection of individual environment features is preferable to attempting to detect the entire platform.\n\nPatterns detected include:\n\n* `document.all`\n* `document.layers`\n* `navigator.userAgent`\n* `navigator.oscpu`\n* `navigator.appName`\n* `navigator.appCodeName`\n* `navigator.platform`"
+        },
+        {
+          "shortName": "InnerHTMLJS",
+          "displayName": "Use of 'innerHTML' property",
+          "enabled": false,
+          "description": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
+        }
+      ]
+    },
+    {
+      "name": "Async code and promises",
+      "inspections": [
+        {
+          "shortName": "ES6PossiblyAsyncFunction",
+          "displayName": "'await' in non-async function",
+          "enabled": false,
+          "description": "Reports a usage of `await` in a function that was possibly intended to be async but is actually missing the `async` modifier. Although `await` can be used as an identifier, it is likely that it was intended to be used as an operator, so the containing function should be made `async`."
+        },
+        {
+          "shortName": "ES6TopLevelAwaitExpression",
+          "displayName": "Top-level 'await' expression",
+          "enabled": false,
+          "description": "Reports a usage of a top-level `await` expression. While the new 'top-level async' proposal is on its way, using `await` outside async functions is not allowed."
+        },
+        {
+          "shortName": "ES6MissingAwait",
+          "displayName": "Missing await for an async function call",
+          "enabled": false,
+          "description": "Reports an `async` function call without an expected `await` prefix inside an `async` function. Such call returns a `Promise` and control flow is continued immediately.\n\nExample:\n\n\n    async function bar() { /* ... */ }\n    async function foo() {\n        bar(); // bad\n    }\n\n\nAfter the quick-fix is applied, the `await` prefix is added:\n\n\n    async function bar() { /* ... */ }\n    async function foo() {\n        await bar(); // good\n    }\n\n<br />\n\nWhen the 'Report for promises in return statements' checkbox is selected, also suggests adding `await` in return statements.  \nWhile this is generally not necessary, it gives two main benefits.  \n\n* You won't forget to add `await` when surrounding your code with `try-catch`.\n* An explicit `await` helps V8 runtime to provide [async stack traces](https://bit.ly/v8-zero-cost-async-stack-traces)."
+        },
+        {
+          "shortName": "JSIgnoredPromiseFromCall",
+          "displayName": "Result of method call returning a promise is ignored",
+          "enabled": true,
+          "description": "Reports a function call that returns a `Promise` that is not used later. Such calls are usually unintended and indicate an error."
+        },
+        {
+          "shortName": "ES6RedundantAwait",
+          "displayName": "Redundant 'await' expression",
+          "enabled": false,
+          "description": "Reports a redundant usage of `await`, such as `await await`, or awaiting a non-promise result.\n\n\nWhen the 'Report for promises' option is selected, suggests removing `await` before promises when applicable\n(in `return` statements, and with `Promise.resolve/reject`).\n\nRemoving `await` in such contexts causes two problems.\n\n* Surrounding your code with `try-catch` and forgetting to add `await` will change code semantics while you may fail to notice that.\n* Having an explicit `await` may prevent the V8 runtime from providing [async stack traces](http://bit.ly/v8-zero-cost-async-stack-traces)."
+        }
+      ]
+    },
+    {
+      "name": "Proofreading",
+      "inspections": [
+        {
+          "shortName": "SpellCheckingInspection",
+          "displayName": "Typo",
+          "enabled": false,
+          "description": "Reports typos and misspellings in your code, comments, and literals and fixes them with one click."
+        },
+        {
+          "shortName": "LanguageDetectionInspection",
+          "displayName": "Natural language detection",
+          "enabled": false,
+          "description": "Detects natural languages and suggests enabling corresponding grammar and spelling checks."
+        },
+        {
+          "shortName": "GrazieInspection",
+          "displayName": "Grammar",
+          "enabled": false,
+          "description": "Reports grammar mistakes in your text. You can configure the inspection in [Preferences](settings://reference.settingsdialog.project.grazie)."
+        }
+      ]
+    },
+    {
+      "name": "Markdown",
+      "inspections": [
+        {
+          "shortName": "MarkdownIncorrectTableFormatting",
+          "displayName": "Incorrect table formatting",
+          "enabled": false,
+          "description": "Checks if table is correctly formatted."
+        },
+        {
+          "shortName": "MarkdownNoTableBorders",
+          "displayName": "Table doesn't have side borders",
+          "enabled": false,
+          "description": "Checks if table has correct side borders. For compatibility reasons all table rows should have borders (pipe symbols) at the start and at the end."
+        },
+        {
+          "shortName": "MarkdownUnresolvedFileReference",
+          "displayName": "Unresolved file references",
+          "enabled": false,
+          "description": "Reports unresolved file references in Markdown files."
+        }
+      ]
+    },
+    {
+      "name": "EJS",
+      "inspections": [
+        {
+          "shortName": "EjsUnresolvedInclude",
+          "displayName": "Unresolved include",
+          "enabled": false,
+          "description": "Reports an unresolved file reference in an EJS include."
+        }
+      ]
+    },
+    {
+      "name": "Pug/Jade",
+      "inspections": [
+        {
+          "shortName": "JadeTabsAndSpaces",
+          "displayName": "Tabs and spaces both used",
+          "enabled": false,
+          "description": "Reports use of spaces and tabs for indentation in a Pug file."
+        }
+      ]
+    },
+    {
+      "name": "Meteor",
+      "inspections": [
+        {
+          "shortName": "MeteorUnresolvedSymbol",
+          "displayName": "Unresolved Meteor template or helper",
+          "enabled": false,
+          "description": "Reports an unresolved reference in a Spacebars helper or template."
+        }
+      ]
+    },
+    {
+      "name": "Internationalization",
+      "inspections": [
+        {
+          "shortName": "NonAsciiCharacters",
+          "displayName": "Non-ASCII characters",
+          "enabled": false,
+          "description": "Reports code elements that uses non-ASCII symbols in an unusual context.\n\nExample:\n\n* Non-ASCII characters used in identifiers, strings, or comments.\n* Identifiers written in different languages, such as `my`**C**`ollection` with the letter **C** written in Cyrillic.\n* Comments or strings containing Unicode symbols, such as long dashes and arrows."
+        },
+        {
+          "shortName": "LossyEncoding",
+          "displayName": "Lossy encoding",
+          "enabled": false,
+          "description": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
+        }
+      ]
+    },
+    {
+      "name": "Version control",
+      "inspections": [
+        {
+          "shortName": "IgnoreFileDuplicateEntry",
+          "displayName": "Ignore file duplicates",
+          "enabled": false,
+          "description": "Reports duplicate entries (patters) in the ignore file (e.g. .gitignore, .hgignore). Duplicate entries in these files are redundant and can be removed.\n\nExample:\n\n```\n    # Output directories\n    /out/\n    /target/\n    /out/\n```"
+        }
+      ]
+    }
+  ]
+}
