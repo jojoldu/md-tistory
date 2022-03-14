@@ -17,6 +17,15 @@ jobs:
         uses: JetBrains/qodana-action@v4.2.2
         with:
           linter: jetbrains/qodana-js:2021.3-eap
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ runner.temp }}/qodana/results/report
+          destination_dir: ./
   docker:
     timeout-minutes: 10
     runs-on: ubuntu-latest
