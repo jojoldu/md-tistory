@@ -31,7 +31,7 @@ describe('FileManager', () => {
 
     it('존재하는 위치에서 .md파일이 없으면 NotFoundFileError가 발생한다', () => {
       try {
-        sut.findPathFromCurrent();
+        sut.findPathFromCurrent(__dirname);
         fail('should not reach');
       } catch (e) {
         expect(e).toBeInstanceOf(NotFoundFileError);
