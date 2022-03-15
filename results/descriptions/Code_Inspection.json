@@ -1244,6 +1244,29 @@
       ]
     },
     {
+      "name": "Unused symbols",
+      "inspections": [
+        {
+          "shortName": "JSUnusedAssignment",
+          "displayName": "Unused assignment",
+          "enabled": true,
+          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above mentioned reasons)."
+        },
+        {
+          "shortName": "JSUnusedGlobalSymbols",
+          "displayName": "Unused global symbol",
+          "enabled": false,
+          "description": "Reports an unused globally accessible public function, variable, class, or property."
+        },
+        {
+          "shortName": "JSUnusedLocalSymbols",
+          "displayName": "Unused local symbol",
+          "enabled": true,
+          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+        }
+      ]
+    },
+    {
       "name": "Cucumber",
       "inspections": [
         {
@@ -1287,29 +1310,6 @@
           "displayName": "Missing ':' after examples keyword",
           "enabled": false,
           "description": "Reports `Examples` sections in Cucumber .feature files if they do not have ':' after the `Examples` keyword."
-        }
-      ]
-    },
-    {
-      "name": "Unused symbols",
-      "inspections": [
-        {
-          "shortName": "JSUnusedAssignment",
-          "displayName": "Unused assignment",
-          "enabled": true,
-          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above mentioned reasons)."
-        },
-        {
-          "shortName": "JSUnusedGlobalSymbols",
-          "displayName": "Unused global symbol",
-          "enabled": false,
-          "description": "Reports an unused globally accessible public function, variable, class, or property."
-        },
-        {
-          "shortName": "JSUnusedLocalSymbols",
-          "displayName": "Unused local symbol",
-          "enabled": true,
-          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
         }
       ]
     },
@@ -1790,6 +1790,17 @@
       ]
     },
     {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": true,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
+        }
+      ]
+    },
+    {
       "name": "Function metrics",
       "inspections": [
         {
@@ -1833,17 +1844,6 @@
           "displayName": "Overly nested function",
           "enabled": false,
           "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
-        }
-      ]
-    },
-    {
-      "name": "Structural search",
-      "inspections": [
-        {
-          "shortName": "SSBasedInspection",
-          "displayName": "Structural search inspection",
-          "enabled": true,
-          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
         }
       ]
     },
