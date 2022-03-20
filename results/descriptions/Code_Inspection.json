@@ -548,16 +548,16 @@
           "description": "Reports multiple destructuring properties with identical keys. Suggests merging the properties."
         },
         {
-          "shortName": "JSAnnotator",
-          "displayName": "ECMAScript specification is not followed",
-          "enabled": false,
-          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
-        },
-        {
           "shortName": "JSUnfilteredForInLoop",
           "displayName": "Unfiltered for..in loop",
           "enabled": false,
           "description": "Reports unfiltered `for-in` loops.   \n\nThe use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when `Object`'s prototype may be incorrectly modified. For example, the following code will print **42** and **myMethod** :   \n\n\n    Object.prototype.myMethod = function myMethod() {};\n    let a = { foo: 42 };\n    for (let i in a) {\n      console.log(a[i]);\n    }\n\nSuggests replacing the whole loop with a `Object.keys()` method or adding a `hasOwnProperty()` check. After applying the quick-fix the code looks as follows:\n\n\n    for (let i in a) {\n      if (a.hasOwnProperty(i)) {\n        console.log(a[i]);\n      }\n    }\n"
+        },
+        {
+          "shortName": "JSAnnotator",
+          "displayName": "ECMAScript specification is not followed",
+          "enabled": false,
+          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
         },
         {
           "shortName": "JSLastCommaInObjectLiteral",
@@ -882,77 +882,6 @@
       ]
     },
     {
-      "name": "Potentially undesirable code constructs",
-      "inspections": [
-        {
-          "shortName": "BreakStatementJS",
-          "displayName": "'break' statement",
-          "enabled": false,
-          "description": "Reports a `break` statements. Ignores `break` statements that end case blocks."
-        },
-        {
-          "shortName": "DebuggerStatementJS",
-          "displayName": "'debugger' statement",
-          "enabled": false,
-          "description": "Reports a `debugger` statement used for interaction with the Javascript debuggers. Such statements should not appear in production code."
-        },
-        {
-          "shortName": "BreakStatementWithLabelJS",
-          "displayName": "'break' statement with label",
-          "enabled": false,
-          "description": "Reports a labeled `break` statement."
-        },
-        {
-          "shortName": "ContinueStatementWithLabelJS",
-          "displayName": "'continue' statement with label",
-          "enabled": false,
-          "description": "Reports a labeled `continue` statement."
-        },
-        {
-          "shortName": "ContinueStatementJS",
-          "displayName": "'continue' statement",
-          "enabled": false,
-          "description": "Reports a `continue` statement."
-        },
-        {
-          "shortName": "ConditionalExpressionJS",
-          "displayName": "Conditional expression",
-          "enabled": false,
-          "description": "Reports a ternary conditional expression. Some coding standards prohibit such expressions in favor of explicit `if` statements."
-        },
-        {
-          "shortName": "LabeledStatementJS",
-          "displayName": "Labeled statement",
-          "enabled": false,
-          "description": "Reports a labeled statement."
-        },
-        {
-          "shortName": "WithStatementJS",
-          "displayName": "'with' statement",
-          "enabled": false,
-          "description": "Reports a `with` statements. Such statements result in potentially confusing implicit bindings, and may behave strangely in setting new variables."
-        },
-        {
-          "shortName": "AnonymousFunctionJS",
-          "displayName": "Anonymous function",
-          "enabled": false,
-          "description": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a `name` property specified in the ECMAScript 6 standard. For example, `var bar = function() {};` is not reported."
-        },
-        {
-          "shortName": "CommaExpressionJS",
-          "displayName": "Comma expression",
-          "enabled": false,
-          "description": "Reports a comma expression. Such expressions are often a sign of overly clever code, and may lead to subtle bugs. Comma expressions in the initializer or in the update section of `for` loops are ignored."
-        },
-        {
-          "shortName": "VoidExpressionJS",
-          "displayName": "'void' expression",
-          "enabled": false,
-          "description": "Reports a `void` expression."
-        }
-      ]
-    },
-    {
       "name": "Probable bugs",
       "inspections": [
         {
@@ -1116,6 +1045,77 @@
           "displayName": "Missing generic font family name",
           "enabled": false,
           "description": "Verifies that the [font-family](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family) property contains a generic font family name as a fallback alternative.\n\n\nGeneric font family names are: `serif`, `sans-serif`, `cursive`, `fantasy`,\nand `monospace`."
+        }
+      ]
+    },
+    {
+      "name": "Potentially undesirable code constructs",
+      "inspections": [
+        {
+          "shortName": "BreakStatementJS",
+          "displayName": "'break' statement",
+          "enabled": false,
+          "description": "Reports a `break` statements. Ignores `break` statements that end case blocks."
+        },
+        {
+          "shortName": "DebuggerStatementJS",
+          "displayName": "'debugger' statement",
+          "enabled": false,
+          "description": "Reports a `debugger` statement used for interaction with the Javascript debuggers. Such statements should not appear in production code."
+        },
+        {
+          "shortName": "BreakStatementWithLabelJS",
+          "displayName": "'break' statement with label",
+          "enabled": false,
+          "description": "Reports a labeled `break` statement."
+        },
+        {
+          "shortName": "ContinueStatementWithLabelJS",
+          "displayName": "'continue' statement with label",
+          "enabled": false,
+          "description": "Reports a labeled `continue` statement."
+        },
+        {
+          "shortName": "ContinueStatementJS",
+          "displayName": "'continue' statement",
+          "enabled": false,
+          "description": "Reports a `continue` statement."
+        },
+        {
+          "shortName": "ConditionalExpressionJS",
+          "displayName": "Conditional expression",
+          "enabled": false,
+          "description": "Reports a ternary conditional expression. Some coding standards prohibit such expressions in favor of explicit `if` statements."
+        },
+        {
+          "shortName": "LabeledStatementJS",
+          "displayName": "Labeled statement",
+          "enabled": false,
+          "description": "Reports a labeled statement."
+        },
+        {
+          "shortName": "WithStatementJS",
+          "displayName": "'with' statement",
+          "enabled": false,
+          "description": "Reports a `with` statements. Such statements result in potentially confusing implicit bindings, and may behave strangely in setting new variables."
+        },
+        {
+          "shortName": "AnonymousFunctionJS",
+          "displayName": "Anonymous function",
+          "enabled": false,
+          "description": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a `name` property specified in the ECMAScript 6 standard. For example, `var bar = function() {};` is not reported."
+        },
+        {
+          "shortName": "CommaExpressionJS",
+          "displayName": "Comma expression",
+          "enabled": false,
+          "description": "Reports a comma expression. Such expressions are often a sign of overly clever code, and may lead to subtle bugs. Comma expressions in the initializer or in the update section of `for` loops are ignored."
+        },
+        {
+          "shortName": "VoidExpressionJS",
+          "displayName": "'void' expression",
+          "enabled": false,
+          "description": "Reports a `void` expression."
         }
       ]
     },
@@ -1790,17 +1790,6 @@
       ]
     },
     {
-      "name": "Structural search",
-      "inspections": [
-        {
-          "shortName": "SSBasedInspection",
-          "displayName": "Structural search inspection",
-          "enabled": true,
-          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
-        }
-      ]
-    },
-    {
       "name": "Function metrics",
       "inspections": [
         {
@@ -1844,6 +1833,17 @@
           "displayName": "Overly nested function",
           "enabled": false,
           "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
+        }
+      ]
+    },
+    {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": true,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
         }
       ]
     },
@@ -2304,16 +2304,16 @@
           "description": "Reports anonymous capturing groups and numeric back references in a RegExp. These are only reported when the RegExp dialect supports named group and named group references. Named groups and named back references improve code readability and are recommended to use instead. When a capture is not needed, matching can be more performant and use less memory by using a non-capturing group, i.e. `(?:xxx)` instead of `(xxx)`.\n\n**Example:**\n\n\n      (\\d\\d\\d\\d)\\1\n\nA better regex pattern could look like this:\n\n\n      (?<quad>\\d\\d\\d\\d)\\k<quad>\n\nNew in 2017.2"
         },
         {
-          "shortName": "RegExpDuplicateAlternationBranch",
-          "displayName": "Duplicate branch in alternation",
-          "enabled": true,
-          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
-        },
-        {
           "shortName": "RegExpRepeatedSpace",
           "displayName": "Consecutive spaces",
           "enabled": true,
           "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpDuplicateAlternationBranch",
+          "displayName": "Duplicate branch in alternation",
+          "enabled": true,
+          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
         }
       ]
     },
