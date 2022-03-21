@@ -44,16 +44,34 @@ jobs:
           reporter: jest-junit        # Format of test results
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # 빌드 실패 메세지 발송
-      - name: Send Build Message
+      # 빌드 성공 메세지 발송
+      - name: Send Build Success Message
         uses: appleboy/telegram-action@master
+        if: success()
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
+            Status: Success
+            
+            Author: ${{ github.actor }}
+            
             Commit message: ${{ github.event.commits[0].message }}
             
-            Repository: ${{ github.repository }}
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
+      # 빌드 실패 메세지 발송
+      - name: Send Build Success Message
+        uses: appleboy/telegram-action@master
+        if: failure()
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Status: Failure
+            
+            Author: ${{ github.actor }}
+            
+            Commit message: ${{ github.event.commits[0].message }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
