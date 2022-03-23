@@ -52,9 +52,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Status: \xF0\x9F\x98\x84 Success
-            
             Author: ${{ github.actor }}
+            
+            Status: 😚 Success
             
             Commit message: ${{ github.event.commits[0].message }}
             
@@ -68,9 +68,9 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Status: \xF0\x9F\x98\xB1 Failure
-            
             Author: ${{ github.actor }}
+            
+            Status: 😱 Failure
             
             Commit message: ${{ github.event.commits[0].message }}
             
