@@ -52,7 +52,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Status: Success
+            Status: :sunglasses: <b>Success</b>
             
             Author: ${{ github.actor }}
             
@@ -68,7 +68,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Status: Failure
+            Status: :scream: <b>Failure</b>
             
             Author: ${{ github.actor }}
             
