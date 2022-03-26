@@ -51,15 +51,15 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: markdown
+          format: html
           message: |
             Author: ${{github.actor}}
             
-            Status: 😚 **Success**
+            Status: 😚 <strong>Success</strong>
             
             Commit message: ${{ github.event.commits[0].message }}
             
-            Result: ${{github.action}}, ${{github.workflow}}, ${{github.workspace}}
+            Result: ${{github.event.path}}, ${{github.event.name}}
 
       # 빌드 실패 메세지 발송
       - name: Send Build Success Message
@@ -72,7 +72,7 @@ jobs:
           message: |
             Author: ${{github.actor}}
             
-            Status: 😱 **Failure**
+            Status: 😱 <strong>Failure</strong>
             
             Commit message: ${{ github.event.commits[0].message }}
             
