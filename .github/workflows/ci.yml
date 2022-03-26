@@ -47,16 +47,34 @@ jobs:
       # 빌드 성공 메세지 발송
       - name: Send Build Success Message
         uses: appleboy/telegram-action@master
-        if: always()
+        if: success()
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            Author: ${process.env.AS_AUTHOR}
+            Author: ${{repo.namespace}}
             
-            Status: '${{ job.status }}' === 'success' ? '😚 Success' : '😱 Failure'
+            Status: 😚 **Success**
             
             Commit message: ${{ github.event.commits[0].message }}
             
-            Result: ${process.env.AS_JOB}
+            Result: ${{github.action}}, ${{github.workflow}}, ${{github.workspace}}
+
+      # 빌드 실패 메세지 발송
+      - name: Send Build Success Message
+        uses: appleboy/telegram-action@master
+        if: failure()
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            Author: ${{repo.namespace}}
+            
+            Status: 😱 **Failure**
+            
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Result: ${{github.action}}, ${{github.workflow}}, ${{github.workspace}}
 
