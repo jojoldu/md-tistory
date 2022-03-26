@@ -53,7 +53,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            Author: ${{repo.namespace}}
+            Author: ${{github.actor}}
             
             Status: 😚 **Success**
             
@@ -70,7 +70,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            Author: ${{repo.namespace}}
+            Author: ${{github.actor}}
             
             Status: 😱 **Failure**
             
