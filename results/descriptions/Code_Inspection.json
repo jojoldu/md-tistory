@@ -1790,6 +1790,17 @@
       ]
     },
     {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": true,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
+        }
+      ]
+    },
+    {
       "name": "Function metrics",
       "inspections": [
         {
@@ -1833,17 +1844,6 @@
           "displayName": "Overly nested function",
           "enabled": false,
           "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
-        }
-      ]
-    },
-    {
-      "name": "Structural search",
-      "inspections": [
-        {
-          "shortName": "SSBasedInspection",
-          "displayName": "Structural search inspection",
-          "enabled": true,
-          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
         }
       ]
     },
@@ -2304,16 +2304,16 @@
           "description": "Reports anonymous capturing groups and numeric back references in a RegExp. These are only reported when the RegExp dialect supports named group and named group references. Named groups and named back references improve code readability and are recommended to use instead. When a capture is not needed, matching can be more performant and use less memory by using a non-capturing group, i.e. `(?:xxx)` instead of `(xxx)`.\n\n**Example:**\n\n\n      (\\d\\d\\d\\d)\\1\n\nA better regex pattern could look like this:\n\n\n      (?<quad>\\d\\d\\d\\d)\\k<quad>\n\nNew in 2017.2"
         },
         {
-          "shortName": "RegExpRepeatedSpace",
-          "displayName": "Consecutive spaces",
-          "enabled": true,
-          "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
-        },
-        {
           "shortName": "RegExpDuplicateAlternationBranch",
           "displayName": "Duplicate branch in alternation",
           "enabled": true,
           "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpRepeatedSpace",
+          "displayName": "Consecutive spaces",
+          "enabled": true,
+          "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
         }
       ]
     },
