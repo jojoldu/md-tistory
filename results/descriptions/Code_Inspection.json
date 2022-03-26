@@ -2,125 +2,6 @@
   "profile": "Default",
   "groups": [
     {
-      "name": "Control flow issues",
-      "inspections": [
-        {
-          "shortName": "ConstantConditionalExpressionJS",
-          "displayName": "Constant conditional expression",
-          "enabled": false,
-          "description": "Reports a conditional expression in the format `true? result1: result2` or `false? result1: result2``.\nSuggests simplifying the expression.\n``\n`"
-        },
-        {
-          "shortName": "IfStatementWithTooManyBranchesJS",
-          "displayName": "'if' statement with too many branches",
-          "enabled": false,
-          "description": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
-        },
-        {
-          "shortName": "UnnecessaryContinueJS",
-          "displayName": "Unnecessary 'continue' statement",
-          "enabled": true,
-          "description": "Reports an unnecessary `continue` statement at the end of a loop. Suggests removing such statements."
-        },
-        {
-          "shortName": "JSObjectNullOrUndefined",
-          "displayName": "Object is 'null' or 'undefined'",
-          "enabled": true,
-          "description": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
-        },
-        {
-          "shortName": "UnnecessaryLabelOnBreakStatementJS",
-          "displayName": "Unnecessary label on 'break' statement",
-          "enabled": false,
-          "description": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
-        },
-        {
-          "shortName": "PointlessBooleanExpressionJS",
-          "displayName": "Pointless statement or boolean expression",
-          "enabled": false,
-          "description": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
-        },
-        {
-          "shortName": "UnnecessaryLabelOnContinueStatementJS",
-          "displayName": "Unnecessary label on 'continue' statement",
-          "enabled": false,
-          "description": "Reports a labeled `continue` statement whose labels may be removed without changing the flow of control."
-        },
-        {
-          "shortName": "SuspiciousTypeOfGuard",
-          "displayName": "Unsound type guard check",
-          "enabled": false,
-          "description": "Reports a `typeof` or `instanceof` unsound type guard check. The `typeof x` type guard can be unsound in one of the following two cases:\n\n* `typeof x` never corresponds to the specified value (for example, `typeof x === 'number'` when `x` is of the type 'string \\| boolean')\n* `typeof x` always corresponds to the specified value (for example, `typeof x === 'string'` when `x` is of the type 'string')\n\n<br />\n\nThe `x instanceof A` type guard can be unsound in one of the following two cases:\n\n* The type of `x` is not related to `A`\n* The type of `x` is `A` or a subtype of `A`"
-        },
-        {
-          "shortName": "LoopStatementThatDoesntLoopJS",
-          "displayName": "Loop statement that doesn't loop",
-          "enabled": true,
-          "description": "Reports a `for`, `while`, or `do` statement whose bodies are guaranteed to execute at most once. Normally, this indicates an error."
-        },
-        {
-          "shortName": "UnnecessaryReturnJS",
-          "displayName": "Unnecessary 'return' statement",
-          "enabled": true,
-          "description": "Reports an unnecessary `return` statement, that is, a `return` statement that returns no value and occurs just before the function would have \"fallen through\" the bottom. These statements may be safely removed."
-        },
-        {
-          "shortName": "ConditionalExpressionWithIdenticalBranchesJS",
-          "displayName": "Conditional expression with identical branches",
-          "enabled": false,
-          "description": "Reports a ternary conditional expression with identical `then` and `else` branches."
-        },
-        {
-          "shortName": "TailRecursionJS",
-          "displayName": "Tail recursion",
-          "enabled": false,
-          "description": "Reports a tail recursion, that is, when a function calls itself as its last action before returning. A tail recursion can always be replaced by looping, which will be considerably faster. Some JavaScript engines perform this optimization, while others do not. Thus, tail recursive solutions may have considerably different performance characteristics in different environments."
-        },
-        {
-          "shortName": "DuplicateConditionJS",
-          "displayName": "Duplicate condition in 'if' statement",
-          "enabled": false,
-          "description": "Reports duplicate conditions in different branches of an `if` statement. Duplicate conditions usually represent programmer oversight.\n\nExample:\n\n\n      if (a) {\n        ...\n      } else if (a) {\n        ...\n      }\n\n"
-        },
-        {
-          "shortName": "TrivialIfJS",
-          "displayName": "Redundant 'if' statement",
-          "enabled": false,
-          "description": "Reports an `if` statement that can be simplified to a single assignment or a `return` statement.\n\nExample:\n\n\n    if(foo())\n     {\n      return true;\n     }\n     else\n     {\n       return false;\n     }\n\nAfter applying the quick-fix the code looks as follows:\n\n     return foo();\n"
-        },
-        {
-          "shortName": "UnnecessaryLabelJS",
-          "displayName": "Unnecessary label",
-          "enabled": false,
-          "description": "Reports an unused label."
-        },
-        {
-          "shortName": "IfStatementWithIdenticalBranchesJS",
-          "displayName": "'if' statement with identical branches",
-          "enabled": false,
-          "description": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
-        },
-        {
-          "shortName": "TrivialConditionalJS",
-          "displayName": "Redundant conditional expression",
-          "enabled": false,
-          "description": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
-        },
-        {
-          "shortName": "UnreachableCodeJS",
-          "displayName": "Unreachable code",
-          "enabled": false,
-          "description": "Reports code that can never be executed, which almost certainly indicates an error"
-        },
-        {
-          "shortName": "ForLoopReplaceableByWhileJS",
-          "displayName": "'for' loop may be replaced by 'while' loop",
-          "enabled": false,
-          "description": "Reports a `for` loop that contains neither initialization nor an update component. Suggests replacing the loop with a simpler `while` statement.\n\nExample:\n\n\n      for(; exitCondition(); ) {\n        process();\n      }\n\nAfter the quick-fix is applied the result looks like:\n\n\n      while(exitCondition()) {\n        process();\n      }\n\nUse the checkbox below if you wish this inspection to ignore **for** loops with trivial or non-existent conditions."
-        }
-      ]
-    },
-    {
       "name": "EditorConfig",
       "inspections": [
         {
@@ -284,6 +165,125 @@
           "displayName": "Unexpected comma",
           "enabled": false,
           "description": "Reports commas that cannot be used in the current context. Commas are allowed only as separators for values in lists."
+        }
+      ]
+    },
+    {
+      "name": "Control flow issues",
+      "inspections": [
+        {
+          "shortName": "ConstantConditionalExpressionJS",
+          "displayName": "Constant conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression in the format `true? result1: result2` or `false? result1: result2``.\nSuggests simplifying the expression.\n``\n`"
+        },
+        {
+          "shortName": "IfStatementWithTooManyBranchesJS",
+          "displayName": "'if' statement with too many branches",
+          "enabled": false,
+          "description": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
+        },
+        {
+          "shortName": "UnnecessaryContinueJS",
+          "displayName": "Unnecessary 'continue' statement",
+          "enabled": true,
+          "description": "Reports an unnecessary `continue` statement at the end of a loop. Suggests removing such statements."
+        },
+        {
+          "shortName": "JSObjectNullOrUndefined",
+          "displayName": "Object is 'null' or 'undefined'",
+          "enabled": true,
+          "description": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
+        },
+        {
+          "shortName": "UnnecessaryLabelOnBreakStatementJS",
+          "displayName": "Unnecessary label on 'break' statement",
+          "enabled": false,
+          "description": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
+        },
+        {
+          "shortName": "PointlessBooleanExpressionJS",
+          "displayName": "Pointless statement or boolean expression",
+          "enabled": false,
+          "description": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
+        },
+        {
+          "shortName": "UnnecessaryLabelOnContinueStatementJS",
+          "displayName": "Unnecessary label on 'continue' statement",
+          "enabled": false,
+          "description": "Reports a labeled `continue` statement whose labels may be removed without changing the flow of control."
+        },
+        {
+          "shortName": "SuspiciousTypeOfGuard",
+          "displayName": "Unsound type guard check",
+          "enabled": false,
+          "description": "Reports a `typeof` or `instanceof` unsound type guard check. The `typeof x` type guard can be unsound in one of the following two cases:\n\n* `typeof x` never corresponds to the specified value (for example, `typeof x === 'number'` when `x` is of the type 'string \\| boolean')\n* `typeof x` always corresponds to the specified value (for example, `typeof x === 'string'` when `x` is of the type 'string')\n\n<br />\n\nThe `x instanceof A` type guard can be unsound in one of the following two cases:\n\n* The type of `x` is not related to `A`\n* The type of `x` is `A` or a subtype of `A`"
+        },
+        {
+          "shortName": "LoopStatementThatDoesntLoopJS",
+          "displayName": "Loop statement that doesn't loop",
+          "enabled": true,
+          "description": "Reports a `for`, `while`, or `do` statement whose bodies are guaranteed to execute at most once. Normally, this indicates an error."
+        },
+        {
+          "shortName": "UnnecessaryReturnJS",
+          "displayName": "Unnecessary 'return' statement",
+          "enabled": true,
+          "description": "Reports an unnecessary `return` statement, that is, a `return` statement that returns no value and occurs just before the function would have \"fallen through\" the bottom. These statements may be safely removed."
+        },
+        {
+          "shortName": "ConditionalExpressionWithIdenticalBranchesJS",
+          "displayName": "Conditional expression with identical branches",
+          "enabled": false,
+          "description": "Reports a ternary conditional expression with identical `then` and `else` branches."
+        },
+        {
+          "shortName": "TailRecursionJS",
+          "displayName": "Tail recursion",
+          "enabled": false,
+          "description": "Reports a tail recursion, that is, when a function calls itself as its last action before returning. A tail recursion can always be replaced by looping, which will be considerably faster. Some JavaScript engines perform this optimization, while others do not. Thus, tail recursive solutions may have considerably different performance characteristics in different environments."
+        },
+        {
+          "shortName": "DuplicateConditionJS",
+          "displayName": "Duplicate condition in 'if' statement",
+          "enabled": false,
+          "description": "Reports duplicate conditions in different branches of an `if` statement. Duplicate conditions usually represent programmer oversight.\n\nExample:\n\n\n      if (a) {\n        ...\n      } else if (a) {\n        ...\n      }\n\n"
+        },
+        {
+          "shortName": "TrivialIfJS",
+          "displayName": "Redundant 'if' statement",
+          "enabled": false,
+          "description": "Reports an `if` statement that can be simplified to a single assignment or a `return` statement.\n\nExample:\n\n\n    if(foo())\n     {\n      return true;\n     }\n     else\n     {\n       return false;\n     }\n\nAfter applying the quick-fix the code looks as follows:\n\n     return foo();\n"
+        },
+        {
+          "shortName": "UnnecessaryLabelJS",
+          "displayName": "Unnecessary label",
+          "enabled": false,
+          "description": "Reports an unused label."
+        },
+        {
+          "shortName": "IfStatementWithIdenticalBranchesJS",
+          "displayName": "'if' statement with identical branches",
+          "enabled": false,
+          "description": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
+        },
+        {
+          "shortName": "TrivialConditionalJS",
+          "displayName": "Redundant conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
+        },
+        {
+          "shortName": "UnreachableCodeJS",
+          "displayName": "Unreachable code",
+          "enabled": false,
+          "description": "Reports code that can never be executed, which almost certainly indicates an error"
+        },
+        {
+          "shortName": "ForLoopReplaceableByWhileJS",
+          "displayName": "'for' loop may be replaced by 'while' loop",
+          "enabled": false,
+          "description": "Reports a `for` loop that contains neither initialization nor an update component. Suggests replacing the loop with a simpler `while` statement.\n\nExample:\n\n\n      for(; exitCondition(); ) {\n        process();\n      }\n\nAfter the quick-fix is applied the result looks like:\n\n\n      while(exitCondition()) {\n        process();\n      }\n\nUse the checkbox below if you wish this inspection to ignore **for** loops with trivial or non-existent conditions."
         }
       ]
     },
@@ -1790,17 +1790,6 @@
       ]
     },
     {
-      "name": "Structural search",
-      "inspections": [
-        {
-          "shortName": "SSBasedInspection",
-          "displayName": "Structural search inspection",
-          "enabled": true,
-          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
-        }
-      ]
-    },
-    {
       "name": "Function metrics",
       "inspections": [
         {
@@ -1844,6 +1833,17 @@
           "displayName": "Overly nested function",
           "enabled": false,
           "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
+        }
+      ]
+    },
+    {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": true,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
         }
       ]
     },
