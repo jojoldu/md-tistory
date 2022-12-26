@@ -6,6 +6,11 @@ export class MarkdownParser {
   private parser;
 
   constructor() {
+    marked.setOptions({
+      langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
+      gfm: true,
+      breaks: true,
+    });
     this.parser = marked;
   }
 
