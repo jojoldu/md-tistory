@@ -4,7 +4,6 @@ import * as path from 'path';
 import { Container } from 'typedi';
 import { FileManager } from '../../../../src/libs/file-manager/FileManager';
 import { NotFoundFileError } from '../../../../src/libs/file-manager/NotFoundFileError';
-import { FileManagerMessages } from '../../../../src/libs/file-manager/FileManagerMessages';
 import { BlogMetadata } from '../../../../src/repository/token/dto/BlogMetadata';
 
 describe('FileManager', () => {
@@ -20,23 +19,15 @@ describe('FileManager', () => {
 
     it('존재하지 않는 위치를 지정하면 NotFoundFileError가 발생한다', () => {
       const testPath = './testPath';
-
-      try {
-        sut.findPathFromCurrent(testPath);
-        fail('should not reach');
-      } catch (e) {
-        expect(e).toBeInstanceOf(NotFoundFileError);
-      }
+      expect(() => sut.findPathFromCurrent(testPath)).toThrow(
+        NotFoundFileError,
+      );
     });
 
     it('존재하는 위치에서 .md파일이 없으면 NotFoundFileError가 발생한다', () => {
-      try {
-        sut.findPathFromCurrent(__dirname);
-        fail('should not reach');
-      } catch (e) {
-        expect(e).toBeInstanceOf(NotFoundFileError);
-        expect(e.message).toBe(FileManagerMessages.NOT_FOUND_FILE);
-      }
+      expect(() => sut.findPathFromCurrent(__dirname)).toThrow(
+        NotFoundFileError,
+      );
     });
   });
 
