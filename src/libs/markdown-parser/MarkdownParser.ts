@@ -15,9 +15,7 @@ export class MarkdownParser {
   }
 
   parse(mdContent: string): string {
-    return `<article class="markdown-body entry-content" itemprop="text"> ${this.convert(
-      mdContent,
-    )} </article>`;
+    return `${this.convert(mdContent)} `;
   }
 
   private convert(mdContent: string): string {
