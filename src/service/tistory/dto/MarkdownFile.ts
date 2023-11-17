@@ -19,10 +19,10 @@ export class MarkdownFile {
   }
 
   updateUploadContent(markdownImages: MarkdownImage[]): void {
-    markdownImages.forEach((v) => {
+    markdownImages.forEach((image) => {
       this._uploadContent = this._uploadContent.replace(
-        v.mdImagePath,
-        v.urlPath,
+        image.mdImagePath,
+        image.urlPath,
       );
     });
   }

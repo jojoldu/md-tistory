@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "bin": {
+    "md-tistory": "dist/src/index.js"
+  },
   "scripts": {
     "test:unit": "jest '.*.unit.spec.ts$'",
     "test": "yarn test:unit",
