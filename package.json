@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@js-joda/core": "^5.4.2",
-    "axios": "^1.2.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "commander": "^9.0.0",
