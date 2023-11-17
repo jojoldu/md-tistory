@@ -35,7 +35,7 @@ describe('MarkdownParser', () => {
 
     const result = sut.parse(content);
 
-    expect(result).toContain('<h1 id="테스트">테스트</h1>');
+    expect(result).toContain('<h1>테스트</h1>');
     expect(result).toContain('<pre><code class');
   });
 });
