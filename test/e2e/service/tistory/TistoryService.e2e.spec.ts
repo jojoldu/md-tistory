@@ -15,7 +15,13 @@ describe('TistoryService(e2e)', () => {
 
       const result = await sut.create(fileName, fileDir);
 
-      expect(result).toContain('https');
+      expect(result.url).toContain('https');
+    });
+
+    it('파일명을 입력하지 않으면 가장 가까운 md 파일을 업로드 한다', async () => {
+      const result = await sut.create(null, fileDir);
+
+      expect(result.url).toContain('https');
     });
   });
   describe('uploadImage', () => {

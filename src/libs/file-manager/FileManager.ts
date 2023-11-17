@@ -17,11 +17,11 @@ export class FileManager {
     this.logger = logger;
   }
 
-  async findMarkdown(
-    filePath = this.findPathFromCurrent(),
-  ): Promise<FileMetadata> {
-    const content = await this.fileManager.readFile(filePath, 'utf8');
-    return FileMetadata.markdown(filePath, content);
+  async findMarkdown(filePath: string | null): Promise<FileMetadata> {
+    this.logger.debug(`findMarkdown filePath=${filePath}`);
+    const markdownFilePath = filePath ?? this.findPathFromCurrent();
+    const content = await this.fileManager.readFile(markdownFilePath, 'utf8');
+    return FileMetadata.markdown(markdownFilePath, content);
   }
 
   async findJson(filePath: string) {

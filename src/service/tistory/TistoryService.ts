@@ -10,6 +10,7 @@ import { MarkdownFile } from './dto/MarkdownFile';
 import { TistoryApiCreateRequest } from '../../repository/tistory/request/post/TistoryApiCreateRequest';
 import * as path from 'path';
 import { MarkdownParser } from '../../libs/markdown-parser/MarkdownParser';
+import { TistoryCreateResponse } from './dto/create/TistoryCreateResponse';
 
 @Service()
 export class TistoryService {
@@ -21,11 +22,15 @@ export class TistoryService {
     private readonly logger: WinstonLogger,
   ) {}
 
-  async create(mdName: string, currentPath = process.cwd()): Promise<string> {
+  async create(
+    mdName: string | null,
+    currentPath = process.cwd(),
+  ): Promise<TistoryCreateResponse> {
     const { accessToken } = await this.tokenRepository.findToken();
     const { blogName } = await this.tokenRepository.findBlogMetadata();
+    const filePath = mdName ? path.join(currentPath, `/${mdName}`) : null;
     const mdFile: MarkdownFile = MarkdownFile.of(
-      await this.fileManager.findMarkdown(path.join(currentPath, `/${mdName}`)),
+      await this.fileManager.findMarkdown(filePath),
     );
     mdFile.updateUploadContent(await this.convertImages(mdFile));
 
@@ -33,9 +38,11 @@ export class TistoryService {
 
     this.logger.debug(content);
 
-    return await this.tistoryRepository.create(
+    const url = await this.tistoryRepository.create(
       new TistoryApiCreateRequest(mdFile.title, content, accessToken, blogName),
     );
+
+    return new TistoryCreateResponse(url, mdFile.path);
   }
 
   async convertImages(mdFile: MarkdownFile): Promise<MarkdownImage[]> {

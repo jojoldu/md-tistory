@@ -10,8 +10,8 @@ const commander = new Command();
 commander
   .version('0.1.0')
   .description('Markdown CLI for Tistory Blog')
-  .option('-w, --write <name>', 'write tistory post from markdown file')
-  .option('-u, --update <name>', 'update tistory post from markdown file')
+  .option('-w, --write [name]', 'write tistory post from markdown file')
+  .option('-u, --update [name]', 'update tistory post from markdown file')
   .parse(process.argv);
 
 const controller = Container.get(TistoryController);
@@ -20,7 +20,13 @@ const options = commander.opts();
 
 void (async () => {
   if (options.write) {
-    await controller.create(options.write);
+    logger.debug(`options.write=${options.write}`);
+    const response = await controller.create(
+      options.write === true ? null : options.write,
+    );
+    logger.info(
+      `create success: url=${response.url}, fileFullPath=${response.fileFullPath}`,
+    );
   } else {
     logger.info('Please enter the command');
   }
