@@ -20,6 +20,22 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
           fetch-depth: 0
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Archive coverage data  # Archive data for using by Qodana
+        uses: actions/upload-artifact@v2
+        with:
+          name: jest-coverage-data
+          path: .qodana/code-coverage
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.2
         with:
