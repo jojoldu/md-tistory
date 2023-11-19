@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jest-coverage-data
-          path: .coverage/lcov-report
+          path: .qodana/code-coverage
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2023.2
         with:
