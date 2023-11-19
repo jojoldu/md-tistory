@@ -1,6 +1,6 @@
 {
   "name": "md-tistory",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
   "bin": {
@@ -10,6 +10,7 @@
     "test:unit": "jest '.*.unit.spec.ts$'",
     "test": "yarn test:unit",
     "test:report": "jest '.*.unit.spec.ts$' --ci --reporters=default --reporters=jest-junit",
+    "test:coverage": "jest '.*.unit.spec.ts$' --coverage",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "build": "tsc --build",
     "clean": "tsc --build --clean"
@@ -82,6 +83,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "./coverage",
+    "coverageReporters": [
+      "lcov"
+    ],
     "testEnvironment": "node",
     "roots": [
       "<rootDir>/"
