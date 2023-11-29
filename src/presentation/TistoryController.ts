@@ -24,4 +24,19 @@ export class TistoryController {
       throw e;
     }
   }
+
+  async update(
+    mdName: string | null,
+    currentPath = process.cwd(),
+  ): Promise<TistoryCreateResponse> {
+    try {
+      return await this.tistoryService.create(mdName, currentPath);
+    } catch (e) {
+      this.logger.error(
+        `create exception: mdName=${mdName}, currentPath=${currentPath}\n`,
+        e,
+      );
+      throw e;
+    }
+  }
 }
