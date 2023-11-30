@@ -38,26 +38,6 @@ export class TistoryService {
     return await this.writePost(mdName, currentPath);
   }
 
-  private async writePost(mdName: string | null, currentPath: any) {
-    const { accessToken } = await this.tokenRepository.findToken();
-    const { blogName } = await this.tokenRepository.findBlogMetadata();
-    const filePath = mdName ? path.join(currentPath, `/${mdName}`) : null;
-    const mdFile: MarkdownFile = MarkdownFile.of(
-      await this.fileManager.findMarkdown(filePath),
-    );
-    mdFile.updateUploadContent(await this.convertImages(mdFile));
-
-    const content = this.markdownParser.parse(mdFile.uploadContent);
-
-    this.logger.debug(content);
-
-    const url = await this.tistoryRepository.create(
-      new TistoryApiCreateRequest(mdFile.title, content, accessToken, blogName),
-    );
-
-    return new TistoryCreateResponse(url, mdFile.path);
-  }
-
   async convertImages(mdFile: MarkdownFile): Promise<MarkdownImage[]> {
     const markdownImages = getImagePaths(mdFile.content)
       .map((imagePath) => new MarkdownImage(mdFile.path, imagePath))
@@ -95,5 +75,25 @@ export class TistoryService {
       );
       return undefined;
     }
+  }
+
+  private async writePost(mdName: string | null, currentPath: any) {
+    const { accessToken } = await this.tokenRepository.findToken();
+    const { blogName } = await this.tokenRepository.findBlogMetadata();
+    const filePath = mdName ? path.join(currentPath, `/${mdName}`) : null;
+    const mdFile: MarkdownFile = MarkdownFile.of(
+      await this.fileManager.findMarkdown(filePath),
+    );
+    mdFile.updateUploadContent(await this.convertImages(mdFile));
+
+    const content = this.markdownParser.parse(mdFile.uploadContent);
+
+    this.logger.debug(content);
+
+    const url = await this.tistoryRepository.create(
+      new TistoryApiCreateRequest(mdFile.title, content, accessToken, blogName),
+    );
+
+    return new TistoryCreateResponse(url, mdFile.path);
   }
 }
