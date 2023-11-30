@@ -26,6 +26,19 @@ export class TistoryService {
     mdName: string | null,
     currentPath = process.cwd(),
   ): Promise<TistoryCreateResponse> {
+    return await this.writePost(mdName, currentPath);
+  }
+
+  async update(
+    mdName: string | null,
+    id: number,
+    currentPath = process.cwd(),
+  ): Promise<TistoryCreateResponse> {
+    this.logger.info(`${id}`);
+    return await this.writePost(mdName, currentPath);
+  }
+
+  private async writePost(mdName: string | null, currentPath: any) {
     const { accessToken } = await this.tokenRepository.findToken();
     const { blogName } = await this.tokenRepository.findBlogMetadata();
     const filePath = mdName ? path.join(currentPath, `/${mdName}`) : null;

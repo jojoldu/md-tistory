@@ -27,10 +27,11 @@ export class TistoryController {
 
   async update(
     mdName: string | null,
+    id: number,
     currentPath = process.cwd(),
   ): Promise<TistoryCreateResponse> {
     try {
-      return await this.tistoryService.create(mdName, currentPath);
+      return await this.tistoryService.update(mdName, id, currentPath);
     } catch (e) {
       this.logger.error(
         `create exception: mdName=${mdName}, currentPath=${currentPath}\n`,

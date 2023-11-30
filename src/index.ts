@@ -11,7 +11,8 @@ commander
   .version('0.1.0')
   .description('Markdown CLI for Tistory Blog')
   .option('-w, --write [name]', 'write tistory post from markdown file')
-  .option('-u, --update [name] [id]', 'update tistory post from markdown file')
+  .option('-u, --update [name]', 'update tistory post from markdown file')
+  .option('-i, --id [name]', 'update tistory post id')
   .parse(process.argv);
 
 const controller = Container.get(TistoryController);
@@ -27,11 +28,11 @@ void (async () => {
     logger.info(
       `create success: url=${response.url}, fileFullPath=${response.fileFullPath}`,
     );
-  } else if (options.update) {
-    logger.debug(`options.update=${options.update}`);
-    const response = await controller.update(
-      options.update === true ? null : options.update,
-    );
+  } else if (options.update && options.id) {
+    logger.debug(`options.update=${options.update}, options.id=${options.id}`);
+    const mdName = options.update === true ? null : options.update;
+    const id = options.id === true ? null : options.id;
+    const response = await controller.update(mdName, id);
     logger.info(
       `create success: url=${response.url}, fileFullPath=${response.fileFullPath}`,
     );
